@@ -13,7 +13,6 @@
     <title>Hotel Alpha - Hotel Booking HTML Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-
     <!-- External CSS libraries -->
     <link rel="stylesheet" type="text/css" href="{{ asset('hotel-alpha/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('hotel-alpha/css/animate.min.css') }}">
@@ -24,7 +23,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('hotel-alpha/fonts/linearicons/style.css') }}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('hotel-alpha/css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('hotel-alpha/css/bootstrap-datepicker.min.css') }}">
-
     <!-- Custom stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('hotel-alpha/css/style.css') }}">
     <link rel="stylesheet" type="text/css" id="style_sheet" href="{{ asset('hotel-alpha/css/skins/blue-light-2.css') }}">
@@ -122,7 +120,6 @@
     </div>
 </header>
 <!-- Top header end -->
-
 <!-- Main header start -->
 <header class="main-header main-header-4">
     <div class="container">

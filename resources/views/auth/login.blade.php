@@ -1,5 +1,4 @@
 @extends('layouts.auth')
-
 @section('content')
     <!--begin::Authentication - Sign-in -->
     <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
@@ -13,7 +12,7 @@
                       id="kt_sign_in_form">
                     @csrf
                     <!--begin::Heading-->
-                    <div class="text-center mb-10">
+                    {{-- <div class="text-center mb-10">
                         <!--begin::Title-->
                         <h1 class="text-dark mb-3">{{ __('messages.login_title') }}</h1>
                         <!--end::Title-->
@@ -23,7 +22,8 @@
                                class="link-primary fw-bolder">{{ __('messages.create_account') }}</a>
                         </div>
                         <!--end::Link-->
-                    </div>
+                    </div> --}}
+                    <h1 class="text-center">LOGIN</h1>
                     <!--begin::Heading-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
