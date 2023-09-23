@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('room-type.index', ['categories' => []]);
 });
+
+Route::middleware(['auth', 'localization'])->group(function () {
+    Route::get('/update-language/{lang}', [
+        UserController::class,
+        'updateLanguage',
+    ])->name('update-language');
+});
+
