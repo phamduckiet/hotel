@@ -19,10 +19,7 @@ class RoomType extends Model
         'name',
         'max_adults',
         'max_children',
-        'hourly_price',
-        'daily_price',
-        'nightly_price',
-        'monthly_price',
+        'price',
         'description',
     ];
 

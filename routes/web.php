@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,6 @@ Route::middleware(['auth', 'localization'])->group(function () {
         UserController::class,
         'updateLanguage',
     ])->name('update-language');
-});
 
+    Route::resource('room-types', RoomTypeController::class);
+});

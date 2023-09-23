@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoomTypeRequest;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 
 class RoomTypeController extends Controller
@@ -11,7 +13,9 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        //
+        $roomTypes = RoomType::all();
+
+        return view('room-type.index', compact('roomTypes'));
     }
 
     /**
@@ -19,15 +23,18 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('room-type.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRoomTypeRequest $request)
     {
-        //
+        RoomType::create($request->all());
+
+        return redirect()->route('room-types.index')
+            ->with('success', __('messages.successfully'));
     }
 
     /**

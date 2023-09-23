@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    @include('components.admin.header', ['parent' => null, 'child' => __('messages.categories')])
+    @include('components.admin.header', ['parent' => null, 'child' => __('messages.roomTypes')])
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Post-->
@@ -40,10 +40,8 @@
                         <!--end::Card title-->
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
-                            <!--begin::Add Category-->
-                            <a href=""
-                                class="btn btn-primary">{{ __('messages.add_category') }}</a>
-                            <!--end::Add Category-->
+                            <a href="{{ route('room-types.create') }}"
+                                class="btn btn-primary">{{ __('messages.add_room_type') }}</a>
                         </div>
                         <!--end::Card toolbar-->
                     </div>
@@ -66,14 +64,14 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
-                                @foreach ($categories as $category)
+                                @foreach ($roomTypes as $category)
                                     <!--begin::Table row-->
                                     <tr id="{{ 'category-item-' . $category->id }}">
                                         <!--begin::Category=-->
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <!--begin::Thumbnail-->
-                                                <a href="{{ route('categories.edit', ['category' => $category->id]) }}"
+                                                <a href=""
                                                     class="symbol symbol-50px">
                                                     <span class="symbol-label"
                                                         style="{{ 'background-image:url(' . asset($category->image_url) . ');' }}"></span>
@@ -81,7 +79,7 @@
                                                 <!--end::Thumbnail-->
                                                 <div class="ms-5">
                                                     <!--begin::Title-->
-                                                    <a href="{{ route('categories.edit', ['category' => $category->id]) }}"
+                                                    <a href=""
                                                         class="text-gray-800 text-hover-primary fs-5 fw-bolder"
                                                         data-kt-ecommerce-category-filter="category_name">{{ $category->name }}</a>
                                                     <!--end::Title-->
@@ -93,10 +91,6 @@
                                             <div>{!! $category->description !!}</div>
                                         </td>
                                         <td>
-
-                                            @include('components.status', [
-                                                'status' => $category->status,
-                                            ])
                                         </td>
                                         <!--begin::Action=-->
                                         <td class="text-end">
@@ -119,14 +113,14 @@
                                                 data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('categories.edit', ['category' => $category->id]) }}"
+                                                    <a href=""
                                                         class="menu-link px-3">{{ __('messages.edit') }}</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <div class="menu-link px-3 delete-btn"
-                                                        data-url="{{ route('categories.destroy', ['category' => $category->id]) }}"
+                                                        data-url=""
                                                         data-id="{{ $category->id }}">
                                                         {{ __('messages.delete') }}</div>
                                                 </div>
@@ -166,7 +160,7 @@
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/categories.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/roomTypes.js') }}"></script>
     <script src="{{ asset('resources/js/category/index.js') }}"></script>
     <!--end::Page Custom Javascript-->
 @endpush

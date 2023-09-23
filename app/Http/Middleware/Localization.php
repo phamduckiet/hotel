@@ -17,6 +17,7 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
+        // đặt ngôn ngữ
         App::setLocale(optional(Auth::user())->lang ?? 'vi');
 
         return $next($request);
