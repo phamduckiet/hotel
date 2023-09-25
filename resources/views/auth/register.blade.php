@@ -20,7 +20,7 @@
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">{{ __('messages.already_have_account') }}
                             <a href="{{ route('login') }}"
-                                class="link-primary fw-bolder">{{ __('messages.sign_in') }}</a>
+                                class="link-primary fw-bolder">{{ __('messages.login') }}</a>
                         </div>
                         <!--end::Link-->
                     </div>
@@ -100,7 +100,7 @@
                     <div class="text-center">
                         <!--begin::Submit button-->
                         <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                            <span class="indicator-label">{{ __('messages.continue') }}</span>
+                            <span class="indicator-label">{{ __('messages.register') }}</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>

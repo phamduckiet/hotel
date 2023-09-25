@@ -3,6 +3,7 @@
 return [
     'create_account' => 'Tạo tài khoản',
     'add_room_type' => 'Thêm loại phòng',
+    'add_room'  => 'Thêm phòng',
     'room_types' => 'Loại phòng',
     'successfully' => 'Thành công',
     'name' => 'Tên',
@@ -10,4 +11,25 @@ return [
     'max_children' => 'Số trẻ em tối đa',
     'price' => 'Giá',
     'description' => 'Mô tả',
+    'password' => 'Mật Khẩu',
+    'login' => 'Đăng Nhập',
+    'already_have_account' => 'Bạn đã có tài khoản',
+    'password_confirmation' => 'Nhập lại mật khẩu',
+    'register'  => 'Đăng Ký',
+    'home'  => 'Trang Chủ',
+    'room_type_name'    => 'Tên loại phòng',
+    'save_changes'  => 'Lưu',
+    'cancel'    => 'Huỷ',
+    'language'  => 'Ngôn ngữ',
+    'sign_out'  => 'Đăng xuất',
+    'room' => 'Phòng',
+    'search'   => 'Tìm kiếm',
+    'actions'   => 'Hành Động',
+    'edit'  => 'Chỉnh sữa',
+    'delete' => 'Xoá',
+    'room_name' => 'Tên phòng',
+
+
+
+
 ];

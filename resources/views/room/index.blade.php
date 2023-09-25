@@ -1,6 +1,7 @@
 @extends('layouts.admin')
+
 @section('content')
-    @include('components.admin.header', ['parent' => null, 'child' => __('messages.room_types')])
+    @include('components.admin.header', ['parent' => null, 'child' => __('messages.room')])
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Post-->
@@ -39,8 +40,8 @@
                         <!--end::Card title-->
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
-                            <a href="{{ route('room-types.create') }}"
-                                class="btn btn-primary">{{ __('messages.add_room_type') }}</a>
+                            <a href="{{ route('room.create') }}"
+                                class="btn btn-primary">{{ __('messages.add_room') }}</a>
                         </div>
                         <!--end::Card toolbar-->
                     </div>
@@ -53,11 +54,8 @@
                             <thead>
                                 <!--begin::Table row-->
                                 <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                    <th style="color: black" class="min-w-100px">{{ __('messages.room') }}</th>
                                     <th style="color: black" class="min-w-100px">{{ __('messages.room_types') }}</th>
-                                    <th style="color: black" class="min-w-200px">{{ __('messages.max_adults') }}</th>
-                                    <th style="color: black" class="min-w-100px">{{ __('messages.max_children') }}</th>
-                                    <th style="color: black" class="min-w-100px">{{ __('messages.price') }}</th>
-                                    <th style="color: black" class="min-w-70px">{{ __('messages.description') }}</th>
                                     <th style="color: black" class="text-center min-w-150px">{{ __('messages.actions') }}</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -65,7 +63,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
-                                @foreach ($roomTypes as $room_types)
+                                {{-- @foreach ($roomTypes as $room_types)
                                     <!--begin::Table row-->
                                     <tr style="color: black" id="{{ 'room_types-item-' . $room_types->id }}">
                                         <!--begin::Category=-->
@@ -106,7 +104,7 @@
                                                 data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('room-types.edit', [$room_types->id]) }}"
+                                                    <a href=""
                                                         class="menu-link px-3">{{ __('messages.edit') }}</a>
                                                 </div>
                                                 <!--end::Menu item-->
@@ -124,7 +122,7 @@
                                         <!--end::Action=-->
                                     </tr>
                                     <!--end::Table row-->
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                             <!--end::Table body-->
                         </table>

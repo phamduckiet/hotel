@@ -10,7 +10,7 @@
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
             <div id="kt_content_container" class="container-xxl">
-                <form method="POST" action="{{ route('room-types.store') }}" enctype='multipart/form-data'
+                <form method="POST" action="" enctype='multipart/form-data'
                     id="add_room_type_form" class="form d-flex flex-column flex-lg-row">
                     @csrf
                     <!--begin::Main column-->

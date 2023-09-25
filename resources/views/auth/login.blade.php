@@ -54,7 +54,7 @@
                     <div class="text-center">
                         <!--begin::Submit button-->
                         <button type="submit" id="kt_sign_in_submit" class="bg-green btn btn-lg btn-primary w-100 mb-5">
-                            <span class="indicator-label">{{ __('messages.continue') }}</span>
+                            <span class="indicator-label">{{ __('messages.login') }}</span>
                             <span class="indicator-progress">Please wait...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
