@@ -2,7 +2,7 @@
 @section('content')
     @include('components.admin.header', [
         'parent' => __('messages.room_types'),
-        'child' => __('messages.add_room_type'),
+        'child' => __('messages.edit_room_type'),
     ])
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -10,9 +10,10 @@
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
             <div id="kt_content_container" class="container-xxl">
-                <form method="POST" action="" enctype='multipart/form-data'
+                <form method="POST" action="{{ route('room-types.update', ['room_type' => $roomType->id]) }}" enctype='multipart/form-data'
                     id="add_room_type_form" class="form d-flex flex-column flex-lg-row">
                     @csrf
+                    @method('PUT')
                     <!--begin::Main column-->
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <!--begin::General options-->
@@ -27,7 +28,7 @@
                                     <!--begin::Input-->
                                     <input type="text" name="name"
                                         class="form-control mb-2 @error('name') is-invalid @enderror"
-                                        value="{{ old('name') }}">
+                                        value="{{ $roomType->name }}">
                                     <!--end::Input-->
                                     @error('name')
                                         <div class="text-danger"><small>{{ $message }}</small></div>
@@ -42,7 +43,7 @@
                                     <!--begin::Input-->
                                     <input type="number" name="max_adults"
                                         class="form-control mb-2 @error('max_adults') is-invalid @enderror"
-                                        value="{{ old('max_adults') }}">
+                                        value="{{ $roomType->max_adults }}">
                                     <!--end::Input-->
                                     @error('max_adults')
                                         <div class="text-danger"><small>{{ $message }}</small></div>
@@ -57,7 +58,7 @@
                                     <!--begin::Input-->
                                     <input type="number" name="max_children"
                                         class="form-control mb-2 @error('max_children') is-invalid @enderror"
-                                        value="{{ old('max_children') }}">
+                                        value="{{ $roomType->max_children }}">
                                     <!--end::Input-->
                                     @error('max_children')
                                         <div class="text-danger"><small>{{ $message }}</small></div>
@@ -72,7 +73,7 @@
                                     <!--begin::Input-->
                                     <input type="number" name="price"
                                         class="form-control mb-2 @error('price') is-invalid @enderror"
-                                        value="{{ old('max_children') }}">
+                                        value="{{ $roomType->price }}">
                                     <!--end::Input-->
                                     @error('price')
                                         <div class="text-danger"><small>{{ $message }}</small></div>
@@ -89,7 +90,7 @@
                                     <!--end::Editor-->
                                 </div>
                                 <input type="hidden" id="room-type-description" name="description"
-                                    value="{{ old('description') }}" />
+                                    value="{{ $roomType->description }}" />
                                 <!--end::Input group-->
                                 @error('description')
                                     <div class="text-danger"><small>{{ $message }}</small></div>

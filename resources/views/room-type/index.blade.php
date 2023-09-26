@@ -30,7 +30,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <input type="text" data-kt-ecommerce-category-filter="search"
+                                <input type="text" data-room-type-filter="search"
                                     class="form-control form-control-solid w-250px ps-14"
                                     placeholder="{{ __('messages.search') }}" />
                             </div>
@@ -48,7 +48,7 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="room_type_list_table">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
@@ -67,7 +67,7 @@
                             <tbody class="fw-bold text-gray-600">
                                 @foreach ($roomTypes as $room_types)
                                     <!--begin::Table row-->
-                                    <tr style="color: black" id="{{ 'room_types-item-' . $room_types->id }}">
+                                    <tr style="color: black" id="{{ 'room-type-item-' . $room_types->id }}">
                                         <!--begin::Category=-->
                                         <td class="text-center">
                                             <div>{{ $room_types->name }}</div>
@@ -113,8 +113,8 @@
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <div class="menu-link px-3 delete-btn"
-                                                        data-url=""
-                                                        data-id="{{ $room_types->id }}">
+                                                         data-url="{{ route('room-types.destroy', ['room_type' => $room_types->id]) }}"
+                                                         data-id="{{ $room_types->id }}">
                                                         {{ __('messages.delete') }}</div>
                                                 </div>
                                                 <!--end::Menu item-->
@@ -153,7 +153,6 @@
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/roomTypes.js') }}"></script>
-    <script src="{{ asset('resources/js/category/index.js') }}"></script>
+    <script src="{{ asset('resources/js/room-type/index.js') }}"></script>
     <!--end::Page Custom Javascript-->
 @endpush

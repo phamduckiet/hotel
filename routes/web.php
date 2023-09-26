@@ -26,6 +26,10 @@ Route::middleware(['auth', 'localization'])->group(function () {
         'updateLanguage',
     ])->name('update-language');
 
+    Route::get('/dashboard', function () {
+        dd(1);
+    });
+
     Route::resource('room-types', RoomTypeController::class);
     Route::resource('room', RoomController::class);
 });

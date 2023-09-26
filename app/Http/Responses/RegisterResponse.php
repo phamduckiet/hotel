@@ -3,18 +3,17 @@
 namespace App\Http\Responses;
 
 use Illuminate\Support\Facades\Auth;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 
-class LoginResponse implements LoginResponseContract
+class RegisterResponse implements RegisterResponseContract
 {
     /**
      * @return mixed
      */
     public function toResponse($request)
     {
-        // Login xong thi redirect ve dau
 //        $home = Auth::user()->is_admin ? '/dashboard' : '/';
 
-        return redirect()->intended('/dashboard');
+        return redirect()->intended('/room-types');
     }
 }

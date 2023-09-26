@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoomTypeRequest;
+use App\Http\Requests\UpdateRoomTypeRequest;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
 
@@ -48,26 +49,27 @@ class RoomTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RoomType $roomTypes)
+    public function edit(RoomType $roomType)
     {
-
-        return view('room-type.edit');
-
+        return view('room-type.edit', compact('roomType'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRoomTypeRequest $request, RoomType $roomType)
     {
-        //
+        $roomType->update($request->all());
+
+        return redirect()->route('room-types.index')
+            ->with('success', __('messages.successfully'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(RoomType $roomType)
     {
-        //
+        return $roomType->delete();
     }
 }

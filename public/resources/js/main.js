@@ -8,3 +8,9 @@ if (message) {
 if ($('#success-message').val()) {
     toastr.success($('#success-message').val());
 }
+
+// Logout button clicked
+$('#logout-btn').click((e) => {
+    e.preventDefault();
+    $('#logout-form').submit();
+});
