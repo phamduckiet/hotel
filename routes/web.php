@@ -31,5 +31,10 @@ Route::middleware(['auth', 'localization'])->group(function () {
     });
 
     Route::resource('room-types', RoomTypeController::class);
-    Route::resource('room', RoomController::class);
+    Route::resource('rooms', RoomController::class);
+    Route::prefix('rooms')->group(function () {
+        Route::get('/{room}/images', [RoomController::class, 'showRoomImages']);
+        Route::delete('/{room}/images/{imageId}', [RoomController::class, 'deleteRoomImage']);
+        Route::post('/{room}/images', [RoomController::class, 'storeRoomImage']);
+    });
 });

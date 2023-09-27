@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoomRequest;
+use App\Models\Floor;
 use App\Models\Image;
 use App\Models\Room;
 use App\Models\RoomType;
@@ -16,7 +17,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return view('room.index');
+        $floors = Floor::with('rooms', 'rooms.images')->get();
+
+        return view('room.index', compact('floors'));
     }
 
     /**
@@ -25,8 +28,9 @@ class RoomController extends Controller
     public function create()
     {
         $roomTypes = RoomType::latest()->get();
-        $image = Image::latest()->get();
-        return view('room.create', compact('roomTypes', 'image'));
+        $floors = Floor::all();
+
+        return view('room.create', compact('roomTypes', 'floors'));
     }
 
     /**
@@ -34,7 +38,7 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
-        $this->authorize('create', Room::class);
+//        $this->authorize('create', Room::class); // phan quyen
 
         try {
             DB::beginTransaction();
@@ -43,9 +47,10 @@ class RoomController extends Controller
             $room = Room::create([
                 'name' => $request->name,
                 'avatar_url' => $filePath,
+                'type_id' => $request->type_id,
+                'floor_id' => $request->floor_id,
             ]);
 
-            $room->roomType()->attach($request->roomType_id);
             foreach ($request->file('images', []) as $image) {
                 $filePath = $image->store('images', ['disk' => 'public_storage']);
                 $room->images()->create(['url' => $filePath]);
@@ -71,9 +76,12 @@ class RoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Room $room)
     {
-        //
+        $roomTypes = RoomType::latest()->get();
+        $floors = Floor::all();
+
+        return view('room.edit', compact('room', 'roomTypes', 'floors'));
     }
 
     /**
@@ -90,5 +98,31 @@ class RoomController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showRoomImages(Room $room)
+    {
+        return response()->json($room->images);
+    }
+
+    public function deleteRoomImage(Room $room, $imageId)
+    {
+//        $this->authorize('update', $product);
+
+        if ($imageId) {
+            return $room->images()->whereId($imageId)->delete();
+        }
+
+        return null;
+    }
+
+    public function storeRoomImage(Request $request, Room $room)
+    {
+//        $this->authorize('update', $product);
+
+        $filePath = optional($request->file('image'))->store('images', ['disk' => 'public_storage']);
+        $room->images()->create(['url' => $filePath]);
+
+        return response()->json('success');
     }
 }

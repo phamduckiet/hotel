@@ -40,93 +40,77 @@
                         <!--end::Card title-->
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
-                            <a href="{{ route('room.create') }}"
-                                class="btn btn-primary">{{ __('messages.add_room') }}</a>
+                            <a href="{{ route('rooms.create') }}" class="btn btn-primary">{{ __('messages.add_room') }}</a>
                         </div>
                         <!--end::Card toolbar-->
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
-                    <div class="card-body pt-0">
-                        <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_category_table">
-                            <!--begin::Table head-->
-                            <thead>
-                                <!--begin::Table row-->
-                                <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                    <th style="color: black" class="min-w-100px">{{ __('messages.room') }}</th>
-                                    <th style="color: black" class="min-w-100px">{{ __('messages.room_types') }}</th>
-                                    <th style="color: black" class="text-center min-w-150px">{{ __('messages.actions') }}</th>
-                                </tr>
-                                <!--end::Table row-->
-                            </thead>
-                            <!--end::Table head-->
-                            <!--begin::Table body-->
-                            <tbody class="fw-bold text-gray-600">
-                                {{-- @foreach ($roomTypes as $room_types)
-                                    <!--begin::Table row-->
-                                    <tr style="color: black" id="{{ 'room_types-item-' . $room_types->id }}">
-                                        <!--begin::Category=-->
-                                        <td class="text-center">
-                                            <div>{{ $room_types->name }}</div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div>{{ $room_types->max_adults }}</div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div>{{ $room_types->max_children }}</div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div>{{ number_format($room_types->price, 0, ',', '.') }} VNĐ</div>
-                                        </td>
-                                        <!--end::Category=-->
-                                        <td class="text-center">
-                                            <div>{!! $room_types->description !!}</div>
-                                        </td>
-                                        <!--begin::Actio{-->
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                                data-kt-menu-trigger="click"
-                                                data-kt-menu-placement="bottom-end">{{ __('messages.actions') }}
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-5 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href=""
-                                                        class="menu-link px-3">{{ __('messages.edit') }}</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <div class="menu-link px-3 delete-btn"
-                                                        data-url=""
-                                                        data-id="{{ $room_types->id }}">
-                                                        {{ __('messages.delete') }}</div>
-                                                </div>
-                                                <!--end::Menu item-->
+                    <div class="card-body pt-0" style="margin-top: -16px;">
+                        @foreach ($floors as $floor)
+                            <div class="card floor-card mt-8">
+                                <div class="card-header floor-card-header">
+                                    <span class="mt-6">{{ $floor->name }}</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex gap-4">
+                                        @foreach ($floor->rooms as $room)
+                                            <div class="room-item" data-bs-toggle="modal" data-bs-target="#modal_view_room_detail">
+                                                <div class="h-auto">{{ $room->name }}</div>
                                             </div>
-                                            <!--end::Menu-->
-                                        </td>
-                                        <!--end::Action=-->
-                                    </tr>
-                                    <!--end::Table row-->
-                                @endforeach --}}
-                            </tbody>
-                            <!--end::Table body-->
-                        </table>
-                        <!--end::Table-->
+                                            <!--begin::Modal - View room-->
+                                            <div class="modal fade" id="modal_view_room_detail" tabindex="-1"
+                                                aria-hidden="true">
+                                                <!--begin::Modal dialog-->
+                                                <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                    <!--begin::Modal content-->
+                                                    <div class="modal-content">
+                                                        <!--begin::Modal header-->
+                                                        <div class="modal-header" id="kt_modal_add_user_header">
+                                                            <!--begin::Modal title-->
+                                                            <h2 class="fw-bolder">{{ __('messages.add_new_user') }}</h2>
+                                                            <!--end::Modal title-->
+                                                            <!--begin::Close-->
+                                                            <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                                                data-bs-dismiss="modal">
+                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                                <span class="svg-icon svg-icon-1">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                        height="24" viewBox="0 0 24 24" fill="none">
+                                                                        <rect opacity="0.5" x="6" y="17.3137"
+                                                                            width="16" height="2" rx="1"
+                                                                            transform="rotate(-45 6 17.3137)"
+                                                                            fill="black" />
+                                                                        <rect x="7.41422" y="6" width="16"
+                                                                            height="2" rx="1"
+                                                                            transform="rotate(45 7.41422 6)"
+                                                                            fill="black" />
+                                                                    </svg>
+                                                                </span>
+                                                                <!--end::Svg Icon-->
+                                                            </div>
+                                                            <!--end::Close-->
+                                                        </div>
+                                                        <!--end::Modal header-->
+                                                        <!--begin::Modal body-->
+                                                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                                            View room detail ....
+                                                            {{-- @foreach ($room->images as $image)
+                                                                <img src="{{ $image->link }}" />
+                                                            @endforeach --}}
+                                                        </div>
+                                                        <!--end::Modal body-->
+                                                    </div>
+                                                    <!--end::Modal content-->
+                                                </div>
+                                                <!--end::Modal dialog-->
+                                            </div>
+                                            <!--end::Modal - View room-->
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                     <!--end::Card body-->
                 </div>
@@ -154,4 +138,36 @@
     <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/roomTypes.js') }}"></script>
     <script src="{{ asset('resources/js/category/index.js') }}"></script>
     <!--end::Page Custom Javascript-->
+@endpush
+
+@push('styles')
+    <style>
+        .floor-card-header {
+            background: #F4F5F5 !important;
+            font-weight: 500;
+            font-size: 16px;
+            color: #272727;
+            display: flex;
+            align-items: center;
+        }
+
+        .floor-card {
+            border: 1px solid #E9EAEC;
+        }
+
+        .room-item {
+            background: #02B14F;
+            height: 88px;
+            text-align: center;
+            min-width: 83px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
 @endpush

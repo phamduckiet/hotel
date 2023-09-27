@@ -20,6 +20,7 @@ class Room extends Model
         'name',
         'avatar_url',
         'type_id',
+        'floor_id',
     ];
 
     public function roomType(): BelongsTo

@@ -15,6 +15,8 @@
                 <form method="POST" action="{{ route('rooms.store') }}" enctype='multipart/form-data'
                     id="kt_ecommerce_add_room_form" class="form d-flex flex-column flex-lg-row">
                     @csrf
+                    @method('PUT')
+                    <input type="hidden" id="room-id-value" value="{{ $room->id }}" />
                     <!--begin::Aside column-->
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                         <!--begin::Thumbnail settings-->
@@ -115,7 +117,7 @@
                                 <!--begin::Input group-->
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2" name="floor_id" data-control="select2"
-                                        data-placeholder={{ __('messages.select') }}>
+                                    data-placeholder={{ __('messages.select') }}>
                                     @foreach ($floors as $floor)
                                         <option value="{{ $floor->id }}">{{ $floor->name }}</option>
                                     @endforeach
@@ -157,7 +159,7 @@
                                     </div>
                                     <!--end::Card header-->
                                 </div>
-                                 <!--begin::Media-->
+                                <!--begin::Media-->
                                 <div class="card card-flush py-4">
                                     <!--begin::Card header-->
                                     <div class="card-header">
@@ -181,7 +183,8 @@
                                                     <div class="ms-4">
                                                         <h3 class="fs-5 fw-bolder text-gray-900 mb-1">
                                                             {{ __('messages.tbimage') }}</h3>
-                                                        <span class="fs-7 fw-bold text-gray-400">{{ __('messages.tb1image') }}</span>
+                                                        <span
+                                                            class="fs-7 fw-bold text-gray-400">{{ __('messages.tb1image') }}</span>
                                                     </div>
                                                     <!--end::Info-->
                                                 </div>
@@ -227,6 +230,6 @@
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
-    <script src="{{ asset('resources/js/room/create.js') }}"></script>
+    <script src="{{ asset('resources/js/room/edit.js') }}"></script>
     <!--end::Page Custom Javascript-->
 @endpush

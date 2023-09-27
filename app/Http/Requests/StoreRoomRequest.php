@@ -23,12 +23,18 @@ class StoreRoomRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:rooms|max:255',
+            'avatar_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'type_id' => 'required|integer',
+            'floor_id' => 'required|integer',
         ];
     }
     public function attributes()
     {
         return [
             'name' => __('messages.name'),
+            'avatar_url' => __('messages.avatar_url'),
+            'type_id' => __('messages.room_type'),
+            'floor_id' => __('messages.floor'),
         ];
     }
 }

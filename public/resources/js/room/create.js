@@ -15,8 +15,9 @@ var myDropzone = new Dropzone("#add_room_media", {
         });
     }
 });
+
 $('#submit-btn').on('click', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // ngan chan hanh dong mac dinh, click nut submit -> tu dong submit
     const formData = new FormData(document.getElementById('kt_ecommerce_add_room_form'));
     images.forEach((image) => {
         formData.append('images[]', image.file, image.name);
@@ -25,14 +26,14 @@ $('#submit-btn').on('click', (e) => {
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/room',
+        url: '/rooms',
         data: formData,
         processData: false,
         contentType: false,
         cache: false,
         success: function () {
             window.localStorage.setItem('success', 'Thêm mới thành công!');
-            window.location.href = '/room';
+            window.location.href = '/rooms';
         },
         error: function (data) {
             if (data.status === 422) {
@@ -56,32 +57,3 @@ $('#submit-btn').on('click', (e) => {
         },
     });
 });
-
-function validateProductVariants() {
-    $('.variant-error-message').html('');
-
-    let hasError = false;
-    $('.variant').each(function() {
-        let isError = false;
-        $(this).find('select').each(function() {
-            if (!$(this).val()) {
-                // $(this).addClass('is-invalid');
-                isError = true;
-                return;
-            }
-        });
-        $(this).find('input').each(function() {
-            if (!$(this).val()) {
-                // $(this).addClass('is-invalid');
-                isError = true;
-                return;
-            }
-        });
-        if (isError) {
-            hasError = true;
-            $(this).find('.variant-error-message').html(`<small>Trường bắt buộc</small>`)
-        }
-    });
-
-    return hasError;
-}
