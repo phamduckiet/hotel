@@ -28,5 +28,13 @@ return [
     'edit'  => 'Edit',
     'delete' => 'Delete',
     'room_name' => 'Room Name',
+    'avatar'   => 'Avatar',
+    'room_info' => 'Room Info',
+    'select'    => 'Select',
+    'room_name' => 'Room Name',
+    'image' => 'Image',
+    'tbimage'   => 'Drop files here or click to upload.',
+    'tb1image'  => 'Upload up to 10 files',
+
 
 ];

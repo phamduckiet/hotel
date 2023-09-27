@@ -79,7 +79,7 @@
                                             <div>{{ $room_types->max_children }}</div>
                                         </td>
                                         <td class="text-center">
-                                            <div>{{ number_format($room_types->price, 0, ',', '.') }} VNĐ</div>
+                                            <div>{{ number_format($room_types->price, 0, ',', '.') }} VNĐ/Ngày</div>
                                         </td>
                                         <!--end::Category=-->
                                         <td class="text-center">

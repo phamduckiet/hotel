@@ -4,7 +4,7 @@
 
 <head>
     <base href="">
-    <title>Hotel Alpha</title>
+    <title>Admin K Hotel</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />

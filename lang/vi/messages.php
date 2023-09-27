@@ -28,6 +28,13 @@ return [
     'edit'  => 'Chỉnh sữa',
     'delete' => 'Xoá',
     'room_name' => 'Tên phòng',
+    'avatar'   => 'Hình đại diện',
+    'room_info' => 'Thông tin phòng',
+    'select'    =>'Chọn',
+    'room_name' => 'Tên phòng',
+    'image' => 'Hình ảnh',
+    'tbimage'   => 'Thả tập tin vào đây hoặc bấm vào để tải lên',
+    'tb1image'  => 'Tải lên tối đa 10 tệp',
 
 
 
