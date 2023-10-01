@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
@@ -16,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('room-type.index', ['categories' => []]);
-// });
+Route::middleware('localization')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+});
 
 Route::middleware(['auth', 'localization'])->group(function () {
     Route::get('/update-language/{lang}', [
