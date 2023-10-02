@@ -22,6 +22,7 @@ class RoomType extends Model
         'max_children',
         'price',
         'description',
+        'avatar',
     ];
 
     /**
@@ -29,20 +30,28 @@ class RoomType extends Model
      *
      * @var array
      */
-    protected $appends = ['summary'];
+    protected $appends = ['avatar_link', 'summary']; // append - them vao
+
+
+    protected function avatarLink(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => asset($this->avatar),
+        );
+    }
 
     protected function summary(): Attribute
     {
         $summary = strip_tags($this->description);
 
         return Attribute::make(
-            get: static fn () => substr($summary, 0, 100),
+            get: static fn () => substr($summary, 0, 100) . '...', // Lay 100 ky tu
         );
     }
 
     // 1 loai phong co nhieu phong
     public function rooms(): HasMany
     {
-        return $this->hasMany(Room::class);
+        return $this->hasMany(Room::class, 'type_id', 'id');
     }
 }

@@ -140,7 +140,7 @@
         <div class="container">
             <!-- Main title -->
             <div class="main-title">
-                <h1><span>Our</span> Best Rooms</h1>
+                <h1>{{ __('messages.our_best_rooms') }}</h1>
                 <p>These best rooms chosen by our customers</p>
             </div>
             <div class="row">
@@ -148,7 +148,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="hotel-box-list-2 clearfix">
                             <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-pad">
-                                <img src="hotel-alpha/img/room/img-9.jpg" alt="img-9" class="img-responsive">
+                                <img src="{{ $roomType->avatar_link }}" alt="img-9"
+                                    class="room-type-avatar-img img-responsive">
                             </div>
                             <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 detail">
                                 <div class="heading">
@@ -690,3 +691,16 @@
     </div>
     <!-- Our staff section end -->
 @endsection
+
+@push('styles')
+    <style>
+        .room-type-avatar-url {
+            height: 173px !important;
+        }
+        @media screen and (max-width: 768px) {
+            .room-type-avatar-url {
+                height: 173px !important;
+            }
+        }
+    </style>
+@endpush

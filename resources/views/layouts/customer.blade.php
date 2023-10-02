@@ -62,6 +62,7 @@
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    @stack('styles')
 </head>
 
 <body>
@@ -402,7 +403,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script  src="{{ asset('hotel-alpha/js/ie10-viewport-bug-workaround.js') }}"></script>
     <!-- Custom javascript -->
-
+    @stack('scripts')
 </body>
 
 <!-- Mirrored from storage.googleapis.com/themevessel-items/hotel-alpha/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 11:21:29 GMT -->
