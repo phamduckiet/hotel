@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoomRequest;
+use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Floor;
 use App\Models\Image;
 use App\Models\Room;
@@ -17,9 +18,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $floors = Floor::with('rooms', 'rooms.images')->get();
-
-        return view('room.index', compact('floors'));
+        $floors = Floor::with('rooms', 'rooms.images', 'rooms.roomType')->get();
+        $roomTypes = RoomType::latest()->get();
+        return view('room.index', compact('floors', 'roomTypes'));
     }
 
     /**
@@ -65,39 +66,46 @@ class RoomController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Room $room)
     {
         $roomTypes = RoomType::latest()->get();
         $floors = Floor::all();
-
         return view('room.edit', compact('room', 'roomTypes', 'floors'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRoomRequest $request, Room $room)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $filePath = $room->avatar_url;
+            if ($request->file('avatar')) {
+                $filePath = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
+            }
+            $room->update([
+                'name' => $request->name,
+                'avatar_url' => $filePath,
+                'type_id' => $request->type_id,
+                'floor_id' => $request->floor_id,
+            ]);
+
+            DB::commit();
+            return redirect()->route('rooms.index')
+            ->with('success', __('messages.successfully'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Room $room)
     {
-        //
+        return $room->delete();
     }
 
     public function showRoomImages(Room $room)

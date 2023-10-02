@@ -35,6 +35,9 @@ return [
     'image' => 'Hình ảnh',
     'tbimage'   => 'Thả tập tin vào đây hoặc bấm vào để tải lên',
     'tb1image'  => 'Tải lên tối đa 10 tệp',
+    'floor' => 'Tầng',
+    'View_room' => 'Xem chi tiết phòng',
+
 
 
 

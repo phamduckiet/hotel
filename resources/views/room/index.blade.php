@@ -18,23 +18,7 @@
                         <!--begin::Card title-->
                         <div class="card-title">
                             <!--begin::Search-->
-                            <div class="d-flex align-items-center position-relative my-1">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                <span class="svg-icon svg-icon-1 position-absolute ms-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
-                                            rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-                                        <path
-                                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                            fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <input type="text" data-kt-ecommerce-category-filter="search"
-                                    class="form-control form-control-solid w-250px ps-14"
-                                    placeholder="{{ __('messages.search') }}" />
-                            </div>
+
                             <!--end::Search-->
                         </div>
                         <!--end::Card title-->
@@ -55,12 +39,13 @@
                                 <div class="card-body">
                                     <div class="d-flex gap-4">
                                         @foreach ($floor->rooms as $room)
-                                            <div class="room-item" data-bs-toggle="modal" data-bs-target="#modal_view_room_detail">
+                                            <div class="room-item" data-bs-toggle="modal"
+                                                data-bs-target="#modal_view_room_detail_{{ $room->id }}">
                                                 <div class="h-auto">{{ $room->name }}</div>
                                             </div>
                                             <!--begin::Modal - View room-->
-                                            <div class="modal fade" id="modal_view_room_detail" tabindex="-1"
-                                                aria-hidden="true">
+                                            <div class="modal fade" id="modal_view_room_detail_{{ $room->id }}"
+                                                tabindex="-1" aria-hidden="true">
                                                 <!--begin::Modal dialog-->
                                                 <div class="modal-dialog modal-dialog-centered mw-650px">
                                                     <!--begin::Modal content-->
@@ -68,7 +53,8 @@
                                                         <!--begin::Modal header-->
                                                         <div class="modal-header" id="kt_modal_add_user_header">
                                                             <!--begin::Modal title-->
-                                                            <h2 class="fw-bolder">{{ __('messages.add_new_user') }}</h2>
+                                                            <h2 class="fw-bolder">{{ __('messages.room_info') }}
+                                                                {{ $room->name }}</h2>
                                                             <!--end::Modal title-->
                                                             <!--begin::Close-->
                                                             <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -93,11 +79,44 @@
                                                         </div>
                                                         <!--end::Modal header-->
                                                         <!--begin::Modal body-->
-                                                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                                            View room detail ....
-                                                            {{-- @foreach ($room->images as $image)
-                                                                <img src="{{ $image->link }}" />
-                                                            @endforeach --}}
+                                                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7"
+                                                            id="{{ 'room-type-item-' . $room->id }}">
+                                                            <div class="card-body text-center pt-0">
+                                                                <div class="image-input image-input-empty image-input-outline mb-3"
+                                                                    style="{{ 'background-image: url(' . asset($room->avatar_url) . ')' }}">
+                                                                    <!--begin::Preview existing avatar-->
+                                                                    <div class="image-input-wrapper w-150px h-150px"></div>
+                                                                </div>
+                                                                <h3>{{ __('messages.room') }}: {{ $room->name }}</h3>
+                                                                    @foreach ($roomTypes as $roomType)
+                                                                                @if ($room->type_id === $roomType->id)
+                                                                                <h3>{{ __('messages.room_types') }}: {{ $roomType->name }}</h3>
+                                                                                <h3>{{ __('messages.price') }}: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</h3>
+                                                                                <h3>{{ __('messages.max_adults') }}: {{ $roomType->max_adults }}</h3>
+                                                                                <h3>{{ __('messages.max_children') }}: {{ $roomType->max_children }}</h3>
+                                                                                 @endif
+                                                                    @endforeach
+                                                                {{ __('messages.View_room') }}
+                                                                <div class="image-slider">
+                                                                    <div class="image-container">
+                                                                        @foreach ($room->images as $image)
+                                                                            <img src="{{ $image->link }}" alt="Image"
+                                                                                class="image" />
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-center button-container">
+                                                                <button class="delete-button delete-btn"
+                                                                    data-url="{{ route('rooms.destroy', ['room' => $room->id]) }}"
+                                                                    data-id="{{ $room->id }}">{{ __('messages.delete') }}</button>
+
+                                                                <a class="button-link"
+                                                                    href="{{ route('rooms.edit', [$room->id]) }}"
+                                                                    class="menu-link px-3">
+                                                                    {{ __('messages.edit') }}
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                         <!--end::Modal body-->
                                                     </div>
@@ -131,17 +150,89 @@
 @endpush
 
 @push('scripts')
-    <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <!--end::Page Vendors Javascript-->
-    <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/roomTypes.js') }}"></script>
-    <script src="{{ asset('resources/js/category/index.js') }}"></script>
-    <!--end::Page Custom Javascript-->
+    <script src="{{ asset('resources/js/room/index.js') }}"></script>
 @endpush
 
 @push('styles')
     <style>
+        .delete-button {
+            padding: 10px 20px;
+            /* Kích thước và đệm */
+            border: none;
+            cursor: pointer;
+            background-color: #ff0000;
+            color: #fff;
+            margin-right: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            /* Kích thước và đệm */
+            background-color: #00b4fc;
+            /* Màu nền */
+            color: #fff;
+            /* Màu văn bản */
+            text-decoration: none;
+            /* Loại bỏ gạch chân dưới văn bản */
+            border: none;
+            /* Loại bỏ đường viền */
+            border-radius: 4px;
+            /* Bo tròn góc */
+            cursor: pointer;
+            /* Biến con trỏ thành biểu tượng tay khi di chuột vào */
+            transition: background-color 0.3s ease;
+            /* Hiệu ứng màu nền khi di chuột vào */
+        }
+
+        .button-container .edit-button {
+            margin-right: 10px;
+        }
+
+        /* Thêm CSS sau đây hoặc tạo một tệp CSS riêng */
+
+        .image-slider {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .image-container {
+            display: flex;
+            animation: rotateImages 10s linear infinite;
+            /* Tự động quay hình ảnh sau mỗi 10 giây */
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        @keyframes rotateImages {
+            0% {
+                transform: translateX(0);
+            }
+
+            33.33% {
+                transform: translateX(-100%);
+            }
+
+            66.67% {
+                transform: translateX(-200%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+
         .floor-card-header {
             background: #F4F5F5 !important;
             font-weight: 500;

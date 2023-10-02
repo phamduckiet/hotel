@@ -12,7 +12,7 @@
             <!--begin::Container-->
             <div id="kt_content_container" class="container-xxl">
                 <!--begin::Form-->
-                <form method="POST" action="{{ route('rooms.store') }}" enctype='multipart/form-data'
+                <form method="POST" action="{{ route('rooms.update', ['room' => $room->id]) }}" enctype='multipart/form-data'
                     id="kt_ecommerce_add_room_form" class="form d-flex flex-column flex-lg-row">
                     @csrf
                     @method('PUT')
@@ -35,7 +35,7 @@
                                 <!--begin::Image input-->
                                 <div class="image-input image-input-empty image-input-outline mb-3"
                                     data-kt-image-input="true"
-                                    style="{{ 'background-image: url(' . asset('metronic/assets/media/svg/files/blank-image.svg') . ')' }}">
+                                    style="{{ 'background-image: url(' . asset($room->avatar_url) . ')'  }}">
                                     <!--begin::Preview existing avatar-->
                                     <div class="image-input-wrapper w-150px h-150px"></div>
                                     <!--end::Preview existing avatar-->
@@ -84,6 +84,7 @@
                                 <div class="card-title">
                                     <h2>{{ __('messages.room_types') }}</h2>
                                 </div>
+
                                 <!--end::Card title-->
                             </div>
                             <!--end::Card header-->
@@ -94,7 +95,7 @@
                                 <select class="form-select mb-2" name="type_id" data-control="select2"
                                     data-placeholder={{ __('messages.select') }}>
                                     @foreach ($roomTypes as $roomType)
-                                        <option value="{{ $roomType->id }}">{{ $roomType->name }}</option>
+                                        <option value="{{ $roomType->id }}" @if ($room->type_id === $roomType->id) selected @endif> {{ $roomType->name }} </option>
                                     @endforeach
                                 </select>
                                 <!--end::Select2-->
@@ -119,9 +120,11 @@
                                 <select class="form-select mb-2" name="floor_id" data-control="select2"
                                     data-placeholder={{ __('messages.select') }}>
                                     @foreach ($floors as $floor)
-                                        <option value="{{ $floor->id }}">{{ $floor->name }}</option>
+                                        <option value="{{ $floor->id }}" @if ($room->floor_id === $floor->id) selected @endif> {{ $floor->name }} </option>
                                     @endforeach
+
                                 </select>
+
                                 <!--end::Select2-->
                                 <!--end::Input group-->
                             </div>
@@ -152,11 +155,15 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <input type="text" name="name" class="form-control mb-2"
-                                                placeholder="{{ __('messages.room_name') }}" value="" />
+                                                placeholder="{{ __('messages.room_name') }}" value="{{ $room->name }}" />
                                             <!--end::Input-->
                                             <div id="error-message-name" class="error-message text-danger"></div>
+                                            @error('name')
+                                            <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
                                         </div>
                                     </div>
+
                                     <!--end::Card header-->
                                 </div>
                                 <!--begin::Media-->

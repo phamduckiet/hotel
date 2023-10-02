@@ -35,6 +35,9 @@ return [
     'image' => 'Image',
     'tbimage'   => 'Drop files here or click to upload.',
     'tb1image'  => 'Upload up to 10 files',
+    'floor' => 'Floor',
+    'View_room' => 'View room detail',
+
 
 
 ];

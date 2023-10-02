@@ -223,7 +223,7 @@
                         {{-- @endcan --}}
                         {{-- @can(\App\Enums\PermissionName::MANAGE_PRODUCTS) --}}
                         <div class="menu-item">
-                            <a class="menu-link" href="/room">
+                            <a class="menu-link" href="/rooms">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
