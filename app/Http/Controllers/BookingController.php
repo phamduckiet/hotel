@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bookings;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
-class BookingsController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class BookingsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(bookings $bookings)
+    public function show(Booking $booking)
     {
         //
     }
@@ -42,7 +42,7 @@ class BookingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(bookings $bookings)
+    public function edit(Booking $booking)
     {
         //
     }
@@ -50,7 +50,7 @@ class BookingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, bookings $bookings)
+    public function update(Request $request, Booking $booking)
     {
         //
     }
@@ -58,7 +58,7 @@ class BookingsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(bookings $bookings)
+    public function destroy(Booking $booking)
     {
         //
     }
