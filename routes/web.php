@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('localization')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/rooms/{roomType}/show', [HomeController::class, 'showRoomDetail'])->name('room-detail');
+    Route::get('/booking', [BookingController::class, 'create'])->name('create-booking');
 });
 
 Route::middleware(['auth', 'localization'])->group(function () {
