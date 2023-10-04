@@ -97,14 +97,14 @@
                                                                                  @endif
                                                                     @endforeach
                                                                 {{ __('messages.View_room') }}
-                                                                <div class="image-slider">
+                                                                {{-- <div class="image-slider">
                                                                     <div class="image-container">
                                                                         @foreach ($room->images as $image)
                                                                             <img src="{{ $image->link }}" alt="Image"
                                                                                 class="image" />
                                                                         @endforeach
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                             <div class="text-center button-container">
                                                                 <button class="delete-button delete-btn"

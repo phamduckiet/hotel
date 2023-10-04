@@ -17,7 +17,7 @@ class Image extends Model
      */
     protected $fillable = [
         'url',
-        'room_id',
+        'room_type_id',
     ];
 
     /**
@@ -34,8 +34,8 @@ class Image extends Model
         );
     }
 
-    public function room()
+    public function roomType()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsTo(roomType::class);
     }
 }

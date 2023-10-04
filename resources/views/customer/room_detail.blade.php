@@ -25,12 +25,12 @@
                         <div class="pull-left">
                             <h3>{{ $roomType->name }}</h3>
                             <p>
-                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
+                                <i class="fa fa-map-marker"></i>06 Hồ Xuân Hương. TP Đà Nẵng,
                             </p>
                         </div>
                         <div class="pull-right">
-                            <h3><span>$260.00</span></h3>
-                            <h5>Per Manth</h5>
+                            <h3><span>Giá: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</span></h3>
+                            {{-- <h5>Per Manth</h5> --}}
                         </div>
                     </div>
                     <!-- Heading courses end -->
@@ -44,7 +44,7 @@
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
                                         @foreach ($roomType->rooms as $key1 => $room)
-                                            @foreach ($room->images as $key2 => $image)
+                                            @foreach ($roomType->images as $key2 => $image)
                                                 <div class="item @if ($key1 === 0 && $key2 === 0) active @endif">
                                                     <img src="{{ $image->link }}" class="thumb-preview"
                                                         alt="Chevrolet Impala">
@@ -71,9 +71,9 @@
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators thumbs visible-lg visible-md">
                                     @foreach ($roomType->rooms as $room)
-                                        @foreach ($room->images as $key => $image)
-                                            <li data-target="#carousel-custom" data-slide-to="{{ $key }}" class=""><img
-                                                    src="{{ $image->link }}" alt="Chevrolet Impala"></li>
+                                        @foreach ($roomType->images as $key => $image)
+                                            <li data-target="#carousel-custom" data-slide-to="{{ $key }}"
+                                                class=""><img src="{{ $image->link }}" alt="Chevrolet Impala"></li>
                                         @endforeach
                                     @endforeach
                                 </ol>
@@ -167,18 +167,6 @@
 
                         <!-- Rooms description start -->
                         <div class="panel-box course-panel-box course-description">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab"
-                                        aria-expanded="true">Description</a></li>
-                                <li class=""><a href="#tab2default" data-toggle="tab"
-                                        aria-expanded="false">Features</a></li>
-                                <li class=""><a href="#tab3default" data-toggle="tab"
-                                        aria-expanded="false">Advantages</a></li>
-                                <li class=""><a href="#tab4default" data-toggle="tab" aria-expanded="false">Our
-                                        Staff</a></li>
-                                <li class=""><a href="#tab5default" data-toggle="tab"
-                                        aria-expanded="false">Video</a></li>
-                            </ul>
                             <div class="panel with-nav-tabs panel-default">
                                 <div class="panel-body">
                                     <div class="tab-content">
@@ -187,223 +175,11 @@
                                                 <!-- Title -->
                                                 <h3>Rooms Description</h3>
                                                 <!-- paragraph -->
-                                                <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Maecenas in pulvinar
-                                                    neque. Nulla finibus lobortis pulvinar. Donec a conser nulla. Nulla
-                                                    posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt.
-                                                    Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.
-                                                    Sed
-                                                    tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a
-                                                    consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat
-                                                    gravida. Maecenas ultricies, diam vitae semper placerat, velit risus
-                                                    accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed
-                                                    neque euismod
-                                                    fringilla. Curabitur lobortis nunc velit,</p>
-                                                <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Maecenas in pulvinar
-                                                    neque. Nulla finibus lobortis pulvinar. Donec a conser nulla. Nulla
-                                                    posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt.
-                                                    Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam.
-                                                    Sed
-                                                    tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a
-                                                    consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat
-                                                    gravida. Maecenas ultricies, diam vitae semper placerat, velit risus
-                                                    accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed
-                                                    neque euismod
-                                                    fringilla. Curabitur lobortis nunc velit,</p>
+                                                {!! $roomType->description !!}
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade features" id="tab2default">
-                                            <!-- Rooms features start -->
-                                            <div class="rooms-features">
-                                                <h3>Rooms Features</h3>
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <ul class="condition">
-                                                            <li>
-                                                                <i class="flaticon-air-conditioning"></i>Air conditioning
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-balcony-and-door"></i>Balcony
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-weightlifting"></i>Gym
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-parking"></i>Parking
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-sunbed"></i>Beach View
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <ul class="condition">
-                                                            <li>
-                                                                <i class="flaticon-bed"></i>2 Bedroom
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-person-learning-by-reading"></i>Free
-                                                                Newspaper
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-swimming-silhouette"></i>Use of pool
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-graph-line-screen"></i>TV
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-no-smoking-sign"></i>No Smoking
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <ul class="condition">
-                                                            <li>
-                                                                <i class="flaticon-room-service"></i>Room Service
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-breakfast"></i>Breakfast
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-phone-receiver"></i>Telephone
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-bed"></i>2 Bedroom
-                                                            </li>
-                                                            <li>
-                                                                <i class="flaticon-wifi-connection-signal-symbol"></i>Free
-                                                                Wi-Fi
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Rooms features end -->
-                                        </div>
-                                        <div class="tab-pane fade technical" id="tab3default">
-                                            <!-- Advantages start -->
-                                            <div class="advantages">
-                                                <h3>Advantages</h3>
-                                                <ul>
-                                                    <li><span>1</span>Lorem ipsum dolor sit amet consectetuer</li>
-                                                    <li><span>2</span>Lorem ipsum dolor sit amet consectetuer</li>
-                                                    <li><span>3</span>Lorem ipsum dolor sit amet consectetuer</li>
-                                                    <li><span>4</span>Lorem ipsum dolor sit amet consectetuer</li>
-                                                    <li><span>5</span>Lorem ipsum dolor sit amet consectetuer</li>
-                                                    <li><span>6</span>Lorem ipsum dolor sit amet consectetuer</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Advantages end -->
-                                        </div>
-                                        <div class="tab-pane fade" id="tab4default">
-                                            <!-- Our teachers start -->
-                                            <h3>Our staff</h3>
-                                            <div class="row">
-                                                <div class="our-teachers">
-                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <div class="staff-box-1 ">
-                                                            <!-- Staff img -->
-                                                            <a href="staff.html" class="teachers-img">
-                                                                <img src="{{ asset('hotel-alpha/img/staff/staff-1.jpg"
-                                                                    alt="staff-1" class="img-responsive">
-                                                            </a>
-                                                            <!-- Staff content -->
-                                                            <div class="content">
-                                                                <!-- title -->
-                                                                <h1 class="title">
-                                                                    <a href="staff.html">John Doe</a>
-                                                                </h1>
-                                                                <!-- Subject -->
-                                                                <h3 class="subject">Hotel Developer</h3>
-                                                                <!-- Social list -->
-                                                                <ul class="social-list clearfix">
-                                                                    <li>
-                                                                        <a href="#" class="facebook">
-                                                                            <i class="fa fa-facebook"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="twitter">
-                                                                            <i class="fa fa-twitter"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="linkedin">
-                                                                            <i class="fa fa-linkedin"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="google">
-                                                                            <i class="fa fa-google-plus"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="rss">
-                                                                            <i class="fa fa-rss"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <div class="staff-box-1">
-                                                            <!-- Staff img -->
-                                                            <a href="staff.html" class="teachers-img">
-                                                                <img src="{{ asset('hotel-alpha/img/staff/staff-2.jpg"
-                                                                    alt="staff-2" class="img-responsive">
-                                                            </a>
-                                                            <!-- Staff content -->
-                                                            <div class="content">
-                                                                <!-- title -->
-                                                                <h1 class="title">
-                                                                    <a href="staff.html">Karen Paran</a>
-                                                                </h1>
-                                                                <!-- Subject -->
-                                                                <h3 class="subject">Hotel Director</h3>
-                                                                <!-- Social list -->
-                                                                <ul class="social-list clearfix">
-                                                                    <li>
-                                                                        <a href="#" class="facebook">
-                                                                            <i class="fa fa-facebook"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="twitter">
-                                                                            <i class="fa fa-twitter"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="linkedin">
-                                                                            <i class="fa fa-linkedin"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="google">
-                                                                            <i class="fa fa-google-plus"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="rss">
-                                                                            <i class="fa fa-rss"></i>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Our teachers end -->
-                                        </div>
-                                        <div class="tab-pane fade" id="tab5default">
-                                            <!-- Inside video start  -->
-                                            <div class="inside-video-2">
-                                                <h3>Video</h3>
-                                                <iframe src="https://www.youtube.com/embed/5e0LxrLSzok"
-                                                    allowfullscreen=""></iframe>
-                                            </div>
-                                            <!-- Inside video end -->
-                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -424,7 +200,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
+                                            <img src="hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
                                         </a>
                                     </div>
                                     <div class="comment-content">
@@ -461,7 +237,7 @@
                                         <div class="comment">
                                             <div class="comment-author">
                                                 <a href="#">
-                                                    <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png"
+                                                    <img src="hotel-alpha/img/avatar/avatar-5.png"
                                                         alt="avatar-5">
                                                 </a>
                                             </div>
@@ -503,7 +279,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
+                                            <img src="hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
                                         </a>
                                     </div>
                                     <div class="comment-content mb-0">
@@ -593,8 +369,9 @@
                     <div class="sidebar">
                         <!-- Search area box 2 start -->
                         <div class="sidebar-widget search-area-box-2 hidden-sm hidden-xs clearfix bg-grey">
-                            <h3>Search Your Rooms</h3>
-                            <h1>$260/Night</h1>
+                            <h3>Đặt Phòng</h3>
+                            <h1>Giá: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</h1>
+                            <h1>{{ $roomType->name }}</h1>
                             <div class="search-contents">
                                 <form method="GET">
                                     <div class="row">
@@ -611,35 +388,12 @@
                                                         placeholder="Check Out">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="room">
-                                                        <option>Room</option>
-                                                        <option>Single Room</option>
-                                                        <option>Double Room</option>
-                                                        <option>Deluxe Room</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="beds">
-                                                        <option>Beds</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="adults">
-                                                        <option>Adult</option>
+
+                                                        <option>Số lượng người lớn</option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -648,11 +402,12 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <br>
+                                            <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="children">
-                                                        <option>Child</option>
+                                                        <option>Số lượng trẻ em</option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -663,7 +418,7 @@
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group mrg-btm-10">
-                                                    <button class="search-button btn-theme">Book Now</button>
+                                                    <button class="search-button btn-theme">Đặt phòng</button>
                                                 </div>
                                             </div>
                                         </div>

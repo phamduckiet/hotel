@@ -6,6 +6,7 @@ use App\Http\Requests\StoreRoomTypeRequest;
 use App\Http\Requests\UpdateRoomTypeRequest;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomTypeController extends Controller
 {
@@ -32,10 +33,38 @@ class RoomTypeController extends Controller
      */
     public function store(StoreRoomTypeRequest $request)
     {
-        RoomType::create($request->all());
+        // RoomType::create($request->all());
 
-        return redirect()->route('room-types.index')
-            ->with('success', __('messages.successfully'));
+
+        try {
+            DB::beginTransaction();
+            $filePath = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
+
+            $roomType = RoomType::create([
+                'name' => $request->name,
+                'avatar' => $filePath,
+                'max_adults' => $request->max_adults,
+                'max_children' => $request->max_children,
+                'price' => $request->price,
+                'description' => $request->description,
+            ]);
+
+            foreach ($request->file('images', []) as $image) {
+                $filePath = $image->store('images', ['disk' => 'public_storage']);
+                $roomType->images()->create(['url' => $filePath]);
+            }
+
+            DB::commit();
+
+            // return redirect()->route('room-types.index')
+            // ->with('success', __('messages.successfully'));
+            return response()->json($roomType);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+
     }
 
     /**
