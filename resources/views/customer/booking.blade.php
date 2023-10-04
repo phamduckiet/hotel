@@ -62,10 +62,11 @@
                         </ul>
                     </div>
 
-                    <form id="contact_form" action="https://storage.googleapis.com/themevessel-items/hotel-alpha/index.html"
-                        enctype="multipart/form-data" method="GET">
+                    <form method="POST" id="contact_form" action="{{ route('bookings.store') }}">
+                        @csrf
                         <div class="tab-content">
-                            <div class="tab-pane active" role="tabpanel" id="step1">
+                            <div class="tab-pane @if ($step === 1) active @endif" role="tabpanel"
+                                id="step1">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
                                         <!-- Search area box 2 start -->
@@ -80,28 +81,28 @@
                                                 <div class="search-your-details">
                                                     <div class="form-group">
                                                         <input type="text" class="btn-default datepicker"
-                                                            placeholder="Check In">
+                                                            value="{{ $checkin }}" placeholder="Check In" name="checkin">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <input type="text" class="btn-default datepicker"
-                                                            placeholder="Check Out">
+                                                            value="{{ $checkout }}" placeholder="Check Out" name="checkout">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <select class="selectpicker search-fields form-control-2"
-                                                            name="room">
-                                                            <option>Room</option>
-                                                            <option>Single Room</option>
-                                                            <option>Double Room</option>
-                                                            <option>Deluxe Room</option>
+                                                            name="room_type_id">
+                                                            @foreach ($roomTypes as $roomType)
+                                                                <option value="{{ $roomType->id }}"
+                                                                    @if ($roomTypeId === $roomType->id) selected @endif>
+                                                                    {{ $roomType->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <select class="selectpicker search-fields form-control-2"
                                                             name="adults">
-                                                            <option>Adult</option>
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -113,7 +114,6 @@
                                                     <div class="form-group">
                                                         <select class="selectpicker search-fields form-control-2"
                                                             name="children">
-                                                            <option>Child</option>
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -135,138 +135,47 @@
                                             <div class="col-lg-12">
                                                 <h3 class="booking-heading-2 black-color">Available Rooms</h3>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="hotel-box">
-                                                    <!--header -->
-                                                    <div class="header clearfix">
-                                                        <img src="hotel-alpha/img/room/img-1.jpg" alt="img-1"
-                                                            class="img-responsive">
-                                                    </div>
-                                                    <!-- Detail -->
-                                                    <div class="detail clearfix">
-                                                        <div class="pr">
-                                                            $567<sub>.99/Night</sub>
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star-half-full"></i>
-                                                            </div>
+                                            @foreach ($roomResult as $room)
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="hotel-box">
+                                                        <!--header -->
+                                                        <div class="header clearfix">
+                                                            <img src="hotel-alpha/img/room/img-1.jpg" alt="img-1"
+                                                                class="img-responsive">
                                                         </div>
-                                                        <h3>
-                                                            <a href="rooms-details.html">Luxury Room</a>
-                                                        </h3>
-                                                        <h5 class="location">
-                                                            <a href="rooms-details.html">
-                                                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                                            </a>
-                                                        </h5>
-                                                        <p>Lorem ipsum dolor sit amet, conser adipisic elit, sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                        <br />
-                                                        <a class="btn btn-sm btn-theme next-step">Select Room</a>
+                                                        <!-- Detail -->
+                                                        <div class="detail clearfix">
+                                                            <div class="pr">
+                                                                $567<sub>.99/Night</sub>
+                                                                <div class="rating">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star-half-full"></i>
+                                                                </div>
+                                                            </div>
+                                                            <h3>
+                                                                <a href="rooms-details.html">{{ $room->name }}</a>
+                                                            </h3>
+                                                            <h5 class="location">
+                                                                <a href="rooms-details.html">
+                                                                    <i class="fa fa-map-marker"></i>123 Kathal St. Tampa
+                                                                    City,
+                                                                </a>
+                                                            </h5>
+                                                            <p>Lorem ipsum dolor sit amet, conser adipisic elit, sed do
+                                                                eiusmod
+                                                                tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                            <br />
+                                                            <a class="btn btn-sm btn-theme next-step select-room-btn"
+                                                                data-id="{{ $room->id }}"
+                                                                data-url="{{ route('show-room-types', ['room_type' => $room->id]) }}">Select
+                                                                Room</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="hotel-box">
-                                                    <!--header -->
-                                                    <div class="header clearfix">
-                                                        <img src="hotel-alpha/img/room/img-2.jpg" alt="img-3"
-                                                            class="img-responsive">
-                                                    </div>
-                                                    <!-- Detail -->
-                                                    <div class="detail clearfix">
-                                                        <div class="pr">
-                                                            $567<sub>.99/Night</sub>
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star-half-full"></i>
-                                                            </div>
-                                                        </div>
-                                                        <h3>
-                                                            <a href="rooms-details.html">Single Room</a>
-                                                        </h3>
-                                                        <h5 class="location">
-                                                            <a href="rooms-details.html">
-                                                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                                            </a>
-                                                        </h5>
-                                                        <p>Lorem ipsum dolor sit amet, conser adipisic elit, sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                        <br />
-                                                        <a class="btn btn-sm btn-theme next-step">Select Room</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="hotel-box">
-                                                    <!--header -->
-                                                    <div class="header clearfix">
-                                                        <img src="hotel-alpha/img/room/img-3.jpg" alt="img-2"
-                                                            class="img-responsive">
-                                                    </div>
-                                                    <!-- Detail -->
-                                                    <div class="detail clearfix">
-                                                        <div class="pr">
-                                                            $567<sub>.99/Night</sub>
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star-half-full"></i>
-                                                            </div>
-                                                        </div>
-                                                        <h3>
-                                                            <a href="rooms-details.html">Double Room</a>
-                                                        </h3>
-                                                        <h5 class="location">
-                                                            <a href="rooms-details.html">
-                                                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                                            </a>
-                                                        </h5>
-                                                        <p>Lorem ipsum dolor sit amet, conser adipisic elit, sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                        <br />
-                                                        <a class="btn btn-sm btn-theme next-step">Select Room</a>
-                                                    </div>
-                                                </div>
-                                                <div class="hotel-box">
-                                                    <!--header -->
-                                                    <div class="header clearfix">
-                                                        <img src="hotel-alpha/img/room/img-4.jpg" alt="img-5"
-                                                            class="img-responsive">
-                                                    </div>
-                                                    <!-- Detail -->
-                                                    <div class="detail clearfix">
-                                                        <div class="pr">
-                                                            $567<sub>.99/Night</sub>
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star-half-full"></i>
-                                                            </div>
-                                                        </div>
-                                                        <h3>
-                                                            <a href="rooms-details.html">Single Room</a>
-                                                        </h3>
-                                                        <h5 class="location">
-                                                            <a href="rooms-details.html">
-                                                                <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                                            </a>
-                                                        </h5>
-                                                        <p>Lorem ipsum dolor sit amet, conser adipisic elit, sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                        <br />
-                                                        <a class="btn btn-sm btn-theme next-step">Select Room</a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -276,107 +185,30 @@
                                 </ul>
                             </div>
 
-                            <div class="tab-pane" role="tabpanel" id="step2">
+                            <!-- Nhập thông tin khách hàng -->
+                            <div class="tab-pane @if ($step === 2) active @endif" role="tabpanel" id="step2">
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-xs-12 col-md-push-4">
                                         <div class="contact-form sidebar-widget">
                                             <h3 class="booking-heading-2 black-color">Personal Info</h3>
                                             <div class="row mb-30">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group firstname">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="full-name" class="input-text">
+                                                        <label>Họ tên</label>
+                                                        <input type="text" name="name" class="input-text">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group lastname">
-                                                        <label>Last Name</label>
-                                                        <input type="text" name="last-name" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group address-line-1">
-                                                        <label>Address Line 1</label>
-                                                        <input type="text" name="address-line-1" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group address-line-2">
-                                                        <label>Address Line 2</label>
-                                                        <input type="text" name="address-line-2" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group city">
-                                                        <label>City</label>
-                                                        <input type="text" name="city" class="input-text">
+                                                        <label>Email</label>
+                                                        <input type="text" name="email" class="input-text">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group zip">
-                                                        <label>Zip/Post Code</label>
-                                                        <input type="text" name="Zip" class="input-text">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group city">
+                                                        <label>Số điện thoại</label>
+                                                        <input type="text" name="phone_number" class="input-text">
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group state">
-                                                        <label>State/Region</label>
-                                                        <input type="text" name="state" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group Country">
-                                                        <label>Country</label>
-                                                        <select class="selectpicker country search-fields" name="Country">
-                                                            <option>Select your county</option>
-                                                            <option>United Kingdom</option>
-                                                            <option>Canada</option>
-                                                            <option>Australia</option>
-                                                            <option>France</option>
-                                                            <option>Spain</option>
-                                                            <option>Brazil</option>
-                                                            <option>Bhutan</option>
-                                                            <option>Bangladesh</option>
-                                                            <option>India</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <h3 class="booking-heading-2">Account Info</h3>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group phone">
-                                                        <label>Phone Number</label>
-                                                        <input type="text" name="full-name" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group email">
-                                                        <label>Email Address</label>
-                                                        <input type="email" name="email" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>Password</label>
-                                                        <input type="password" name="Password" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>Re-Password</label>
-                                                        <input type="password" name="password" class="input-text">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox">
-                                                <div class="ez-checkbox pull-left">
-                                                    <label>
-                                                        <input type="checkbox" class="ez-hide">
-                                                        By Sign up you are agree with our <a href="#">terms and
-                                                            condition</a>
-                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
@@ -385,41 +217,19 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12 col-md-pull-8">
                                         <div class="booling-details-box">
                                             <h3 class="booking-heading-2">Booking Details</h3>
-
                                             <!--  Rooms detail slider start -->
                                             <div class="rooms-detail-slider simple-slider ">
                                                 <div id="carousel-custom" class="carousel slide" data-ride="carousel">
                                                     <div class="carousel-outer">
                                                         <!-- Wrapper for slides -->
                                                         <div class="carousel-inner">
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-2.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-1.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-5.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-6.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-3.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-7.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item active">
-                                                                <img src="hotel-alpha/img/room/img-4.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
-                                                            </div>
+                                                            @foreach ($selectedRoom->images as $key => $image)
+                                                                <div
+                                                                    class="item @if ($key === 0) active @endif">
+                                                                    <img src="{{ $image->link }}" class="thumb-preview">
+                                                                </div>
+                                                            @endforeach
+
                                                         </div>
                                                         <!-- Controls -->
                                                         <a class="left carousel-control" href="#carousel-custom"
@@ -440,9 +250,7 @@
                                                 </div>
                                             </div>
                                             <!-- Rooms detail slider end -->
-
                                             <h4>Luxury Room</h4>
-
                                             <ul>
                                                 <li>
                                                     <span>Check In:</span> october 27, 2017
@@ -476,7 +284,8 @@
                                 </ul>
                             </div>
 
-                            <div class="tab-pane" role="tabpanel" id="step3">
+                            <!-- Thanh toán (để sau) -->
+                            <div class="tab-pane @if ($step === 3) active @endif"  role="tabpanel" id="step3">
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-xs-12">
                                         <div class="contact-form sidebar-widget">
@@ -605,32 +414,32 @@
                                                         <!-- Wrapper for slides -->
                                                         <div class="carousel-inner">
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-2.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-2.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-1.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-1.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-5.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-5.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-6.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-6.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-3.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-3.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-7.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-7.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item active">
-                                                                <img src="hotel-alpha/img/room/img-4.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-4.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                         </div>
                                                         <!-- Controls -->
@@ -697,7 +506,9 @@
                                             continue</button></li>
                                 </ul>
                             </div>
-                            <div class="tab-pane" role="tabpanel" id="complete">
+
+                            <!-- Review -->
+                            <div class="tab-pane @if ($step === 4) active @endif" role="tabpanel" id="complete">
                                 <div class="booling-details-box booling-details-box-2 mrg-btm-30">
                                     <h3 class="booking-heading-2">Booking Details</h3>
                                     <div class="row mrg-btm-30">
@@ -709,32 +520,32 @@
                                                         <!-- Wrapper for slides -->
                                                         <div class="carousel-inner">
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-2.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-2.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-1.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-1.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-5.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-5.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-6.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-6.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-3.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-3.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item active">
-                                                                <img src="hotel-alpha/img/room/img-7.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-7.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                             <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-4.jpg" class="thumb-preview"
-                                                                    alt="Chevrolet Impala">
+                                                                <img src="hotel-alpha/img/room/img-4.jpg"
+                                                                    class="thumb-preview" alt="Chevrolet Impala">
                                                             </div>
                                                         </div>
                                                         <!-- Controls -->
@@ -814,7 +625,7 @@
                                 <br />
                                 <br />
                                 <ul class="list-inline pull-right">
-                                    <li><button type="button" class="btn search-button btn-theme next-step">confirm
+                                    <li><button type="submit" class="btn search-button btn-theme next-step">confirm
                                             booking</button></li>
                                 </ul>
                             </div>
@@ -826,3 +637,19 @@
     </div>
     <!-- Booking flow end -->
 @endsection
+
+@push('scripts')
+    <script>
+        $(".select-room-btn").on('click', function(event) {
+            event.preventDefault();
+            const roomTypeId = $(event.target).data('id');
+            const urlRequest = $(event.target).data('url');
+
+            const urlParams = new URLSearchParams(window.location.search); // Lay ra cac query paramater
+            urlParams.delete('selected_room_id');
+            urlParams.append('selected_room_id', roomTypeId);
+            urlParams.append('step', 2);
+            window.location.href = `/booking?${urlParams.toString()}`;
+        });
+    </script>
+@endpush

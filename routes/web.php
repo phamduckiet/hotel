@@ -22,6 +22,8 @@ Route::middleware('localization')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/rooms/{roomType}/show', [HomeController::class, 'showRoomDetail'])->name('room-detail');
     Route::get('/booking', [BookingController::class, 'create'])->name('create-booking');
+    Route::get('/room-types/{room_type}/show', [RoomTypeController::class, 'showPublicRoomType'])->name('show-room-types');
+    Route::resource('bookings', BookingController::class)->only(['store']);
 });
 
 Route::middleware(['auth', 'localization'])->group(function () {

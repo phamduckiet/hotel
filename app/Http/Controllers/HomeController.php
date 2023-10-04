@@ -13,11 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $roomTypes = RoomType::select('room_types.*')
-            ->leftJoin('rooms', 'room_types.id', '=', 'rooms.type_id')
-            // ->groupBy('room_types.id', 'room_types.name')
-            // ->havingRaw('COUNT(rooms.id) > 0')
-            ->get();
+        $roomTypes = RoomType::latest()->withCount('rooms')->get()->where('rooms_count', '>', 0);
 
         return view('customer.home', compact('roomTypes'));
     }

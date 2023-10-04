@@ -70,9 +70,17 @@ class RoomTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(RoomType $roomType)
     {
-        //
+        return $roomType;
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showPublicRoomType(RoomType $roomType)
+    {
+        return response()->json($roomType);
     }
 
     /**

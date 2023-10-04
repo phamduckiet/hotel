@@ -43,13 +43,10 @@
                                 <div class="carousel-outer">
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
-                                        @foreach ($roomType->rooms as $key1 => $room)
-                                            @foreach ($roomType->images as $key2 => $image)
-                                                <div class="item @if ($key1 === 0 && $key2 === 0) active @endif">
-                                                    <img src="{{ $image->link }}" class="thumb-preview"
-                                                        alt="Chevrolet Impala">
-                                                </div>
-                                            @endforeach
+                                        @foreach ($roomType->images as $key => $image)
+                                            <div class="item @if ($key === 0) active @endif">
+                                                <img src="{{ $image->link }}" class="thumb-preview" alt="Chevrolet Impala">
+                                            </div>
                                         @endforeach
                                     </div>
                                     <!-- Controls -->
@@ -70,11 +67,9 @@
                                 </div>
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators thumbs visible-lg visible-md">
-                                    @foreach ($roomType->rooms as $room)
-                                        @foreach ($roomType->images as $key => $image)
-                                            <li data-target="#carousel-custom" data-slide-to="{{ $key }}"
-                                                class=""><img src="{{ $image->link }}" alt="Chevrolet Impala"></li>
-                                        @endforeach
+                                    @foreach ($roomType->images as $key => $image)
+                                        <li data-target="#carousel-custom" data-slide-to="{{ $key }}"
+                                            class=""><img src="{{ $image->link }}" alt="Chevrolet Impala"></li>
                                     @endforeach
                                 </ol>
                             </div>
@@ -237,8 +232,7 @@
                                         <div class="comment">
                                             <div class="comment-author">
                                                 <a href="#">
-                                                    <img src="hotel-alpha/img/avatar/avatar-5.png"
-                                                        alt="avatar-5">
+                                                    <img src="hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
                                                 </a>
                                             </div>
 
@@ -373,26 +367,26 @@
                             <h1>Giá: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</h1>
                             <h1>{{ $roomType->name }}</h1>
                             <div class="search-contents">
-                                <form method="GET">
+                                <form method="GET" action="{{ route('create-booking') }}">
+                                    <input type="hidden" value="{{ $roomType->id }}" name="room_type_id">
                                     <div class="row">
                                         <div class="search-your-details">
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <input type="text" class="btn-default datepicker"
-                                                        placeholder="Check In">
+                                                        placeholder="Check In" name="checkin">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <input type="text" class="btn-default datepicker"
-                                                        placeholder="Check Out">
+                                                        placeholder="Check Out" name="checkout">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="adults">
-
                                                         <option>Số lượng người lớn</option>
                                                         <option>1</option>
                                                         <option>2</option>
@@ -418,7 +412,7 @@
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group mrg-btm-10">
-                                                    <button class="search-button btn-theme">Đặt phòng</button>
+                                                    <button type="submit" class="search-button btn-theme">Đặt phòng</button>
                                                 </div>
                                             </div>
                                         </div>
