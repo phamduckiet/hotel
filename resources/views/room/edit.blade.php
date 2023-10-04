@@ -167,7 +167,7 @@
                                     <!--end::Card header-->
                                 </div>
                                 <!--begin::Media-->
-                                <div class="card card-flush py-4">
+                                {{-- <div class="card card-flush py-4">
                                     <!--begin::Card header-->
                                     <div class="card-header">
                                         <div class="card-title">
@@ -201,7 +201,7 @@
                                         <!--end::Input group-->
                                     </div>
                                     <!--end::Card header-->
-                                </div>
+                                </div> --}}
                                 <!--end::Media-->
                             </div>
                         </div>

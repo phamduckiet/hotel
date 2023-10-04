@@ -18,7 +18,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $floors = Floor::with('rooms', 'rooms.images', 'rooms.roomType')->get();
+        $floors = Floor::with('rooms', 'rooms.roomType')->get();
         $roomTypes = RoomType::latest()->get();
         return view('room.index', compact('floors', 'roomTypes'));
     }
@@ -52,14 +52,15 @@ class RoomController extends Controller
                 'floor_id' => $request->floor_id,
             ]);
 
-            foreach ($request->file('images', []) as $image) {
-                $filePath = $image->store('images', ['disk' => 'public_storage']);
-                $room->images()->create(['url' => $filePath]);
-            }
+            // foreach ($request->file('images', []) as $image) {
+            //     $filePath = $image->store('images', ['disk' => 'public_storage']);
+            //     $room->images()->create(['url' => $filePath]);
+            // }
 
             DB::commit();
 
-            return response()->json($room);
+            return redirect()->route('rooms.index')
+            ->with('success', __('messages.successfully'));
         } catch (\Exception $e) {
             DB::rollBack();
             throw $e;

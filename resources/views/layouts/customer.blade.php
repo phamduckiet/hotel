@@ -22,7 +22,7 @@
         })(window, document, 'script', 'dataLayer', 'GTM-TFC5925');
     </script>
     <!-- End Google Tag Manager -->
-    <title>Hotel Alpha - Hotel Booking HTML Template</title>
+    <title>K Hotel - Booking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
 
@@ -78,8 +78,8 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                     <div class="list-inline">
-                        <a href="tel:1-8X0-666-8X88"><i class="fa fa-phone"></i>Need Support? 1-8X0-666-8X88</a>
-                        <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>info@themevessel.com</a>
+                        <a href="tel:1-8X0-666-8X88"><i class="fa fa-phone"></i>0399907777</a>
+                        <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>k_hotel@gmail.com</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
