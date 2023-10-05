@@ -66,7 +66,7 @@
         <div class="search-area-box search-area-box-4 search-area-box-5 hidden-xs hidden-sm">
             <div class="container">
                 <div class="search-contents search-contents-3">
-                    <form method="GET" action="{{ route('create-booking') }}">
+                    <form method="GET">
                         <div class="row search-your-details">
                             <div class="col-md-12">
                                 <div class="search-your-rooms">

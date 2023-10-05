@@ -236,8 +236,8 @@
                     </div>
                 </div>
                 {{-- @can(\App\Enums\PermissionName::MANAGE_ORDERS) --}}
-                {{-- <div class="menu-item">
-                    <a class="menu-link @if (Route::is('orders.*')) active @endif" href="">
+                <div class="menu-item">
+                    <a class="menu-link @if (Route::is('bookings.*')) active @endif" href="{{ route('bookings.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -251,9 +251,9 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">{{ __('messages.orders') }}</span>
+                        <span class="menu-title">Boooking</span>
                     </a>
-                </div> --}}
+                </div>
                 {{-- @endcan --}}
                 {{-- @can(\App\Enums\PermissionName::MANAGE_REVIEWS) --}}
                 {{-- <div class="menu-item">

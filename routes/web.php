@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('localization')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/rooms/{roomType}/show', [HomeController::class, 'showRoomDetail'])->name('room-detail');
-    Route::get('/booking', [BookingController::class, 'create'])->name('create-booking');
-    Route::get('/room-types/{room_type}/show', [RoomTypeController::class, 'showPublicRoomType'])->name('show-room-types');
+    Route::get('/rooms/{room_type}/show', [HomeController::class, 'showRoomDetail'])->name('room.detail');
+    Route::post('/rooms/{room_type}/booking', [BookingController::class, 'create'])->name('rooms.booking');
+    Route::get('/booking', [BookingController::class, 'showBookingView'])->name('rooms.booking.view');
     Route::resource('bookings', BookingController::class)->only(['store']);
 });
 
@@ -43,4 +43,5 @@ Route::middleware(['auth', 'localization'])->group(function () {
         Route::delete('/{room}/images/{imageId}', [RoomController::class, 'deleteRoomImage']);
         Route::post('/{room}/images', [RoomController::class, 'storeRoomImage']);
     });
+    Route::resource('bookings', BookingController::class)->only(['index']);
 });

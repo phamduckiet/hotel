@@ -367,7 +367,8 @@
                             <h1>Giá: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</h1>
                             <h1>{{ $roomType->name }}</h1>
                             <div class="search-contents">
-                                <form method="GET" action="{{ route('create-booking') }}">
+                                <form method="POST" action="{{ route('rooms.booking', ['room_type' => $roomType->id]) }}">
+                                    @csrf
                                     <input type="hidden" value="{{ $roomType->id }}" name="room_type_id">
                                     <div class="row">
                                         <div class="search-your-details">
@@ -381,6 +382,19 @@
                                                 <div class="form-group">
                                                     <input type="text" class="btn-default datepicker"
                                                         placeholder="Check Out" name="checkout">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <select class="selectpicker search-fields form-control-2"
+                                                        name="room_total">
+                                                        <option>Số lượng phòng</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">

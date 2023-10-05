@@ -70,7 +70,6 @@
     <noscript><iframe src="{{ asset('"https://www.googletagmanager.com/ns.html?id=GTM-TFC5925')}}" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div class="page_loader"></div>
 
     <!-- Top header start -->
     <header class="top-header top-header-3 hidden-xs" id="top">
@@ -404,6 +403,7 @@
     <script  src="{{ asset('hotel-alpha/js/ie10-viewport-bug-workaround.js') }}"></script>
     <!-- Custom javascript -->
     @stack('scripts')
+    @include('sweetalert::alert')
 </body>
 
 <!-- Mirrored from storage.googleapis.com/themevessel-items/hotel-alpha/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 11:21:29 GMT -->

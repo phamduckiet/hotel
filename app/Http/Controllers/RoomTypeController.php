@@ -76,14 +76,6 @@ class RoomTypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function showPublicRoomType(RoomType $roomType)
-    {
-        return response()->json($roomType);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(RoomType $roomType)

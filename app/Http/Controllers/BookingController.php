@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\RoomType;
 use Carbon\Carbon;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,43 +18,42 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::latest()
+            ->with(['customer'])->get();
+
+        return view('booking.index', compact('bookings'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create(Request $request, RoomType $roomType)
     {
-        $checkin = $request->query('checkin', null); // Lay ra query paramater
-        $checkout = $request->query('checkout', null);
-        $adults = $request->query('adults', null);
-        $children = $request->query('children', null);
-        $roomTypeId = (int) $request->query('room_type_id', null);
-        $step = (int) $request->query('step', 1);
-
-        $roomTypes = RoomType::latest()->get();
-
-        $selectedRoom = RoomType::find($request->query('selected_room_id', null));
-
-        // Ket qua tim kiem
-        $roomResult = RoomType::latest()
-        //    ->when($roomTypeId, static function($query) use ($roomTypeId) {
-        //        return $query->where('id', $roomTypeId);
-        //    })
-            ->get();
-
-        return view('customer.booking', [
-            'checkin' => $checkin,
-            'checkout' => $checkout,
-            'adults' => $adults,
-            'children' => $children,
-            'roomTypeId' => $roomTypeId,
-            'step' => $step,
-            'roomTypes' => $roomTypes,
-            'roomResult' => $roomResult,
-            'selectedRoom' => $selectedRoom,
+        Cart::destroy();
+        Cart::add([
+            'id' => $roomType->id,
+            'name' => $roomType->name,
+            'qty' => (int) $request->room_total,
+            'price' => $roomType->price,
+            'weight' => 1,
+            'options' => [
+                'avatar_link' => $roomType->avatar_link,
+                'checkin' => $request->checkin,
+                'checkout' => $request->checkout,
+                'adults' => $request->adults,
+                'children' => $request->children,
+                'images' => $roomType->images,
+            ],
         ]);
+
+        return redirect()->route('rooms.booking.view');
+    }
+
+    public function showBookingView()
+    {
+        $cart = optional(Cart::content())->first();
+
+        return view('customer.booking', compact('cart'));
     }
 
     /**
@@ -79,17 +79,25 @@ class BookingController extends Controller
             $customer->update($dataCustomer);
         }
 
+        $cart = optional(Cart::content())->first();
         $booking = Booking::create([
             'customer_id' => $customer->id,
-            'checkin' => Carbon::createFromFormat('d/m/Y', $request->checkin),
-            'checkout' => Carbon::createFromFormat('d/m/Y', $request->checkout),
-            'room_type_id' => $request->room_type_id,
-            'room_total' => 1,
+            'checkin' => Carbon::createFromFormat('d/m/Y', $cart->options->checkin),
+            'checkout' => Carbon::createFromFormat('d/m/Y', $cart->options->checkout),
+            'room_type_id' => $cart->id,
+            'room_total' => $cart->qty,
+            'adults' => $cart->options->adults,
+            'children' => $cart->options->children,
         ]);
 
         // Tim phong trong
         $roomIds = [1];
         $booking->rooms()->attach($roomIds);
+
+        alert()->success(__('messages.booking_succesfully'))
+            ->showConfirmButton('OK')->autoClose(5000);
+
+        return redirect()->route('home');
     }
 
     /**
