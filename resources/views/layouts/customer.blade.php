@@ -67,7 +67,7 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFC5925" height="0" width="0"
+    <noscript><iframe src="{{ asset('"https://www.googletagmanager.com/ns.html?id=GTM-TFC5925')}}" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="page_loader"></div>
@@ -120,7 +120,7 @@
     <!-- Top header end -->
 
     <!-- Main header start -->
-    <header class="main-header main-header-4">
+    {{-- <header class="main-header main-header-4">
         <div class="container">
             <nav class="navbar navbar-default">
                 <div class="navbar-header">
@@ -132,7 +132,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="index.html" class="logo">
-                        <img src="hotel-alpha/img/logos/logo.png" alt="logo">
+                        <img src="{{ asset('hotel-alpha/img/logos/logo.png')}}" alt="logo">
                     </a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -253,7 +253,7 @@
                 </form>
             </div>
         </div>
-    </header>
+    </header> --}}
     <!-- Main header end -->
 
     @yield('content')
@@ -269,7 +269,7 @@
                         <div class="footer-item">
                             <div class="footer-logo">
                                 <a href="index.html">
-                                    <img src="hotel-alpha/img/logos/white-logo.png" alt="white-logo">
+                                    <img src="{{ asset('hotel-alpha/img/logos/white-logo.png') }}" alt="white-logo">
                                 </a>
                             </div>
                             <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Maecenas in pulvinar neque. Nulla
@@ -321,32 +321,32 @@
                             <ul>
                                 <li>
                                     <a href="gallery-3column.html">
-                                        <img src="hotel-alpha/img/room/small-img-2.jpg" alt="small-img-2">
+                                        <img src="{{ asset('hotel-alpha/img/room/small-img-2.jpg') }}" alt="small-img-2">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="gallery-3column.html">
-                                        <img src="hotel-alpha/img/room/small-img-4.jpg" alt="small-img-4">
+                                        <img src="{{ asset('hotel-alpha/img/room/small-img-4.jpg') }}" alt="small-img-4">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="gallery-3column.html">
-                                        <img src="hotel-alpha/img/room/small-img-5.jpg" alt="small-img-5">
+                                        <img src="{{ asset('hotel-alpha/img/room/small-img-5.jpg') }}" alt="small-img-5">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="gallery-3column.html">
-                                        <img src="hotel-alpha/img/room/small-img-3.jpg" alt="small-img-3">
+                                        <img src="{{ asset('hotel-alpha/img/room/small-img-3.jpg') }}" alt="small-img-3">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="gallery-3column.html">
-                                        <img src="hotel-alpha/img/room/small-img-6.jpg" alt="small-img-6">
+                                        <img src="{{ asset('hotel-alpha/img/room/small-img-6.jpg') }}" alt="small-img-6">
                                     </a>
                                 </li>
                                 <li>
                                     <a href="gallery-3column.html">
-                                        <img src="hotel-alpha/img/room/small-img.jpg" alt="small-img">
+                                        <img src="{{ asset('hotel-alpha/img/room/small-img.jpg') }}" alt="small-img">
                                     </a>
                                 </li>
 

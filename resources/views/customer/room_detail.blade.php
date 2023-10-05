@@ -195,7 +195,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
+                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png')}}" alt="avatar-5">
                                         </a>
                                     </div>
                                     <div class="comment-content">
@@ -232,7 +232,7 @@
                                         <div class="comment">
                                             <div class="comment-author">
                                                 <a href="#">
-                                                    <img src="hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
+                                                    <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png')}}" alt="avatar-5">
                                                 </a>
                                             </div>
 
@@ -273,7 +273,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="hotel-alpha/img/avatar/avatar-5.png" alt="avatar-5">
+                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png')}}" alt="avatar-5">
                                         </a>
                                     </div>
                                     <div class="comment-content mb-0">
@@ -412,7 +412,7 @@
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group mrg-btm-10">
-                                                    <button type="submit" class="search-button btn-theme">Đặt phòng</button>
+                                                    <button type="submit"  class="search-button btn-theme">Đặt phòng</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -429,7 +429,7 @@
                             </div>
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img.jpg"
+                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img.jpg') }}"
                                         alt="small-img">
                                 </div>
                                 <div class="media-body">
@@ -442,7 +442,7 @@
                             </div>
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img-2.jpg"
+                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img-2.jpg') }}"
                                         alt="small-img-2">
                                 </div>
                                 <div class="media-body">
@@ -455,7 +455,7 @@
                             </div>
                             <div class="media">
                                 <div class="media-left">
-                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img-3.jpg"
+                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img-3.jpg') }}"
                                         alt="small-img-3">
                                 </div>
                                 <div class="media-body">
@@ -541,7 +541,7 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object" src="{{ asset('hotel-alpha/img/avatar/avatar-1.jpg"
+                                        <img class="media-object" src="{{ asset('hotel-alpha/img/avatar/avatar-1.jpg ')}}"
                                             alt="avatar-1">
                                     </a>
                                 </div>
@@ -556,7 +556,7 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object" src="{{ asset('hotel-alpha/img/avatar/avatar-2.jpg"
+                                        <img class="media-object" src="{{ asset('hotel-alpha/img/avatar/avatar-2.jpg ')}}"
                                             alt="avatar-1">
                                     </a>
                                 </div>
@@ -588,35 +588,35 @@
                             <div class="item active">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/audiojungle.png" alt="audiojungle">
+                                        <img src="{{ asset('hotel-alpha/img/brand/audiojungle.png')}}" alt="audiojungle ">
                                     </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/themeforest.png" alt="themeforest">
+                                        <img src="{{ asset('hotel-alpha/img/brand/themeforest.png')}}" alt="themeforest ">
                                     </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/tuts.png" alt="tuts">
+                                        <img src="{{ asset('hotel-alpha/img/brand/tuts.png')}}" alt="tuts ">
                                     </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/graphicriver.png" alt="graphicriver">
+                                        <img src="{{ asset('hotel-alpha/img/brand/graphicriver.png')}}" alt="graphicriver ">
                                     </a>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="col-xs-12 col-sm-6 col-md-3">
                                     <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/codecanyon.png" alt="codecanyon">
+                                        <img src="{{ asset('hotel-alpha/img/brand/codecanyon.png')}}" alt="codecanyon ">
                                     </a>
                                 </div>
                             </div>

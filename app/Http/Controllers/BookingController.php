@@ -38,9 +38,9 @@ class BookingController extends Controller
 
         // Ket qua tim kiem
         $roomResult = RoomType::latest()
-//            ->when($roomTypeId, static function($query) use ($roomTypeId) {
-//                return $query->where('id', $roomTypeId);
-//            })
+        //    ->when($roomTypeId, static function($query) use ($roomTypeId) {
+        //        return $query->where('id', $roomTypeId);
+        //    })
             ->get();
 
         return view('customer.booking', [

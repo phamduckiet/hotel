@@ -214,6 +214,7 @@
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
+                                    @if ($selectedRoom)
                                     <div class="col-lg-4 col-md-4 col-xs-12 col-md-pull-8">
                                         <div class="booling-details-box">
                                             <h3 class="booking-heading-2">Booking Details</h3>
@@ -274,6 +275,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+
                                 </div>
                                 <div class="clearfix"></div>
 

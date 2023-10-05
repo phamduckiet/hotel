@@ -10,13 +10,12 @@
                     <img src="hotel-alpha/img/banner/banner-slider-3.jpg" alt="banner-slider-3">
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div class="banner-content text-center">
-                            <h1 data-animation="animated fadeInDown delay-05s"><span>Welcome to</span> K Hotel</h1>
-                            <p data-animation="animated fadeInUp delay-1s">Lorem ipsum dolor sit amet, conconsectetuer
-                                adipiscing elit <br />Lorem ipsum dolor sit amet, conconsectetuer</p>
-                            <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
+                            <h1 data-animation="animated fadeInDown delay-05s"><span>Chào mừng đến với</span> K Hotel</h1>
+                            <p data-animation="animated fadeInUp delay-1s">Khách sạn K Hotel là một điểm đến lý tưởng cho những ai tìm kiếm sự hoàn hảo và tiện nghi tại thành phố này. Với vị trí thuận lợi, K Hotel đặt tại trung tâm thị trấn, gần các điểm tham quan nổi tiếng, cửa hàng mua sắm, và nhà hàng tuyệt vời. Khách sạn chú trọng đến sự thoải mái của khách hàng, với phòng ốc thoải mái, dịch vụ chu đáo, và tiện nghi hiện đại. K Hotel cung cấp một trải nghiệm lưu trú đáng nhớ và là điểm dừng chân hoàn hảo cho du khách khám phá khu vực này.</p>
+                            {{-- <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
                                 Started Now</a>
                             <a href="#" class="btn btn-md border-btn-theme"
-                                data-animation="animated fadeInUp delay-15s">Learn More</a>
+                                data-animation="animated fadeInUp delay-15s">Learn More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -24,14 +23,12 @@
                     <img src="hotel-alpha/img/banner/banner-slider-2.jpg" alt="banner-slider-2">
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div class="banner-content text-center">
-                            <h1 data-animation="animated fadeInLeft delay-05s"><span>Best Place To</span> Find Room
-                            </h1>
-                            <p data-animation="animated fadeInUp delay-05s">Lorem ipsum dolor sit amet, conconsectetuer
-                                adipiscing elit <br /> Lorem ipsum dolor sit amet, conconsectetuer</p>
-                            <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
+                            <h1 data-animation="animated fadeInDown delay-05s"><span>Chào mừng đến với</span> K Hotel</h1>
+                            <p data-animation="animated fadeInUp delay-1s">Khách sạn K Hotel là một điểm đến lý tưởng cho những ai tìm kiếm sự hoàn hảo và tiện nghi tại thành phố này. Với vị trí thuận lợi, K Hotel đặt tại trung tâm thị trấn, gần các điểm tham quan nổi tiếng, cửa hàng mua sắm, và nhà hàng tuyệt vời. Khách sạn chú trọng đến sự thoải mái của khách hàng, với phòng ốc thoải mái, dịch vụ chu đáo, và tiện nghi hiện đại. K Hotel cung cấp một trải nghiệm lưu trú đáng nhớ và là điểm dừng chân hoàn hảo cho du khách khám phá khu vực này.</p>
+                            {{-- <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
                                 Started Now</a>
                             <a href="#" class="btn btn-md border-btn-theme"
-                                data-animation="animated fadeInUp delay-15s">Learn More</a>
+                                data-animation="animated fadeInUp delay-15s">Learn More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -39,13 +36,12 @@
                     <img src="hotel-alpha/img/banner/banner-slider-1.jpg" alt="banner-slider-1">
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div class="banner-content text-center">
-                            <h1 data-animation="animated fadeInLeft delay-05s"><span>Best Place</span> for relux</h1>
-                            <p data-animation="animated fadeInLeft delay-1s">Lorem ipsum dolor sit amet,
-                                conconsectetuer adipiscing <br /> elit Lorem ipsum dolor sit amet, conconsectetuer</p>
-                            <a href="#" class="btn btn-md btn-theme"
-                                data-animation="animated fadeInLeft delay-15s">Get Started Now</a>
+                            <h1 data-animation="animated fadeInDown delay-05s"><span>Chào mừng đến với</span> K Hotel</h1>
+                            <p data-animation="animated fadeInUp delay-1s">Khách sạn K Hotel là một điểm đến lý tưởng cho những ai tìm kiếm sự hoàn hảo và tiện nghi tại thành phố này. Với vị trí thuận lợi, K Hotel đặt tại trung tâm thị trấn, gần các điểm tham quan nổi tiếng, cửa hàng mua sắm, và nhà hàng tuyệt vời. Khách sạn chú trọng đến sự thoải mái của khách hàng, với phòng ốc thoải mái, dịch vụ chu đáo, và tiện nghi hiện đại. K Hotel cung cấp một trải nghiệm lưu trú đáng nhớ và là điểm dừng chân hoàn hảo cho du khách khám phá khu vực này.</p>
+                            {{-- <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
+                                Started Now</a>
                             <a href="#" class="btn btn-md border-btn-theme"
-                                data-animation="animated fadeInLeft delay-20s">Learn More</a>
+                                data-animation="animated fadeInUp delay-15s">Learn More</a> --}}
                         </div>
                     </div>
                 </div>
@@ -70,37 +66,36 @@
         <div class="search-area-box search-area-box-4 search-area-box-5 hidden-xs hidden-sm">
             <div class="container">
                 <div class="search-contents search-contents-3">
-                    <form method="GET">
+                    <form method="GET" action="{{ route('create-booking') }}">
                         <div class="row search-your-details">
                             <div class="col-md-12">
                                 <div class="search-your-rooms">
-                                    <h4>Search Your Rooms</h4>
+                                    <h4>Tìm kiếm phòng</h4>
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-6">
                                 <div class="form-group">
-                                    <input type="text" class="btn-default datepicker" placeholder="Check In">
+                                    <input type="text" class="btn-default datepicker" name="checkin" placeholder="Nhận Phòng">
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-6">
                                 <div class="form-group">
-                                    <input type="text" class="btn-default datepicker" placeholder="Check Out">
+                                    <input type="text" class="btn-default datepicker" name="checkout" placeholder="Trả Phòng">
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-6">
                                 <div class="form-group">
-                                    <select class="selectpicker search-fields form-control-2" name="room">
-                                        <option>Room</option>
-                                        <option>Single Room</option>
-                                        <option>Double Room</option>
-                                        <option>Deluxe Room</option>
+                                    <select class="selectpicker search-fields form-control-2" name="room_type_id">
+                                        @foreach ($roomTypes as $roomType)
+                                        <option value="{{$roomType->id}}">{{$roomType->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-6">
                                 <div class="form-group">
                                     <select class="selectpicker search-fields form-control-2" name="adults">
-                                        <option>Adult</option>
+                                        <option>Người lớn</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -112,7 +107,8 @@
                             <div class="col-md-2 col-sm-2 col-xs-6">
                                 <div class="form-group">
                                     <select class="selectpicker search-fields form-control-2" name="children">
-                                        <option>Child</option>
+                                        <option>Trẻ em</option>
+                                        <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -123,7 +119,7 @@
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-6">
                                 <div class="form-group">
-                                    <button class="search-button btn-blocks">Search</button>
+                                    <button class="search-button btn-blocks">Tìm kiếm</button>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +326,7 @@
     <!-- Our facilties section end -->
 
     <!-- Gallery secion start -->
-    <div class="gallery-secion content-area-11">
+    {{-- <div class="gallery-secion content-area-11">
         <div class="container">
             <!-- Main title -->
             <div class="main-title">
@@ -445,7 +441,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Gallery secion end -->
 
     <!-- Counters strat -->
