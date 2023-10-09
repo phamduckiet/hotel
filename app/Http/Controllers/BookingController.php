@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BookingWasCreatedEvent;
 use App\Http\Requests\StoreBookingRequest;
 use App\Models\Booking;
 use App\Models\Customer;
@@ -93,6 +94,8 @@ class BookingController extends Controller
         // Tim phong trong
         $roomIds = [1];
         $booking->rooms()->attach($roomIds);
+
+        BookingWasCreatedEvent::dispatch($booking);
 
         alert()->success(__('messages.booking_succesfully'))
             ->showConfirmButton('OK')->autoClose(5000);
