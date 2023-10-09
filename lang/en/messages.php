@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'create_account' => 'Create Account',
     'add_room_type' => 'Add room type',
     'add_room'  => 'Add room',
     'room_types' => 'Room types',
@@ -14,7 +13,7 @@ return [
     'password' => 'Password',
     'login' => 'Login',
     'already_have_account' => 'Already have account',
-    'password_confirmation' => 'RePassword',
+    'password_confirmation' => 'Password confirmation',
     'register'  => 'Register',
     'home'  => 'Home',
     'room_type_name'    => 'Room Type Name',
@@ -31,13 +30,12 @@ return [
     'avatar'   => 'Avatar',
     'room_info' => 'Room Info',
     'select'    => 'Select',
-    'room_name' => 'Room Name',
     'image' => 'Image',
     'tbimage'   => 'Drop files here or click to upload.',
     'tb1image'  => 'Upload up to 10 files',
     'floor' => 'Floor',
     'View_room' => 'View room detail',
-
-
-
+    'login_title' => 'Sign In to K Hotel',
+    'new_here' => 'New Here?',
+    'create_account' => 'Create an account',
 ];

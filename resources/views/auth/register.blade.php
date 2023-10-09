@@ -29,7 +29,7 @@
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder text-dark fs-6">{{ __('messages.name') }}</label>
                         <input class="form-control form-control-lg form-control-solid" placeholder="" name="name"
-                            autocomplete="off" />
+                            autocomplete="off" value="{{ old('name') }}" />
                         @error('name')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
@@ -39,7 +39,7 @@
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder text-dark fs-6">Email</label>
                         <input class="form-control form-control-lg form-control-solid" type="email" placeholder=""
-                            name="email" autocomplete="off" />
+                            name="email" value="{{ old('email') }}" autocomplete="off" />
                         @error('email')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
@@ -55,7 +55,7 @@
                             <!--begin::Input wrapper-->
                             <div class="position-relative mb-3">
                                 <input class="form-control form-control-lg form-control-solid" type="password"
-                                    placeholder="" name="password" autocomplete="off" />
+                                    placeholder="" name="password" value="{{ old('password') }}" autocomplete="off" />
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
                                     data-kt-password-meter-control="visibility">
                                     <i class="bi bi-eye-slash fs-2"></i>
@@ -81,7 +81,7 @@
                             <!--begin::Input wrapper-->
                             <div class="position-relative mb-3">
                                 <input class="form-control form-control-lg form-control-solid" type="password"
-                                    placeholder="" name="password_confirmation" autocomplete="off" />
+                                    placeholder="" name="password_confirmation" value="{{ old('password_confirmation') }}" autocomplete="off" />
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
                                     data-kt-password-meter-control="visibility">
                                     <i class="bi bi-eye-slash fs-2"></i>

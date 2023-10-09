@@ -12,9 +12,8 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
-        // Login xong thi redirect ve dau
-//        $home = Auth::user()->is_admin ? '/dashboard' : '/';
+        $home = Auth::user()->is_admin ? '/dashboard' : '/';
 
-        return redirect()->intended('/room-types');
+        return redirect()->intended($home);
     }
 }

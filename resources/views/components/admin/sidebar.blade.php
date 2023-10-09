@@ -40,7 +40,7 @@
                             data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                             data-kt-menu-overflow="true">
                             <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
-                            <span style="margin: 10px 80px 20px 0px" class="svg-icon svg-icon-muted svg-icon-1">
+                            <span class="svg-icon svg-icon-muted svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none">
                                     <path opacity="0.3"
@@ -71,7 +71,7 @@
                                             {{ auth()->user()?->name }}
                                         </div>
                                         {{-- <span
-                                            class="badge badge-light-success fw-bolder fs-8 py-1 mt-2">{{ auth()->user()?->role }}</span> --}}
+                class="badge badge-light-success fw-bolder fs-8 py-1 mt-2">{{ auth()->user()?->role }}</span> --}}
                                     </div>
                                     <!--end::Username-->
                                 </div>
@@ -183,8 +183,7 @@
                         <span class="menu-title">{{ __('messages.dashboard') }}</span>
                     </a>
                 </div> --}}
-                <div data-kt-menu-trigger="click"
-                    class="menu-item here menu-accordion ">
+                <div data-kt-menu-trigger="click" class="menu-item here menu-accordion ">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm001.svg-->
@@ -237,7 +236,8 @@
                 </div>
                 {{-- @can(\App\Enums\PermissionName::MANAGE_ORDERS) --}}
                 <div class="menu-item">
-                    <a class="menu-link @if (Route::is('bookings.*')) active @endif" href="{{ route('bookings.index') }}">
+                    <a class="menu-link @if (Route::is('bookings.*')) active @endif"
+                        href="{{ route('bookings.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                             <span class="svg-icon svg-icon-2">

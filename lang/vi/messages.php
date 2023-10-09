@@ -37,9 +37,7 @@ return [
     'tb1image'  => 'Tải lên tối đa 10 tệp',
     'floor' => 'Tầng',
     'View_room' => 'Xem chi tiết phòng',
-
-
-
-
-
+    'create_account' => 'Tạo tài khoản',
+    'login_title' => 'Đăng nhập vào K Hotel',
+    'new_here' => 'Chưa có tài khoản?',
 ];

@@ -32,9 +32,7 @@ Route::middleware(['auth', 'localization'])->group(function () {
         'updateLanguage',
     ])->name('update-language');
 
-    Route::get('/dashboard', function () {
-        dd(1);
-    });
+    Route::get('/dashboard', [RoomTypeController::class, 'index']);
 
     Route::resource('room-types', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
