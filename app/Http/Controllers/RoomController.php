@@ -109,29 +109,5 @@ class RoomController extends Controller
         return $room->delete();
     }
 
-    public function showRoomImages(Room $room)
-    {
-        return response()->json($room->images);
-    }
 
-    public function deleteRoomImage(Room $room, $imageId)
-    {
-//        $this->authorize('update', $product);
-
-        if ($imageId) {
-            return $room->images()->whereId($imageId)->delete();
-        }
-
-        return null;
-    }
-
-    public function storeRoomImage(Request $request, Room $room)
-    {
-//        $this->authorize('update', $product);
-
-        $filePath = optional($request->file('image'))->store('images', ['disk' => 'public_storage']);
-        $room->images()->create(['url' => $filePath]);
-
-        return response()->json('success');
-    }
 }

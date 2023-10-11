@@ -54,10 +54,7 @@
                                 <!--begin::Table row-->
                                 <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                     <th style="color: black" class="min-w-100px">{{ __('messages.room_types') }}</th>
-                                    <th style="color: black" class="min-w-200px">{{ __('messages.max_adults') }}</th>
-                                    <th style="color: black" class="min-w-100px">{{ __('messages.max_children') }}</th>
-                                    <th style="color: black" class="min-w-100px">{{ __('messages.price') }}</th>
-                                    <th style="color: black" class="min-w-70px">{{ __('messages.description') }}</th>
+                                    <th style="color: black" class="min-w-100px">Thông Tin</th>
                                     <th style="color: black" class="text-center min-w-150px">{{ __('messages.actions') }}</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -73,52 +70,20 @@
                                             <div>{{ $room_types->name }}</div>
                                         </td>
                                         <td class="text-center">
-                                            <div>{{ $room_types->max_adults }}</div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div>{{ $room_types->max_children }}</div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div>{{ number_format($room_types->price, 0, ',', '.') }} VNĐ/Ngày</div>
-                                        </td>
-                                        <!--end::Category=-->
-                                        <td class="text-center">
-                                            <div>{!! $room_types->description !!}</div>
+                                            <a href="/rooms/{{ $room_types->id }}/show" class="btn btn-success">Xem chi tiết</a>
+
                                         </td>
                                         <!--begin::Actio{-->
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                                data-kt-menu-trigger="click"
-                                                data-kt-menu-placement="bottom-end">{{ __('messages.actions') }}
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-5 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('room-types.edit', [$room_types->id]) }}"
-                                                        class="menu-link px-3">{{ __('messages.edit') }}</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
+                                        <td class="text-center pt-9">
+
+                                                <a href="{{ route('room-types.edit', [$room_types->id]) }}" class="btn btn-primary">Chỉnh sữa</a>
+                                                {{-- <a href="../../demo8/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-danger">Xoá</a> --}}
+                                                <div class="btn btn-danger">
                                                     <div class="menu-link px-3 delete-btn"
                                                          data-url="{{ route('room-types.destroy', ['room_type' => $room_types->id]) }}"
                                                          data-id="{{ $room_types->id }}">
                                                         {{ __('messages.delete') }}</div>
                                                 </div>
-                                                <!--end::Menu item-->
-                                            </div>
                                             <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->

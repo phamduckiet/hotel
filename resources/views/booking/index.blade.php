@@ -34,13 +34,13 @@
                                 <!--end::Svg Icon-->
                                 <input type="text" data-kt-ecommerce-order-filter="search"
                                     class="keyword-filter form-control form-control-solid w-250px ps-14"
-                                    placeholder="{{ __('messages.search_order') }}" />
+                                    placeholder="{{ __('messages.search') }}" />
                             </div>
                             <!--end::Search-->
                         </div>
                         <!--end::Card title-->
                         <!--begin::Card toolbar-->
-                        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                        {{-- <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                             <!--begin::Flatpickr-->
                             <div class="input-group w-250px">
                                 <input class="form-control form-control-solid rounded rounded-end-0"
@@ -86,7 +86,7 @@
                                 </select>
                                 <!--end::Select2-->
                             </div>
-                        </div>
+                        </div> --}}
                         <!--end::Card toolbar-->
                     </div>
                     <!--end::Card header-->
@@ -98,11 +98,13 @@
                             <thead>
                                 <!--begin::Table row-->
                                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                    <th class="min-w-100px">Booking ID</th>
-                                    <th class="min-w-150px">Khách hàng</th>
-                                    <th class="min-w-100px">Loại phòng</th>
-                                    <th class="min-w-100px">Checkin</th>
-                                    <th class="min-w-100px">Checkout</th>
+                                    <th class="text-center min-w-100px">Booking ID</th>
+                                    <th class="text-center min-w-150px">Khách hàng</th>
+                                    <th class="text-center min-w-100px">Loại phòng</th>
+                                    <th class="text-center min-w-100px">Số lượng</th>
+                                    <th class="text-center min-w-100px">Checkin</th>
+                                    <th class="text-center min-w-100px">Checkout</th>
+                                    <th class="text-center min-w-100px">Thành tiền</th>
                                     <th class="text-center min-w-100px">{{ __('messages.actions') }}</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -113,7 +115,7 @@
                                 @foreach ($bookings as $booking)
                                     <!--begin::Table row-->
                                     <tr>
-                                        <td data-kt-ecommerce-order-filter="order_id">
+                                        <td class="text-center" data-kt-ecommerce-order-filter="order_id">
                                             <a href=""
                                                 class="text-gray-800 text-hover-primary fw-bolder">{{ $booking->id }}</a>
                                         </td>
@@ -136,100 +138,38 @@
                                         </td>
                                         <!--end::Customer=-->
                                         <!--begin::Total=-->
-                                        <td class="pe-0">
+                                        <td class="text-center">
                                             <span class="fw-bolder">{{ $booking->roomType->name }}</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="fw-bolder">{{ $booking->room_total }}</span>
                                         </td>
                                         <!--end::Total=-->
                                         <!--begin::Date Added=-->
-                                        <td data-order="2021-12-25">
+                                        <td class="text-center" data-order="2021-12-25">
                                             <span class="fw-bolder">{{ $booking->checkin->format('d/m/Y') }}</span>
                                         </td>
                                         <!--end::Date Added=-->
                                         <!--begin::Status=-->
-                                        <td class="pe-0" data-order="Failed">
-                                            {{-- <select class="status-select form-select form-select-sm mb-2" name="status"
-                                                data-control="select2" data-hide-search="true"
-                                                data-placeholder="Select an option"
-                                                data-url="{{ route('orders.update', ['order' => $order->id]) }}">
-                                                @if ($order->status !== 'canceled')
-                                                    <option value="Paypal paid"
-                                                        @if ($order->status === 'Paypal paid') selected @endif>
-                                                        {{ __('messages.paypal_paid') }}
-                                                    </option>
-                                                    @if ($order->status !== 'Paypal paid')
-                                                        <option value="pending"
-                                                            @if ($order->status === 'pending') selected @endif>
-                                                            {{ __('messages.pending') }}
-                                                        </option>
-                                                    @endif
-                                                    <option value="delivering"
-                                                        @if ($order->status === 'delivering') selected @endif>
-                                                        {{ __('messages.delivering') }}
-                                                    </option>
-                                                    <option value="delivered"
-                                                        @if ($order->status === 'delivered') selected @endif>
-                                                        {{ __('messages.delivered') }}
-                                                    </option>
-                                                @endif
-                                                @if ($order->status !== 'delivered')
-                                                    <option value="canceled"
-                                                        @if ($order->status === 'canceled') selected @endif>
-                                                        {{ __('messages.canceled') }}
-                                                    </option>
-                                                @endif
-                                            </select> --}}
+                                        <td class="text-center" data-order="Failed">
                                             <span class="fw-bolder">{{ $booking->checkout->format('d/m/Y') }}</span>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <span class="fw-bolder">{{ number_format($booking->roomType->price * $booking->room_total, 0, ',', '.') }} VNĐ</span>
+
                                         </td>
                                         <!--end::Status=-->
                                         <!--begin::Action=-->
                                         <td class="text-center">
-                                            <a href=""
-                                                class="menu-link px-3"><i class="fas fa-eye"></i></a>
-                                            {{-- <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                                data-kt-menu-trigger="click"
-                                                data-kt-menu-placement="bottom-end">{{ __('messages.actions') }}
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-5 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('orders.show', ['order' => $order->id]) }}"
-                                                        class="menu-link px-3">{{ __('messages.view_detail') }}</a>
+
+                                                <a href="" class="btn btn-primary">Chỉnh sữa</a>
+                                                {{-- <a href="../../demo8/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-danger">Xoá</a> --}}
+                                                <div class="btn btn-danger">
+                                                    <div class="menu-link px-3 delete-btn"
+                                                         data-id="{{ $booking->id }}">
+                                                        {{ __('messages.delete') }}</div>
                                                 </div>
-                                                <!--end::Menu item-->
-                                                @if ($order->status !== 'canceled')
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <div class="menu-link px-3 cancel-btn"
-                                                            data-url="{{ route('orders.destroy', ['order' => $order->id]) }}"
-                                                            data-id="{{ $order->id }}">{{ __('messages.cancel') }}
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                @endif
-                                                @if ($order->status === 'pending')
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <div class="menu-link px-3 confirm-btn"
-                                                            data-url="{{ route('orders.update', ['order' => $order->id]) }}"
-                                                            data-id="{{ $order->id }}">{{ __('messages.confirm') }}
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                @endif
-                                            </div> --}}
-                                            <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->
                                     </tr>

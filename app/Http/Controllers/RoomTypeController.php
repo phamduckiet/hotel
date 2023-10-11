@@ -88,10 +88,33 @@ class RoomTypeController extends Controller
      */
     public function update(UpdateRoomTypeRequest $request, RoomType $roomType)
     {
-        $roomType->update($request->all());
 
-        return redirect()->route('room-types.index')
+        try {
+            DB::beginTransaction();
+            $filePath = $roomType->avatar_url;
+            if ($request->file('avatar')) {
+                $filePath = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
+            }
+            $roomType->update([
+                'name' => $request->name,
+                'avatar' => $filePath,
+                'max_adults' => $request->max_adults,
+                'max_children' => $request->max_children,
+                'price' => $request->price,
+                'description' => $request->description,
+            ]);
+
+            DB::commit();
+            return redirect()->route('room-types.index')
             ->with('success', __('messages.successfully'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+        // $roomType->update($request->all());
+
+        // return redirect()->route('room-types.index')
+        //     ->with('success', __('messages.successfully'));
     }
 
     /**
@@ -100,5 +123,30 @@ class RoomTypeController extends Controller
     public function destroy(RoomType $roomType)
     {
         return $roomType->delete();
+    }
+    public function showRoomImages(RoomType $RoomType)
+    {
+        return response()->json($RoomType->images);
+    }
+
+    public function deleteRoomImage(RoomType $RoomType, $imageId)
+    {
+//        $this->authorize('update', $product);
+
+        if ($imageId) {
+            return $RoomType->images()->whereId($imageId)->delete();
+        }
+
+        return null;
+    }
+
+    public function storeRoomImage(Request $request, RoomType $RoomType)
+    {
+//        $this->authorize('update', $product);
+
+        $filePath = optional($request->file('image'))->store('images', ['disk' => 'public_storage']);
+        $RoomType->images()->create(['url' => $filePath]);
+
+        return response()->json('success');
     }
 }

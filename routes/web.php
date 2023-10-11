@@ -36,10 +36,10 @@ Route::middleware(['auth', 'localization'])->group(function () {
 
     Route::resource('room-types', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
-    Route::prefix('rooms')->group(function () {
-        Route::get('/{room}/images', [RoomController::class, 'showRoomImages']);
-        Route::delete('/{room}/images/{imageId}', [RoomController::class, 'deleteRoomImage']);
-        Route::post('/{room}/images', [RoomController::class, 'storeRoomImage']);
+    Route::prefix('room-types')->group(function () {
+        Route::get('/{room_type}/images', [RoomTypeController::class, 'showRoomImages']);
+        Route::delete('/{room_type}/images/{imageId}', [RoomTypeController::class, 'deleteRoomImage']);
+        Route::post('/{room_type}/images', [RoomTypeController::class, 'storeRoomImage']);
     });
     Route::resource('bookings', BookingController::class)->only(['index']);
 });
