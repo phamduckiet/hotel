@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
@@ -34,12 +36,18 @@ Route::middleware(['auth', 'localization'])->group(function () {
 
     Route::get('/dashboard', [RoomTypeController::class, 'index']);
 
-    Route::resource('room-types', RoomTypeController::class);
-    Route::resource('rooms', RoomController::class);
     Route::prefix('room-types')->group(function () {
         Route::get('/{room_type}/images', [RoomTypeController::class, 'showRoomImages']);
         Route::delete('/{room_type}/images/{imageId}', [RoomTypeController::class, 'deleteRoomImage']);
         Route::post('/{room_type}/images', [RoomTypeController::class, 'storeRoomImage']);
     });
     Route::resource('bookings', BookingController::class)->only(['index']);
+
+    Route::resources([
+        'room-types' => RoomTypeController::class,
+        'rooms' => RoomController::class,
+        'roles' => RoleController::class,
+        'permissions' => PermissionController::class,
+        'users' => UserController::class,
+    ]);
 });

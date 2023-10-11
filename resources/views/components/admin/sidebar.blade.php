@@ -276,7 +276,7 @@
                 </div> --}}
                 {{-- @endcan --}}
                 {{-- @can(\App\Enums\PermissionName::MANAGE_PERMISSIONS) --}}
-                {{-- <div data-kt-menu-trigger="click"
+                <div data-kt-menu-trigger="click"
                     class="menu-item here menu-accordion @if (Route::is('roles.*') || Route::is('permissions.*') || Route::is('users.*')) show @endif">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -299,7 +299,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link @if (Route::is('roles.*')) active @endif" href="">
+                            <a class="menu-link @if (Route::is('roles.*')) active @endif" href="{{ route('roles.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -307,7 +307,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link @if (Route::is('permissions.*')) active @endif" href="">
+                            <a class="menu-link @if (Route::is('permissions.*')) active @endif" href="{{ route('permissions.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -315,7 +315,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link @if (Route::is('users.*')) active @endif" href="">
+                            <a class="menu-link @if (Route::is('users.*')) active @endif" href="{{ route('users.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -323,7 +323,7 @@
                             </a>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 {{-- @endcan --}}
             </div>
             <!--end::Menu-->

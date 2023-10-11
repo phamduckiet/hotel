@@ -11,7 +11,7 @@
             <!--begin::Container-->
             <div id="kt_content_container" class="container-xxl">
                 <form method="POST" action="{{ route('room-types.update', ['room_type' => $roomType->id]) }}" enctype='multipart/form-data'
-                    id="add_room_type_form" class="form d-flex flex-column flex-lg-row">
+                    id="edit_room_type_form" class="form d-flex flex-column flex-lg-row">
                     @csrf
                     @method('PUT')
                     <input type="hidden" id="roomType-id-value" value="{{ $roomType->id }}" />
@@ -36,7 +36,7 @@
                                         <!--begin::Image input-->
                                         <div class="image-input image-input-empty image-input-outline mb-3"
                                             data-kt-image-input="true"
-                                            style="{{ 'background-image: url(' . asset($roomType->avatar) . ')'  }}">
+                                            style="{{ 'background-image: url(' . $roomType->avatar_link . ')'  }}">
                                             <!--begin::Preview existing avatar-->
                                             <div class="image-input-wrapper w-150px h-150px"></div>
                                             <!--end::Preview existing avatar-->
@@ -148,7 +148,7 @@
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-2">
                                             <!--begin::Dropzone-->
-                                            <div class="dropzone" id="add_room_media">
+                                            <div class="dropzone" id="room_type_media_dropzone">
                                                 <!--begin::Message-->
                                                 <div class="dz-message needsclick">
                                                     <!--begin::Icon-->
@@ -221,7 +221,6 @@
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/save-category.js') }} "></script>
-    <script src="{{ asset('resources/js/room-type/create.js') }}"></script>
     <script src="{{ asset('resources/js/room-type/edit.js') }}"></script>
     <!--end::Page Custom Javascript-->
 @endpush

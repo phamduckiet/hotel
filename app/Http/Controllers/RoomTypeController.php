@@ -91,7 +91,7 @@ class RoomTypeController extends Controller
 
         try {
             DB::beginTransaction();
-            $filePath = $roomType->avatar_url;
+            $filePath = $roomType->avatar;
             if ($request->file('avatar')) {
                 $filePath = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
             }

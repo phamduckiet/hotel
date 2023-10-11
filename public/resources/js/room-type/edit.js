@@ -1,7 +1,23 @@
+// Description editor
+var fullEditor = new Quill('#room-type-description-editor', {
+    modules: {
+        toolbar: [
+            [{
+                header: [1, 2, false]
+            }],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+        ]
+    },
+    theme: 'snow' // or 'bubble'
+});
+
+fullEditor.root.innerHTML = $('#room-type-description').val();
+
 // Dropzone product images
 const roomTypeId = $('#roomType-id-value').val();
 
-var myDropzone = new Dropzone("#add_room_media", {
+var myDropzone = new Dropzone("#room_type_media_dropzone", {
     url: `/room-types/${roomTypeId}/images`, // API lay ra ds images cua room
     paramName: 'image', // The name that will be used to transfer the file
     maxFiles: 10,
@@ -36,4 +52,13 @@ $.ajax({
             myDropzone.displayExistingFile(mockFile, image.link);
         });
     },
+});
+
+// Save room type submit
+$('#submit-btn').on('click', (e) => {
+    e.preventDefault();
+
+    const description = fullEditor.root.innerHTML;
+    $('#room-type-description').val(description);
+    $('#edit_room_type_form').submit();
 });
