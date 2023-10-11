@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request, User $user)
     {
-        $this->authorize('create', $user);
+//        $this->authorize('create', $user);
 
         $user = User::create([
             'name' => $request->name,
