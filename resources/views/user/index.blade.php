@@ -269,8 +269,8 @@
                                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th class="min-w-125px">{{ __('messages.user') }}</th>
                                     <th class="min-w-125px">{{ __('messages.role') }}</th>
-                                    <th class="min-w-125px">{{ __('messages.phone_number') }}</th>
-                                    <th class="min-w-125px">{{ __('messages.address') }}</th>
+                                    {{-- <th class="min-w-125px">{{ __('messages.phone_number') }}</th>
+                                    <th class="min-w-125px">{{ __('messages.address') }}</th> --}}
                                     <th class="min-w-125px">{{ __('messages.joined_date') }}</th>
                                     <th class="text-end min-w-150px">{{ __('messages.actions') }}</th>
                                 </tr>
@@ -307,10 +307,10 @@
                                             @endif
                                         </td>
                                         <!--end::Role=-->
-                                        <td>
+                                        {{-- <td>
                                             <div class="badge badge-light fw-bolder">{{ $user->phone_number }}</div>
                                         </td>
-                                        <td>{{ $user->address }}</td>
+                                        <td>{{ $user->address }}</td> --}}
                                         <td>{{ $user->created_at }}</td>
                                         <!--begin::Action=-->
                                         <td class="text-end">
