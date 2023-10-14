@@ -29,6 +29,8 @@ Route::middleware('localization')->group(function () {
 });
 
 Route::middleware(['auth', 'localization'])->group(function () {
+    Route::get('/my-bookings', [BookingController::class, 'getBookingHistory'])->name('my_bookings');
+
     Route::get('/update-language/{lang}', [
         UserController::class,
         'updateLanguage',

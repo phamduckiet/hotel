@@ -10,36 +10,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.html" class="logo">
-                    <img src="{{ asset('hotel-alpha/img/logos/logo.png')}}" alt="logo">
+                <a href="{{ route('home') }}" class="logo">
+                    <img src="{{ asset('logo.png')}}" alt="logo">
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" role="navigation" aria-expanded="true" id="app-navigation">
                 <ul class="nav navbar-nav">
                     <li class="dropdown active">
-                        <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
-                            Home<span class="caret"></span>
+                        <a href="{{ route('home') }}">
+                            Trang chủ
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html">Home 1</a></li>
-                            <li><a href="index-2.html">Home 2</a></li>
-                            <li><a href="index-3.html">Home 3</a></li>
-                            <li><a href="index-4.html">Home 4</a></li>
-                        </ul>
                     </li>
                     <li class="dropdown">
-                        <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
-                            Rooms<span class="caret"></span>
+                        <a href="{{ route('my_bookings') }}">
+                            Đặt phòng
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="rooms-col-1.html">1 Column</a></li>
-                            <li><a href="rooms-col-2.html">2 Column</a></li>
-                            <li><a href="rooms-col-3.html">3 Column</a></li>
-                            <li><a href="rooms-col-4.html">4 Column</a></li>
-                            <li><a href="rooms-details.html">Rooms Details</a></li>
-                            <li><a href="rooms-details-2.html">Rooms Details 2</a></li>
-                        </ul>
                     </li>
                     <li class="dropdown">
                         <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
@@ -95,23 +81,11 @@
                             <li><a href="contact-2.html">Contact 2</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
-                            Blog<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                            <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                            <li><a href="blog-full-width.html">Blog Fullwidth</a></li>
-                            <li><a href="blog-creative.html">Blog Creative</a></li>
-                            <li><a href="blog-details.html">Blog Detail</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
-                    <li style="margin-top:20px;">
+                    <li>
                         @if (auth()->user())
-                            <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600">
+                            <div style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;margin-top:20px;">
                                 <img src="{{ Avatar::create(auth()->user()?->name)->setFontSize(40)->toBase64() }}" style="width:40px;"/>
                                 <div>
                                     <div>

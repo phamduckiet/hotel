@@ -134,4 +134,15 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function getBookingHistory()
+    {
+        $customer = optional(Auth::user())->customer;
+
+        $bookings = $customer->bookings()
+            ->with('roomType')
+            ->latest()->get();
+
+        return view('customer.my_booking', compact('bookings'));
+    }
 }
