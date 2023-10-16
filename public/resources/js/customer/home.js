@@ -1,5 +1,5 @@
 $('input[name="daterange"]').daterangepicker({
-    opens: 'left',
+    opens: 'right',
     autoUpdateInput: false,
     autoApply: true,
     locale: {
@@ -13,7 +13,6 @@ $('input[name="daterange"]').daterangepicker({
 });
 
 const urlSearchParams = new URLSearchParams(window.location.search);
-console.log(urlSearchParams.get('daterange'))
 
 $('input[name="daterange"]').on('apply.daterangepicker', function (ev, picker) {
     $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
@@ -21,4 +20,12 @@ $('input[name="daterange"]').on('apply.daterangepicker', function (ev, picker) {
 
 $('input[name="daterange"]').on('cancel.daterangepicker', function (ev, picker) {
     $(this).val('');
+});
+
+// Go to room detail page
+$('.room-detail-btn').click((e) => {
+    e.preventDefault();
+    const urlRequest = $(e.target).data('url');
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    window.location.href = urlRequest + `?${urlSearchParams.toString()}`;
 });

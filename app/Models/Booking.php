@@ -25,6 +25,8 @@ class Booking extends Model
         'room_type_id',
         'adults',
         'children',
+        'status',
+        'money_total',
     ];
 
     /**

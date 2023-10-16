@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\BookingService;
 use App\Models\Floor;
 use App\Models\RoomType;
 use App\Models\User;
@@ -10,6 +11,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * @param BookingService $bookingService
+     */
+    public function __construct(private readonly BookingService $bookingService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -43,7 +51,7 @@ class HomeController extends Controller
 
     public function showRoomDetail(RoomType $roomType)
     {
-        // $roomType->load('room_types', 'room_types.images');
+        $roomType->load('rooms');
 
         return view('customer.room_detail', compact('roomType'));
     }

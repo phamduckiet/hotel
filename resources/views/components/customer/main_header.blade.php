@@ -23,7 +23,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="{{ route('my_bookings') }}">
+                        <a href="{{ route('my_bookings.index') }}">
                             Đặt phòng
                         </a>
                     </li>

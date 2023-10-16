@@ -59,4 +59,5 @@ return [
     'address' => 'Địa chỉ',
     'joined_date' => 'Ngày tham gia',
     'add_user' => 'Thêm mới',
+    'booking_successfully' => 'Đặt phòng thành công',
 ];

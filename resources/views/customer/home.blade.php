@@ -90,11 +90,21 @@
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <div class="form-group">
-                                    {{-- <input type="text" class="btn-default datepicker" name="checkin" placeholder="Checkin"> --}}
-                                    <input type="text" name="daterange" id="daterange-input"
+                                    @php
+                                        $dateParts = explode('-', request('daterange') ?? '');
+
+                                        $checkin = null;
+                                        $checkout = null;
+
+                                        if (count($dateParts) === 2) {
+                                                $checkin = Carbon\Carbon::createFromFormat('d/m/Y', trim($dateParts[0]))->format('Y-m-d');
+                                                $checkout = Carbon\Carbon::createFromFormat('d/m/Y', trim($dateParts[1]))->format('Y-m-d');
+                                        }
+                                    @endphp
+                                    <input type="text" name="daterange" id="daterange-input" autocomplete="off"
                                         placeholder="Nhận phòng - Trả phòng" value="{{ request('daterange') }}" />
-                                    <input type="hidden" name="checkin" id="checkin-input" />
-                                    <input type="hidden" name="checkout" id="checkout-input" />
+                                    <input type="hidden" name="checkin" id="checkin-input" value="{{ $checkin }}" />
+                                    <input type="hidden" name="checkout" id="checkout-input" value="{{ $checkout }}" />
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-6">
@@ -147,17 +157,19 @@
             <div class="row">
                 @foreach ($roomTypes as $roomType)
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">
+                        <a href="#">
                             <div class="hotel-box-list-2 clearfix">
                                 <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-pad">
                                     <img src="{{ $roomType->avatar_link }}" alt="img-9"
-                                        class="room-type-avatar-img img-responsive">
+                                        class="room-type-avatar-img img-responsive room-detail-btn"
+                                        data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}">
                                 </div>
                                 <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 detail">
                                     <div class="heading">
                                         <div class="title">
                                             <h3>
-                                                <a href="rooms-details.html">{{ $roomType->name }}</a>
+                                                <a class="room-detail-btn"
+                                                    data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
                                             </h3>
                                         </div>
                                     </div>

@@ -30,9 +30,9 @@
                                         <i class="fa fa-user"></i>
                                     </span>
                                 </a>
-                                <h3 class="booking-heading">Personal Info</h3>
+                                <h3 class="booking-heading">Thông tin khách hàng</h3>
                             </li>
-                            <li role="presentation">
+                            {{-- <li role="presentation">
                                 <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title=""
                                     data-original-title="Step 3">
                                     <span class="round-tab">
@@ -40,7 +40,7 @@
                                     </span>
                                 </a>
                                 <h3 class="booking-heading">Payment Info</h3>
-                            </li>
+                            </li> --}}
                             <li role="presentation">
                                 <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title=""
                                     data-original-title="Complete">
@@ -48,7 +48,7 @@
                                         <i class="glyphicon glyphicon-ok"></i>
                                     </span>
                                 </a>
-                                <h3 class="booking-heading">Review</h3>
+                                <h3 class="booking-heading">Xác nhận</h3>
                             </li>
                         </ul>
                     </div>
@@ -66,19 +66,19 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group firstname">
                                                         <label>Họ tên</label>
-                                                        <input type="text" name="name" class="input-text">
+                                                        <input type="text" name="name" class="input-text" value="{{ auth()->user()?->name}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group city">
                                                         <label>Email</label>
-                                                        <input type="text" name="email" class="input-text">
+                                                        <input type="text" name="email" class="input-text" value="{{ auth()->user()?->email}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group city">
                                                         <label>Số điện thoại</label>
-                                                        <input type="text" name="phone_number" class="input-text">
+                                                        <input type="text" name="phone_number" class="input-text" value="{{ auth()->user()?->customer?->phone}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,7 +88,7 @@
                                     @if ($cart)
                                         <div class="col-lg-4 col-md-4 col-xs-12 col-md-pull-8">
                                             <div class="booling-details-box">
-                                                <h3 class="booking-heading-2">Booking Details</h3>
+                                                <h3 class="booking-heading-2">Thông tin đặt phòng</h3>
                                                 <!--  Rooms detail slider start -->
                                                 <div class="rooms-detail-slider simple-slider ">
                                                     <div id="carousel-custom" class="carousel slide" data-ride="carousel">
@@ -125,24 +125,24 @@
                                                 <h4>{{ $cart->name }}</h4>
                                                 <ul>
                                                     <li>
-                                                        <span>Check In:</span> {{ $cart->options->checkin }}
+                                                        <span>Nhận phòng:</span> {{ $cart->options->checkin }}
                                                     </li>
                                                     <li>
-                                                        <span>Check Out:</span> {{ $cart->options->checkout }}
+                                                        <span>Trả phòng:</span> {{ $cart->options->checkout }}
                                                     </li>
                                                     <li>
-                                                        <span>Rooms:</span> {{ $cart->qty }}
+                                                        <span>Số lượng phòng:</span> {{ $cart->qty }}
                                                     </li>
                                                     <li>
-                                                        <span>Adults:</span> {{ $cart->options->adults }}
+                                                        <span>Số người lớn:</span> {{ $cart->options->adults }}
                                                     </li>
                                                     <li>
-                                                        <span>Child:</span> {{ $cart->options->children }}
+                                                        <span>Số trẻ em:</span> {{ $cart->options->children }}
                                                     </li>
                                                 </ul>
 
                                                 <div class="price">
-                                                    Total: {{ Cart::total() }} VND
+                                                    Tổng tiền: @money(Cart::total() * $cart->options->day_total, 'VND')
                                                 </div>
                                             </div>
                                         </div>
@@ -152,14 +152,13 @@
                                 <div class="clearfix"></div>
 
                                 <ul class="list-inline pull-right">
-                                    <li><button type="button" class="btn btn-grey prev-step">Previous</button></li>
-                                    <li><button type="button" class="btn search-button btn-theme next-step">Save and
-                                            continue</button></li>
+                                    <li><button type="button" class="btn btn-grey prev-step">Trước</button></li>
+                                    <li><button type="button" class="btn search-button btn-theme next-step">Tiếp tục</button></li>
                                 </ul>
                             </div>
 
                             <!-- Thanh toán (để sau) -->
-                            <div class="tab-pane" role="tabpanel" id="step3">
+                            {{-- <div class="tab-pane" role="tabpanel" id="step3">
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-xs-12">
                                         <div class="contact-form sidebar-widget">
@@ -379,12 +378,12 @@
                                     <li><button type="button" class="btn search-button btn-theme next-step">Save and
                                             continue</button></li>
                                 </ul>
-                            </div>
+                            </div> --}}
 
                             <!-- Review -->
                             <div class="tab-pane" role="tabpanel" id="complete">
-                                <div class="booling-details-box booling-details-box-2 mrg-btm-30">
-                                    <h3 class="booking-heading-2">Booking Details</h3>
+                                <div class="booling-details-box booling-details-box-2 mrg-btm-30" style="width:100%;">
+                                    <h3 class="booking-heading-2">Thông tin đặt phòng</h3>
                                     <div class="row mrg-btm-30">
                                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                             <!--  Rooms detail slider start -->
@@ -396,8 +395,8 @@
                                                             @foreach ($cart->options->images as $key => $image)
                                                                 <div
                                                                     class="item @if ($key === 0) active @endif">
-                                                                    <img src="{{ $image->link }}"
-                                                                        class="thumb-preview" alt="Chevrolet Impala">
+                                                                    <img src="{{ $image->link }}" class="thumb-preview"
+                                                                        alt="Chevrolet Impala">
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -430,48 +429,33 @@
                                                 semper placerat, velit risus accumsan nisl, eget tempor lacus est vel</p>
                                         </div>
                                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                            <h4>Your Payment ID: #302112295143</h4>
-
                                             <ul>
                                                 <li>
-                                                    <span>Check In:</span> {{ $cart->options->checkin }}
+                                                    <span>Thời gian nhận phòng:</span> {{ $cart->options->checkin }}
                                                 </li>
                                                 <li>
-                                                    <span>Check Out:</span> {{ $cart->options->checkout }}
+                                                    <span>Thời gian trả phòng:</span> {{ $cart->options->checkout }}
                                                 </li>
                                                 <li>
                                                     <span>Số lượng phòng:</span> {{ $cart->qty }}
                                                 </li>
                                                 <li>
-                                                    <span>Adults:</span> {{ $cart->options->adults }}
+                                                    <span>Số người lớn:</span> {{ $cart->options->adults }}
                                                 </li>
                                                 <li>
-                                                    <span>Child:</span> {{ $cart->options->children }}
+                                                    <span>Số trẻ em:</span> {{ $cart->options->children }}
                                                 </li>
                                             </ul>
                                             <div class="price">
-                                                Total: {{ Cart::total() }} VND
+                                                Tổng tiền: @money(Cart::total() * $cart->options->day_total, 'VND')
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 hidden-sm hidden-xs">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar
-                                                neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla
-                                                posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam
-                                                erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor
-                                                iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat
-                                                purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas
-                                                ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget
-                                                tempor lacus est vel</p>
                                         </div>
                                     </div>
                                 </div>
                                 <br />
                                 <br />
                                 <ul class="list-inline pull-right">
-                                    <li><button type="submit" class="btn search-button btn-theme next-step">confirm
-                                            booking</button></li>
+                                    <li><button type="submit" class="btn search-button btn-theme next-step">Xác nhận đặt phòng</button></li>
                                 </ul>
                             </div>
                         </div>
@@ -482,6 +466,14 @@
     </div>
     <!-- Booking flow end -->
 @endsection
+
+@push('styles')
+    <style>
+        .wizard .nav-tabs>li {
+            width: 50% !important;
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script>

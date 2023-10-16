@@ -29,7 +29,7 @@
                             </p>
                         </div>
                         <div class="pull-right">
-                            <h3><span>Giá: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</span></h3>
+                            <h3><span>@money($roomType->price, 'VND')/ngày</span></h3>
                             {{-- <h5>Per Manth</h5> --}}
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                                         <div class="tab-pane fade active in" id="tab1default">
                                             <div class="divv">
                                                 <!-- Title -->
-                                                <h3>Rooms Description</h3>
+                                                <h3>Mô tả</h3>
                                                 <!-- paragraph -->
                                                 {!! $roomType->description !!}
                                             </div>
@@ -195,7 +195,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png')}}" alt="avatar-5">
+                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}" alt="avatar-5">
                                         </a>
                                     </div>
                                     <div class="comment-content">
@@ -232,7 +232,8 @@
                                         <div class="comment">
                                             <div class="comment-author">
                                                 <a href="#">
-                                                    <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png')}}" alt="avatar-5">
+                                                    <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}"
+                                                        alt="avatar-5">
                                                 </a>
                                             </div>
 
@@ -273,7 +274,7 @@
                                 <div class="comment">
                                     <div class="comment-author">
                                         <a href="#">
-                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png')}}" alt="avatar-5">
+                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}" alt="avatar-5">
                                         </a>
                                     </div>
                                     <div class="comment-content mb-0">
@@ -364,36 +365,44 @@
                         <!-- Search area box 2 start -->
                         <div class="sidebar-widget search-area-box-2 hidden-sm hidden-xs clearfix bg-grey">
                             <h3>Đặt Phòng</h3>
-                            <h1>Giá: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</h1>
+                            <h1>Giá: @money($roomType->price, 'VND')/ngày</h1>
                             <h1>{{ $roomType->name }}</h1>
                             <div class="search-contents">
-                                <form method="POST" action="{{ route('rooms.booking', ['room_type' => $roomType->id]) }}">
+                                <form autocomplete="off" method="POST"
+                                    action="{{ route('rooms.booking', ['room_type' => $roomType->id]) }}">
                                     @csrf
                                     <input type="hidden" value="{{ $roomType->id }}" name="room_type_id">
                                     <div class="row">
+                                        @php
+                                            $checkin = request('checkin') ? Carbon\Carbon::createFromFormat('Y-m-d', request('checkin'))->format('d/m/Y') : null;
+                                            $checkout = request('checkout') ? Carbon\Carbon::createFromFormat('Y-m-d', request('checkout'))->format('d/m/Y') : null;
+                                        @endphp
                                         <div class="search-your-details">
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <input type="text" class="btn-default datepicker"
-                                                        placeholder="Check In" name="checkin">
+                                                        placeholder="Nhận phòng" name="checkin"
+                                                        value="{{ $checkin }}" data-date-format="dd/mm/yyyy">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <input type="text" class="btn-default datepicker"
-                                                        placeholder="Check Out" name="checkout">
+                                                        placeholder="Trả phòng" name="checkout"
+                                                        value="{{ $checkout }}" data-date-format="dd/mm/yyyy">
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="room_total">
-                                                        <option>Số lượng phòng</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
+                                                        <option value="0">Số lượng phòng</option>
+                                                        @foreach ($roomType->rooms as $key => $room)
+                                                            <option value="{{ $key + 1 }}"
+                                                                @if ($key === (int) request('room_total') - 1) selected @endif>
+                                                                {{ $key + 1 }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -401,32 +410,32 @@
                                                 <div class="form-group">
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="adults">
-                                                        <option>Số lượng người lớn</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
+                                                        <option value="0">Số lượng người lớn</option>
+                                                        @for ($i = 1; $i <= $roomType->max_adults; $i++)
+                                                            <option value="{{ $i }}"
+                                                                @if ($i === (int) request('adults')) selected @endif>
+                                                                {{ $i }}
+                                                            </option>
+                                                        @endfor
                                                     </select>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="children">
-                                                        <option>Số lượng trẻ em</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
+                                                    <select class="selectpicker search-fields form-control-2" name="children">
+                                                        <option value="0">Số lượng trẻ em</option>
+                                                        @for ($i = 1; $i <= $roomType->max_children; $i++)
+                                                            <option value="{{ $i }}" @if ($i === (int) request('children')) selected @endif>{{ $i }}
+                                                            </option>
+                                                        @endfor
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group mrg-btm-10">
-                                                    <button type="submit"  class="search-button btn-theme">Đặt phòng</button>
+                                                    <button type="submit" class="search-button btn-theme">Đặt
+                                                        phòng</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -555,8 +564,8 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object" src="{{ asset('hotel-alpha/img/avatar/avatar-1.jpg ')}}"
-                                            alt="avatar-1">
+                                        <img class="media-object"
+                                            src="{{ asset('hotel-alpha/img/avatar/avatar-1.jpg ') }}" alt="avatar-1">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -570,8 +579,8 @@
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object" src="{{ asset('hotel-alpha/img/avatar/avatar-2.jpg ')}}"
-                                            alt="avatar-1">
+                                        <img class="media-object"
+                                            src="{{ asset('hotel-alpha/img/avatar/avatar-2.jpg ') }}" alt="avatar-1">
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -590,59 +599,4 @@
         </div>
     </div>
     <!-- Rooms detail section end -->
-
-    <!-- Partners block start -->
-    <div class="partners-block">
-        <div class="container">
-            <h3>Our Partners</h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="carousel our-partners slide" id="ourPartners">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/audiojungle.png')}}" alt="audiojungle ">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/themeforest.png')}}" alt="themeforest ">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/tuts.png')}}" alt="tuts ">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/graphicriver.png')}}" alt="graphicriver ">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="#">
-                                        <img src="{{ asset('hotel-alpha/img/brand/codecanyon.png')}}" alt="codecanyon ">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="left carousel-control" href="#ourPartners" data-slide="prev"><i
-                                class="fa fa-chevron-left icon-prev"></i></a>
-                        <a class="right carousel-control" href="#ourPartners" data-slide="next"><i
-                                class="fa fa-chevron-right icon-next"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partners block end -->
 @endsection

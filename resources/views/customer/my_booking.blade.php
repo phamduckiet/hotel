@@ -37,16 +37,16 @@
                                         </h3>
                                     </div>
                                     <div class="price pull-right">
-                                        $567.99/Night
+                                        @money($booking->money_total, 'VND')
                                     </div>
                                 </div>
-                                <p>{!! $booking->roomType->summary !!}</p>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <ul class="fecilities">
                                             <li>
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                {{ $booking->checkin->format('d/m/Y') }} - {{ $booking->checkout->format('d/m/Y') }}
+                                                {{ $booking->checkin->format('d/m/Y') }} -
+                                                {{ $booking->checkout->format('d/m/Y') }}
                                             </li>
                                             <li>
                                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -60,11 +60,16 @@
                                                 <i class="fa fa-bed" aria-hidden="true"></i>
                                                 Số lượng phòng: {{ $booking->room_total }}
                                             </li>
+                                            <li>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                Ngày đặt: {{ $booking->created_at->format('d/m/Y') }}
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="hiddenmt-15">
-                                    <a href="blog-details.html" class="read-more-btn">Xem chi tiết...</a>
+                                    <a href="{{ route('my_bookings.show', ['booking' => $booking->id]) }}"
+                                        class="read-more-btn">Xem chi tiết...</a>
                                 </div>
 
                             </div>

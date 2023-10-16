@@ -58,4 +58,5 @@ return [
     'joined_date' => 'Joined date',
     'add_user' => 'Add user',
     'update_user' => 'Update user',
+    'booking_successfully' => 'Create booking successfully',
 ];
