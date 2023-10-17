@@ -210,26 +210,26 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        {{-- @can(\App\Enums\PermissionName::MANAGE_CATEGORIES) --}}
-                        <div class="menu-item">
-                            <a class="menu-link " href="/room-types">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">{{ __('messages.room_types') }}</span>
-                            </a>
-                        </div>
-                        {{-- @endcan --}}
-                        {{-- @can(\App\Enums\PermissionName::MANAGE_PRODUCTS) --}}
-                        <div class="menu-item">
-                            <a class="menu-link" href="/rooms">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">{{ __('messages.room') }}</span>
-                            </a>
-                        </div>
-                        {{-- @endcan --}}
+                        @can(\App\Enums\PermissionName::MANAGE_ROOM_TYPES)
+                            <div class="menu-item">
+                                <a class="menu-link " href="/room-types">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('messages.room_types') }}</span>
+                                </a>
+                            </div>
+                        @endcan
+                        @can(\App\Enums\PermissionName::MANAGE_ROOMS)
+                            <div class="menu-item">
+                                <a class="menu-link" href="/rooms">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('messages.room') }}</span>
+                                </a>
+                            </div>
+                        @endcan
                         {{-- @can(\App\Enums\PermissionName::MANAGE_BRANDS) --}}
                         {{-- @endcan --}}
                     </div>
@@ -299,7 +299,8 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link @if (Route::is('roles.*')) active @endif" href="{{ route('roles.index') }}">
+                            <a class="menu-link @if (Route::is('roles.*')) active @endif"
+                                href="{{ route('roles.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -307,7 +308,8 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link @if (Route::is('permissions.*')) active @endif" href="{{ route('permissions.index') }}">
+                            <a class="menu-link @if (Route::is('permissions.*')) active @endif"
+                                href="{{ route('permissions.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -315,7 +317,8 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link @if (Route::is('users.*')) active @endif" href="{{ route('users.index') }}">
+                            <a class="menu-link @if (Route::is('users.*')) active @endif"
+                                href="{{ route('users.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

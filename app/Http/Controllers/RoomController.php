@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Floor;
-use App\Models\Image;
 use App\Models\Room;
 use App\Models\RoomType;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
@@ -18,6 +16,9 @@ class RoomController extends Controller
      */
     public function index()
     {
+        // Phai di qua ham authorize de phan quyen
+        $this->authorize('viewAny', Room::class);
+
         $floors = Floor::with('rooms', 'rooms.roomType')->get();
         $roomTypes = RoomType::latest()->get();
         return view('room.index', compact('floors', 'roomTypes'));
@@ -28,6 +29,7 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Room::class);
         $roomTypes = RoomType::latest()->get();
         $floors = Floor::all();
 
@@ -39,7 +41,7 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
-//        $this->authorize('create', Room::class); // phan quyen
+        $this->authorize('create', Room::class); // phan quyen
 
         try {
             DB::beginTransaction();
@@ -69,6 +71,8 @@ class RoomController extends Controller
 
     public function edit(Room $room)
     {
+        $this->authorize('update', $room);
+
         $roomTypes = RoomType::latest()->get();
         $floors = Floor::all();
         return view('room.edit', compact('room', 'roomTypes', 'floors'));
@@ -79,6 +83,8 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, Room $room)
     {
+        $this->authorize('update', $room);
+
         try {
             DB::beginTransaction();
             $filePath = $room->avatar_url;
@@ -106,8 +112,8 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
+        $this->authorize('delete', $room);
+
         return $room->delete();
     }
-
-
 }
