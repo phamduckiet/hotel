@@ -24,7 +24,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. => Admin
      */
     public function index()
     {
@@ -35,7 +35,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource. => Ko check quyên => customer
      */
     public function create(Request $request, RoomType $roomType)
     {
@@ -71,6 +71,10 @@ class BookingController extends Controller
         return redirect()->route('rooms.booking.view');
     }
 
+    /**
+     * Customer
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function showBookingView()
     {
         $cart = optional(Cart::content())->first();
@@ -79,7 +83,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. => Customer
      */
     public function store(StoreBookingRequest $request)
     {
@@ -154,7 +158,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        // Đo trạng thái => Hủy => $booking->customer_id == $user->id
     }
 
     /**
@@ -165,6 +169,10 @@ class BookingController extends Controller
         //
     }
 
+    /**
+     * Lay danh sach lich su dat phong -> Customer
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function getBookingHistory()
     {
         $customer = optional(Auth::user())->customer;
@@ -179,6 +187,11 @@ class BookingController extends Controller
         return view('customer.my_booking', compact('bookings'));
     }
 
+    /**
+     * Customer
+     * @param Booking $booking
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function getBookingDetail(Booking $booking)
     {
         $booking->load('customer');
