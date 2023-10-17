@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Booking extends Model
 {
@@ -40,6 +42,13 @@ class Booking extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['code']; // append - them vao
+
+    /**
      * @return BelongsToMany
      */
     public function rooms(): BelongsToMany
@@ -61,5 +70,12 @@ class Booking extends Model
     public function roomType(): BelongsTo
     {
         return $this->belongsTo(RoomType::class);
+    }
+
+    protected function code(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Hashids::encode($this->id),
+        );
     }
 }

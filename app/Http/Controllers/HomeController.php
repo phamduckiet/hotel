@@ -38,7 +38,7 @@ class HomeController extends Controller
         }
 
         $roomTypes = $roomTypes->map(function ($item) use ($request) {
-            $roomTotal = $request->room_total ?? 0;
+            $roomTotal = $request->room_total ?? 1;
             $item->is_available = $item->rooms->count() >= $roomTotal;
 
             return $item;

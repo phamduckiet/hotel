@@ -37,6 +37,7 @@ class StoreUserRequest extends FormRequest
                 'confirmed',
             ],
             'role' => 'required|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ];
     }
 
@@ -52,6 +53,7 @@ class StoreUserRequest extends FormRequest
             'email' => 'Email',
             'password' => __('messages.password'),
             'role' => __('messages.role'),
+            'avatar' => __('messages.avatar'),
         ];
     }
 }

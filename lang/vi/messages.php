@@ -60,4 +60,9 @@ return [
     'joined_date' => 'Ngày tham gia',
     'add_user' => 'Thêm mới',
     'booking_successfully' => 'Đặt phòng thành công',
+    'pending' => 'Chờ xác nhận',
+    'confirmed' => 'Đã xác nhận',
+    'canceled' => 'Bị hủy',
+    'paid' => 'Thanh toán thành công',
+    'completed' => 'Đã hoàn thành',
 ];

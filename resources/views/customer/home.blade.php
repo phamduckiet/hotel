@@ -97,8 +97,8 @@
                                         $checkout = null;
 
                                         if (count($dateParts) === 2) {
-                                                $checkin = Carbon\Carbon::createFromFormat('d/m/Y', trim($dateParts[0]))->format('Y-m-d');
-                                                $checkout = Carbon\Carbon::createFromFormat('d/m/Y', trim($dateParts[1]))->format('Y-m-d');
+                                            $checkin = Carbon\Carbon::createFromFormat('d/m/Y', trim($dateParts[0]))->format('Y-m-d');
+                                            $checkout = Carbon\Carbon::createFromFormat('d/m/Y', trim($dateParts[1]))->format('Y-m-d');
                                         }
                                     @endphp
                                     <input type="text" name="daterange" id="daterange-input" autocomplete="off"
@@ -162,7 +162,7 @@
                                 <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-pad">
                                     <img src="{{ $roomType->avatar_link }}" alt="img-9"
                                         class="room-type-avatar-img img-responsive room-detail-btn"
-                                        data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}">
+                                        data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}" style="height:193px;">
                                 </div>
                                 <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 detail">
                                     <div class="heading">
@@ -410,7 +410,8 @@
                                                 </sub>
                                             </div>
                                             <div class="avatar">
-                                                <img src="hotel-alpha/img/testimonial/avatar-2.jpg" alt="avatar-2">
+                                                <img src="{{ $user->avatar ? $user->avatar_link : asset('hotel-alpha/img/testimonial/avatar-2.jpg') }}"
+                                                    alt="avatar-2">
                                             </div>
                                             <h4>{{ $user->name }}</h4>
                                         </div>

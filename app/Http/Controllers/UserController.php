@@ -46,13 +46,16 @@ class UserController extends Controller
             ->with('success', __('messages.successfully'));
     }
 
-    public function store(StoreUserRequest $request, User $user)
+    public function store(StoreUserRequest $request)
     {
 //        $this->authorize('create', $user);
+
+        $avatarUrl = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'avatar' => $avatarUrl,
             'password' => Hash::make($request->password),
             'is_admin' => (bool) $request->role,
         ]);

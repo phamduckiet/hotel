@@ -27,8 +27,8 @@
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                        rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                        transform="rotate(-45 6 17.3137)" fill="black" />
                                     <rect x="7.41422" y="6" width="16" height="2" rx="1"
                                         transform="rotate(45 7.41422 6)" fill="black" />
                                 </svg>
@@ -103,11 +103,10 @@
                                                 <span class="svg-icon svg-icon-1">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="6" y="17.3137"
-                                                            width="16" height="2" rx="1"
-                                                            transform="rotate(-45 6 17.3137)" fill="black" />
-                                                        <rect x="7.41422" y="6" width="16"
-                                                            height="2" rx="1"
+                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                                            rx="1" transform="rotate(-45 6 17.3137)"
+                                                            fill="black" />
+                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
                                                             transform="rotate(45 7.41422 6)" fill="black" />
                                                     </svg>
                                                 </span>
@@ -120,7 +119,7 @@
                                         <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                                             <!--begin::Form-->
                                             <form method="POST" action="{{ route('users.store') }}"
-                                                id="kt_modal_add_user_form" class="form">
+                                                id="kt_modal_add_user_form" class="form" enctype="multipart/form-data">
                                                 @csrf
                                                 <!--begin::Scroll-->
                                                 <div class="d-flex flex-column scroll-y me-n7 pe-7"
@@ -130,6 +129,51 @@
                                                     data-kt-scroll-dependencies="#kt_modal_add_user_header"
                                                     data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
                                                     data-kt-scroll-offset="300px">
+                                                    <!--begin::Input group-->
+                                                    <div class="fv-row mb-7" style="margin:auto;">
+                                                        <!--begin::Image input-->
+                                                        <div class="image-input image-input-empty image-input-outline mb-3"
+                                                            data-kt-image-input="true"
+                                                            style="{{ 'background-image: url(' . asset('metronic/assets/media/svg/files/blank-image.svg') . ')' }}">
+                                                            <!--begin::Preview existing avatar-->
+                                                            <div class="image-input-wrapper w-150px h-150px">
+                                                            </div>
+                                                            <!--end::Preview existing avatar-->
+                                                            <!--begin::Label-->
+                                                            <label
+                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                data-kt-image-input-action="change"
+                                                                data-bs-toggle="tooltip" title="Chọn ảnh đại diện">
+                                                                <!--begin::Icon-->
+                                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                                <!--end::Icon-->
+                                                                <!--begin::Inputs-->
+                                                                <input type="file" name="avatar"
+                                                                    accept=".png, .jpg, .jpeg, .gif, .svg, .webp" />
+                                                                <input type="hidden" name="avatar_remove" />
+                                                                <!--end::Inputs-->
+                                                            </label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Cancel-->
+                                                            <span
+                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                data-kt-image-input-action="cancel"
+                                                                data-bs-toggle="tooltip" title="Cancel avatar">
+                                                                <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            <!--end::Cancel-->
+                                                            <!--begin::Remove-->
+                                                            <span
+                                                                class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                                data-kt-image-input-action="remove"
+                                                                data-bs-toggle="tooltip" title="Remove avatar">
+                                                                <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            <!--end::Remove-->
+                                                        </div>
+                                                        <!--end::Image input-->
+                                                    </div>
+                                                    <!--end::Input group-->
                                                     <!--begin::Input group-->
                                                     <div class="fv-row mb-7">
                                                         <!--begin::Label-->
@@ -287,7 +331,8 @@
                                             <!--begin:: Avatar -->
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <div>
-                                                    <img src="{{ Avatar::create($user->name)->toBase64() }}" class="h-50px" />
+                                                    <img src="{{ $user->avatar ? $user->avatar_link : Avatar::create($user->name)->toBase64() }}"
+                                                        class="h-50px" style="width:50px;" />
                                                 </div>
                                             </div>
                                             <!--end::Avatar-->
@@ -366,13 +411,13 @@
                                                             <span class="svg-icon svg-icon-1">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none">
-                                                                    <rect opacity="0.5" x="6" y="17.3137"
-                                                                        width="16" height="2" rx="1"
+                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                                        height="2" rx="1"
                                                                         transform="rotate(-45 6 17.3137)"
                                                                         fill="black" />
-                                                                    <rect x="7.41422" y="6" width="16"
-                                                                        height="2" rx="1"
-                                                                        transform="rotate(45 7.41422 6)" fill="black" />
+                                                                    <rect x="7.41422" y="6" width="16" height="2"
+                                                                        rx="1" transform="rotate(45 7.41422 6)"
+                                                                        fill="black" />
                                                                 </svg>
                                                             </span>
                                                             <!--end::Svg Icon-->
@@ -396,6 +441,14 @@
                                                                 data-kt-scroll-dependencies="#kt_modal_add_user_header"
                                                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
                                                                 data-kt-scroll-offset="300px">
+                                                                <!--begin::Description-->
+                                                                <div class="text-muted fs-7">*.png, *.jpg, *.jpeg</div>
+                                                                <!--end::Description-->
+                                                                @error('image')
+                                                                    <div class="text-danger">
+                                                                        <small>{{ $message }}</small>
+                                                                    </div>
+                                                                @enderror
                                                                 <!--begin::Input group-->
                                                                 <div class="fv-row mb-7">
                                                                     <!--begin::Label-->
@@ -524,5 +577,6 @@
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>
+    <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/save-category.js') }} "></script>
     <!--end::Page Custom Javascript-->
 @endpush

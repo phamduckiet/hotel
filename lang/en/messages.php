@@ -59,4 +59,9 @@ return [
     'add_user' => 'Add user',
     'update_user' => 'Update user',
     'booking_successfully' => 'Create booking successfully',
+    'pending' => 'Pending',
+    'confirmed' => 'Confirmed',
+    'canceled' => 'Canceled',
+    'paid' => 'Paid',
+    'completed' => 'Completed',
 ];

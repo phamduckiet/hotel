@@ -24,8 +24,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
         'lang',
+        'is_admin',
     ];
 
     /**
@@ -48,10 +50,27 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'role',
+        'avatar_link',
     ];
 
+    /**
+     * @return Attribute
+     */
+    protected function avatarLink(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => asset($this->avatar),
+        );
+    }
+
+    /**
+     * @return Attribute
+     */
     protected function role(): Attribute
     {
         return Attribute::make(
@@ -67,6 +86,10 @@ class User extends Authenticatable
         return $this->hasOne(Customer::class);
     }
 
+    /**
+     * @param Builder $query
+     * @return void
+     */
     public function scopeIsAdmin(Builder $query): void
     {
         $query->where('is_admin', true);

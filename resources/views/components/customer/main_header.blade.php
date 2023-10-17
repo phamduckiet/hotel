@@ -17,12 +17,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" role="navigation" aria-expanded="true" id="app-navigation">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown active">
+                    <li class="dropdown @if (Route::is('home')) active @endif">
                         <a href="{{ route('home') }}">
                             Trang chủ
                         </a>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown @if (Route::is('my_bookings.*')) active @endif">
                         <a href="{{ route('my_bookings.index') }}">
                             Đặt phòng
                         </a>
