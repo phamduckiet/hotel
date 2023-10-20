@@ -15,6 +15,7 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', RoomType::class);
         $roomTypes = RoomType::all();
 
         return view('room-type.index', compact('roomTypes'));
@@ -25,6 +26,7 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', RoomType::class);
         return view('room-type.create');
     }
 
@@ -34,6 +36,7 @@ class RoomTypeController extends Controller
     public function store(StoreRoomTypeRequest $request)
     {
         // RoomType::create($request->all());
+        $this->authorize('create', RoomType::class);
 
 
         try {
@@ -80,6 +83,7 @@ class RoomTypeController extends Controller
      */
     public function edit(RoomType $roomType)
     {
+        $this->authorize('update', $roomType);
         return view('room-type.edit', compact('roomType'));
     }
 
@@ -89,6 +93,7 @@ class RoomTypeController extends Controller
     public function update(UpdateRoomTypeRequest $request, RoomType $roomType)
     {
 
+        $this->authorize('update', $roomType);
         try {
             DB::beginTransaction();
             $filePath = $roomType->avatar;
@@ -122,6 +127,7 @@ class RoomTypeController extends Controller
      */
     public function destroy(RoomType $roomType)
     {
+        $this->authorize('delete', $roomType);
         return $roomType->delete();
     }
     public function showRoomImages(RoomType $RoomType)

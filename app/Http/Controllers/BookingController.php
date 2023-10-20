@@ -28,6 +28,7 @@ class BookingController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Booking::class);
         $bookings = Booking::latest()
             ->with(['customer'])->get();
 

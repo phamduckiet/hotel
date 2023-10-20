@@ -230,11 +230,9 @@
                                 </a>
                             </div>
                         @endcan
-                        {{-- @can(\App\Enums\PermissionName::MANAGE_BRANDS) --}}
-                        {{-- @endcan --}}
                     </div>
                 </div>
-                {{-- @can(\App\Enums\PermissionName::MANAGE_ORDERS) --}}
+                @can(\App\Enums\PermissionName::MANAGE_BOOKINGS)
                 <div class="menu-item">
                     <a class="menu-link @if (Route::is('bookings.*')) active @endif"
                         href="{{ route('bookings.index') }}">
@@ -254,7 +252,7 @@
                         <span class="menu-title">Boooking</span>
                     </a>
                 </div>
-                {{-- @endcan --}}
+                @endcan
                 {{-- @can(\App\Enums\PermissionName::MANAGE_REVIEWS) --}}
                 {{-- <div class="menu-item">
                     <a class="menu-link @if (Route::is('ratings.*')) active @endif" href="">
@@ -275,7 +273,7 @@
                     </a>
                 </div> --}}
                 {{-- @endcan --}}
-                {{-- @can(\App\Enums\PermissionName::MANAGE_PERMISSIONS) --}}
+                @can(\App\Enums\PermissionName::MANAGE_PERMISSIONS)
                 <div data-kt-menu-trigger="click"
                     class="menu-item here menu-accordion @if (Route::is('roles.*') || Route::is('permissions.*') || Route::is('users.*')) show @endif">
                     <span class="menu-link">
@@ -316,6 +314,7 @@
                                 <span class="menu-title">{{ __('messages.permissions') }}</span>
                             </a>
                         </div>
+                @can(\App\Enums\PermissionName::MANAGE_USERS)
                         <div class="menu-item">
                             <a class="menu-link @if (Route::is('users.*')) active @endif"
                                 href="{{ route('users.index') }}">
@@ -325,9 +324,10 @@
                                 <span class="menu-title">{{ __('messages.users') }}</span>
                             </a>
                         </div>
+                @endcan
                     </div>
                 </div>
-                {{-- @endcan --}}
+                @endcan
             </div>
             <!--end::Menu-->
         </div>

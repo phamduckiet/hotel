@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function index()
     {
-//        $this->authorize('viewAny', User::class);
+      $this->authorize('viewAny', User::class);
 
         $users = User::latest()->get();
         $roles = Role::latest()->get();
@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-//        $this->authorize('update', $user);
+       $this->authorize('update', $user);
 
         $user->update([
             'name' => $request->name,
@@ -46,9 +46,9 @@ class UserController extends Controller
             ->with('success', __('messages.successfully'));
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request, User $user)
     {
-//        $this->authorize('create', $user);
+        $this->authorize('create', $user);
 
         $avatarUrl = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
 

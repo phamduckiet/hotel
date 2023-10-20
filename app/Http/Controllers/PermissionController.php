@@ -10,7 +10,7 @@ class PermissionController extends Controller
 {
     public function index()
     {
-//        $this->authorize('viewAny', Permission::class);
+        // $this->authorize('viewAny', Permission::class);
         $permissions = Permission::with('roles')->get();
         $roles = Role::latest()->get();
 
@@ -23,7 +23,7 @@ class PermissionController extends Controller
 
     public function update(Request $request, Permission $permission)
     {
-//        $this->authorize('update', $permission);
+    //   $this->authorize('update', $permission);
         $permission->syncRoles($request->roles);
 
         return redirect()->route('permissions.index')

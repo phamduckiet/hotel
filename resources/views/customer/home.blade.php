@@ -398,16 +398,9 @@
                                     <div class="item content @if ($key === 0) active @endif clearfix">
                                         <div class="item-inner">
                                             <div class="text">
-                                                <sup>
-                                                    <i class="fa fa-quote-left"></i>
-                                                </sup>
-                                                Lorem ipsum dolor sit amet, nemore facete quo cu, sumo tincidunt pri ex, usu
-                                                ubique percipitur ea. Ut fugit quaestio Lorem ipsum dolor sit amet, nemore
-                                                facete quo cu, sumo tincidunt pri ex, usu ubique percipitur ea. Ut fugit
-                                                quaestio
-                                                <sub>
-                                                    <i class="fa fa-quote-right"></i>
-                                                </sub>
+
+                                                {{ $user->role }}
+
                                             </div>
                                             <div class="avatar">
                                                 <img src="{{ $user->avatar ? $user->avatar_link : asset('hotel-alpha/img/testimonial/avatar-2.jpg') }}"
