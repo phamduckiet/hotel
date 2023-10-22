@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Vinkla\Hashids\Facades\Hashids;
+use willvincent\Rateable\Rateable;
 
 class Booking extends Model
 {
-    use HasFactory;
+    use HasFactory, Rateable;
 
     /**
      * The attributes that are mass assignable.
@@ -87,6 +88,11 @@ class Booking extends Model
 
     public function canPay()
     {
-        return $this->status !== BookingStatus::CANCELED;
+        return $this->status !== BookingStatus::CANCELED && $this->status !== BookingStatus::CHECKED_OUT;
+    }
+
+    public function canRate()
+    {
+        return $this->status === BookingStatus::CHECKED_OUT;
     }
 }

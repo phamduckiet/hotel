@@ -4,12 +4,13 @@
     <div class="badge badge-light-danger">{{ __('messages.canceled') }}</div>
 @elseif ($status === 'paid')
     <div class="badge badge-light-info">{{ __('messages.paid') }}</div>
-@elseif ($status === 'delivered')
-    <div class="badge badge-light-success">{{ __('messages.delivered') }}</div>
-@elseif ($status === 'delivering')
-    <div class="badge badge-light-dark">{{ __('messages.delivering') }}</div>
+@elseif ($status === 'checked_out')
+    <div class="badge badge-light-success">{{ __('messages.checked_out') }}</div>
+@elseif ($status === 'checkin_in')
+    <div class="badge badge-light-dark">{{ __('messages.checkin_in') }}</div>
 @elseif ($status === 'confirmed')
     <div class="badge badge-light-primary">{{ __('messages.confirmed') }}</div>
+
 @elseif ($status === 'published')
     <div class="badge badge-light-success">{{ __('messages.published') }}</div>
 @elseif ($status === 'unpublished')

@@ -205,7 +205,29 @@ class BookingController extends Controller
     public function getBookingDetail(Booking $booking)
     {
         $booking->load('customer');
+        $booking->rating = $booking->ratings()->first();
 
         return view('customer.booking_detail', compact('booking'));
+    }
+
+    /**
+     * @param Request $request
+     * @param Booking $booking
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws Exception
+     */
+    public function rateBooking(Request $request, Booking $booking)
+    {
+        try {
+            DB::beginTransaction();
+            $booking->rate($request->rating, $request->comment);
+            $booking->roomType->rate($request->rating, $request->comment);
+            DB::commit();
+
+            return redirect()->back()->with('success', __('messages.successfully'));
+        } catch (Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 }

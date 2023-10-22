@@ -64,4 +64,6 @@ return [
     'canceled' => 'Canceled',
     'paid' => 'Paid',
     'completed' => 'Completed',
+    'checked_out' => 'Checked out',
+    'checked_in' => 'Checked in',
 ];

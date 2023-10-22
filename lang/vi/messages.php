@@ -65,4 +65,6 @@ return [
     'canceled' => 'Bị hủy',
     'paid' => 'Thanh toán thành công',
     'completed' => 'Đã hoàn thành',
+    'checked_out' => 'Đã trả phòng',
+    'checked_in' => 'Đã nhận phòng',
 ];

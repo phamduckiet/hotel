@@ -85,22 +85,37 @@
                             <h1> <span>Bình luận - Đánh giá</span></h1>
                         </div>
                         <div class="contact-form">
-                            <form id="contact_form"
-                                action="https://storage.googleapis.com/themevessel-items/hotel-alpha/index.html"
-                                method="GET" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-                                        <div class="form-group message">
-                                            <textarea class="input-text" name="message" placeholder="Nhập bình luận"></textarea>
+                            @if ($booking->rating)
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <span
+                                        class="fa fa-star star-rating @if ($booking->rating->rating >= $i) checked @endif"></span>
+                                @endfor
+                                <div style="margin-top:15px;">{{ $booking->rating->comment }}</div>
+                            @elseif ($booking->canRate())
+                                <form method="POST" action="{{ route('bookings.rate', ['booking' => $booking->id]) }}">
+                                    @csrf
+                                    <select class="star-rating" name="rating">
+                                        <option value="">Select a rating</option>
+                                        <option value="5">Rất hài lòng</option>
+                                        <option value="4">Hài lòng</option>
+                                        <option value="3">Tạm được</option>
+                                        <option value="2">Không hài lòng</option>
+                                        <option value="1">Rất tệ</option>
+                                    </select>
+                                    <div class="row" style="margin-top: 20px;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+                                            <div class="form-group message">
+                                                <textarea class="input-text" name="comment" placeholder="Nhập bình luận"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="send-btn mb-0">
+                                                <button type="submit" class="btn-md btn-theme">Gửi đánh giá</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="send-btn mb-0">
-                                            <button type="submit" class="btn-md btn-theme">Gửi đánh giá</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endif
                         </div>
                     </div>
                     <!-- Contact-1 end -->
@@ -120,7 +135,7 @@
                                         đặt<span><strong>{{ $booking->created_at->format('d/m/Y') }}</strong></span></a>
                                 </li>
                                 <li><a href="#">Trạng thái<span>
-                                            @include('components.status', [
+                                            @include('components.customer.status', [
                                                 'status' => $booking->status,
                                             ])
                                         </span></a></li>
@@ -216,6 +231,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="{{ asset('vendor/star-rating.js/dist/star-rating.min.css') }}" rel="stylesheet">
     <style>
         .swal2-confirm {
             border: none;
@@ -223,6 +239,19 @@
 
         .swal2-cancel {
             margin-left: 14px;
+        }
+
+        .fa-start {
+            color: red;
+        }
+
+        .star-rating {
+            color: #B4B4B3;
+            font-size: 22px;
+        }
+
+        .checked {
+            color: #fdd835;
         }
     </style>
 @endpush
@@ -235,7 +264,12 @@
     <!--end::Page Vendors Javascript-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('vendor/star-rating.js/dist/star-rating.min.js') }}"></script>
     <script>
+        // Initialize star rating
+        const stars = new StarRating('.star-rating', {
+            tooltip: false,
+        });
         // Show success toast message
         const successMessage = window.localStorage.getItem('success_message');
         if (successMessage) {

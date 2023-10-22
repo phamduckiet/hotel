@@ -47,6 +47,7 @@ Route::middleware(['auth', 'localization'])->group(function () {
         Route::post('/{room_type}/images', [RoomTypeController::class, 'storeRoomImage']);
     });
     Route::resource('bookings', BookingController::class)->only(['index']);
+    Route::post('/bookings/{booking}/rate', [BookingController::class, 'rateBooking'])->name('bookings.rate');
 
     Route::resources([
         'room-types' => RoomTypeController::class,
