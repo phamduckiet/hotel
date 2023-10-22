@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionPolicy
 {
-      /**
+    /**
      * Determine whether the user can view any models.
      *
      * @return \Illuminate\Auth\Access\Response|bool

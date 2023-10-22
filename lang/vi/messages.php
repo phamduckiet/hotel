@@ -25,7 +25,7 @@ return [
     'room' => 'Phòng',
     'search'   => 'Tìm kiếm',
     'actions'   => 'Hành Động',
-    'edit'  => 'Chỉnh sữa',
+    'edit'  => 'Chỉnh sửa',
     'delete' => 'Xoá',
     'room_name' => 'Tên phòng',
     'avatar'   => 'Hình đại diện',

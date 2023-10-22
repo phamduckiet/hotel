@@ -35,9 +35,7 @@ class RoomTypeController extends Controller
      */
     public function store(StoreRoomTypeRequest $request)
     {
-        // RoomType::create($request->all());
         $this->authorize('create', RoomType::class);
-
 
         try {
             DB::beginTransaction();
@@ -59,8 +57,6 @@ class RoomTypeController extends Controller
 
             DB::commit();
 
-            // return redirect()->route('room-types.index')
-            // ->with('success', __('messages.successfully'));
             return response()->json($roomType);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -75,6 +71,8 @@ class RoomTypeController extends Controller
      */
     public function show(RoomType $roomType)
     {
+        $this->authorize('view', $roomType);
+
         return $roomType;
     }
 
@@ -84,6 +82,7 @@ class RoomTypeController extends Controller
     public function edit(RoomType $roomType)
     {
         $this->authorize('update', $roomType);
+
         return view('room-type.edit', compact('roomType'));
     }
 
@@ -94,6 +93,7 @@ class RoomTypeController extends Controller
     {
 
         $this->authorize('update', $roomType);
+
         try {
             DB::beginTransaction();
             $filePath = $roomType->avatar;
@@ -116,10 +116,6 @@ class RoomTypeController extends Controller
             DB::rollBack();
             throw $e;
         }
-        // $roomType->update($request->all());
-
-        // return redirect()->route('room-types.index')
-        //     ->with('success', __('messages.successfully'));
     }
 
     /**
@@ -128,8 +124,10 @@ class RoomTypeController extends Controller
     public function destroy(RoomType $roomType)
     {
         $this->authorize('delete', $roomType);
+
         return $roomType->delete();
     }
+
     public function showRoomImages(RoomType $RoomType)
     {
         return response()->json($RoomType->images);
@@ -137,7 +135,7 @@ class RoomTypeController extends Controller
 
     public function deleteRoomImage(RoomType $RoomType, $imageId)
     {
-//        $this->authorize('update', $product);
+        $this->authorize('update', $RoomType);
 
         if ($imageId) {
             return $RoomType->images()->whereId($imageId)->delete();
@@ -146,12 +144,12 @@ class RoomTypeController extends Controller
         return null;
     }
 
-    public function storeRoomImage(Request $request, RoomType $RoomType)
+    public function storeRoomImage(Request $request, RoomType $roomType)
     {
-//        $this->authorize('update', $product);
+        $this->authorize('update', $roomType);
 
         $filePath = optional($request->file('image'))->store('images', ['disk' => 'public_storage']);
-        $RoomType->images()->create(['url' => $filePath]);
+        $roomType->images()->create(['url' => $filePath]);
 
         return response()->json('success');
     }

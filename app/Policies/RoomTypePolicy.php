@@ -52,6 +52,4 @@ class RoomTypePolicy
         return $user->can(PermissionName::MANAGE_ROOM_TYPES);
 
     }
-
-
 }

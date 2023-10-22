@@ -16,7 +16,6 @@ class RoomController extends Controller
      */
     public function index()
     {
-        // Phai di qua ham authorize de phan quyen
         $this->authorize('viewAny', Room::class);
 
         $floors = Floor::with('rooms', 'rooms.roomType')->get();
@@ -47,17 +46,12 @@ class RoomController extends Controller
             DB::beginTransaction();
             $filePath = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
 
-            $room = Room::create([
+            Room::create([
                 'name' => $request->name,
                 'avatar_url' => $filePath,
                 'type_id' => $request->type_id,
                 'floor_id' => $request->floor_id,
             ]);
-
-            // foreach ($request->file('images', []) as $image) {
-            //     $filePath = $image->store('images', ['disk' => 'public_storage']);
-            //     $room->images()->create(['url' => $filePath]);
-            // }
 
             DB::commit();
 

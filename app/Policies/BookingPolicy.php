@@ -31,7 +31,6 @@ class BookingPolicy
     public function create(User $user): bool
     {
         return $user->can(PermissionName::MANAGE_BOOKINGS);
-
     }
 
     /**
@@ -40,7 +39,6 @@ class BookingPolicy
     public function update(User $user, Booking $booking): bool
     {
         return $user->can(PermissionName::MANAGE_BOOKINGS);
-
     }
 
     /**
@@ -49,6 +47,5 @@ class BookingPolicy
     public function delete(User $user, Booking $booking): bool
     {
         return $user->can(PermissionName::MANAGE_BOOKINGS);
-
     }
 }

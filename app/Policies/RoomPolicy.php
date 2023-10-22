@@ -51,5 +51,4 @@ class RoomPolicy
     {
         return $user->can(PermissionName::MANAGE_ROOMS);
     }
-
 }

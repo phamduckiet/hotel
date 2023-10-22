@@ -7,7 +7,6 @@ use App\Http\Requests\StoreBookingRequest;
 use App\Http\Services\BookingService;
 use App\Models\Booking;
 use App\Models\Customer;
-use App\Models\Room;
 use App\Models\RoomType;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;

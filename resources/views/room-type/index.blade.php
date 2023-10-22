@@ -55,7 +55,8 @@
                                 <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                     <th style="color: black" class="min-w-100px">{{ __('messages.room_types') }}</th>
                                     <th style="color: black" class="min-w-100px">Thông Tin</th>
-                                    <th style="color: black" class="text-center min-w-150px">{{ __('messages.actions') }}</th>
+                                    <th style="color: black" class="text-center min-w-150px">{{ __('messages.actions') }}
+                                    </th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -70,20 +71,22 @@
                                             <div>{{ $room_types->name }}</div>
                                         </td>
                                         <td class="text-center">
-                                            <a href="/rooms/{{ $room_types->id }}/show" class="btn btn-success">Xem chi tiết</a>
+                                            <a href="/rooms/{{ $room_types->id }}/show" class="btn btn-success">Xem chi
+                                                tiết</a>
 
                                         </td>
                                         <!--begin::Actio{-->
                                         <td class="text-center pt-9">
 
-                                                <a href="{{ route('room-types.edit', [$room_types->id]) }}" class="btn btn-primary">Chỉnh sữa</a>
-                                                {{-- <a href="../../demo8/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-danger">Xoá</a> --}}
-                                                <div class="btn btn-danger">
-                                                    <div class="menu-link px-3 delete-btn"
-                                                         data-url="{{ route('room-types.destroy', ['room_type' => $room_types->id]) }}"
-                                                         data-id="{{ $room_types->id }}">
-                                                        {{ __('messages.delete') }}</div>
-                                                </div>
+                                            <a href="{{ route('room-types.edit', [$room_types->id]) }}"
+                                                class="btn btn-primary">Chỉnh sửa</a>
+                                            {{-- <a href="../../demo8/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-danger">Xoá</a> --}}
+                                            <div class="btn btn-danger">
+                                                <div class="menu-link px-3 delete-btn"
+                                                    data-url="{{ route('room-types.destroy', ['room_type' => $room_types->id]) }}"
+                                                    data-id="{{ $room_types->id }}">
+                                                    {{ __('messages.delete') }}</div>
+                                            </div>
                                             <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->

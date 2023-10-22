@@ -12,7 +12,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-    //    $this->authorize('viewAny', Role::class);
+        $this->authorize('viewAny', Role::class);
 
         $permissions = Permission::all();
         $roles = Role::latest()->with('permissions')->get();
@@ -26,7 +26,7 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request)
     {
-        // $this->authorize('create', Role::class);
+        $this->authorize('create', Role::class);
 
         try {
             DB::beginTransaction();
@@ -47,13 +47,9 @@ class RoleController extends Controller
         }
     }
 
-    public function show($id)
-    {
-    }
-
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        // $this->authorize('update', $role);
+        $this->authorize('update', $role);
 
         try {
             DB::beginTransaction();
@@ -76,7 +72,7 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
-        $this->authorize('update', $role);
+        $this->authorize('delete', $role);
 
         try {
             DB::beginTransaction();
