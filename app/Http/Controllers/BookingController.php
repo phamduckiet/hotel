@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\BookingStatus;
 use App\Events\BookingWasCreatedEvent;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Services\BookingService;
@@ -9,9 +10,11 @@ use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\RoomType;
 use Carbon\Carbon;
+use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -166,7 +169,14 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        if ($booking->status === BookingStatus::PENDING) {
+            $booking->update([
+                'status' => BookingStatus::CANCELED,
+            ]);
+        }
+
+        return $booking;
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\BookingStatus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -77,5 +78,15 @@ class Booking extends Model
         return Attribute::make(
             get: fn () => Hashids::encode($this->id),
         );
+    }
+
+    public function canCancel()
+    {
+        return $this->status === BookingStatus::PENDING;
+    }
+
+    public function canPay()
+    {
+        return $this->status !== BookingStatus::CANCELED;
     }
 }

@@ -64,9 +64,16 @@
                                 </div>
                             </div>
                             <div style="display:flex;justify-content:flex-end;">
-                                <button type="button" class="btn-md btn-grey">Hủy đặt phòng</button>
-                                <button type="submit" class="btn-md btn-theme" style="margin-left:15px;">Thanh toán qua
-                                    Paypal</button>
+                                @if ($booking->status === 'pending')
+                                    <button type="button"
+                                        data-url="{{ route('bookings.destroy', ['booking' => $booking->id]) }}"
+                                        data-id="{{ $booking->id }}" class="cancel-btn btn-md btn-grey">Hủy đặt
+                                        phòng</button>
+                                @endif
+                                @if ($booking->canPay())
+                                    <button type="submit" class="btn-md btn-theme" style="margin-left:15px;">Thanh toán qua
+                                        Paypal</button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -124,9 +131,17 @@
                                 <li><a href="#">Tổng thanh toán<span><strong>@money($booking->money_total, 'VND')</strong></span></a>
                                 </li>
                                 <div style="display:flex;justify-content:flex-end;margin-top:15px;">
-                                    <button type="button" class="btn btn-grey" style="padding:5px 10px;">Hủy đặt phòng</button>
-                                    <button type="submit" class="btn btn-theme" style="margin-left:15px;padding:5px 11px;">Thanh toán qua
-                                        Paypal</button>
+                                    @if ($booking->canCancel())
+                                        <button type="button"
+                                            data-url="{{ route('bookings.destroy', ['booking' => $booking->id]) }}"
+                                            data-id="{{ $booking->id }}" class="cancel-btn btn btn-grey"
+                                            style="padding:6.5px 10px;">Hủy đặt phòng</button>
+                                    @endif
+                                    @if ($booking->canPay())
+                                        <button type="submit" class="btn btn-theme"
+                                            style="margin-left:15px;padding:5px 11px;">Thanh toán qua
+                                            Paypal</button>
+                                    @endif
                                 </div>
                             </ul>
                         </div>
@@ -199,11 +214,67 @@
     <!-- Events details section end -->
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <style>
+        .swal2-confirm {
+            border: none;
+        }
+
+        .swal2-cancel {
+            margin-left: 14px;
+        }
+    </style>
+@endpush
+
 @push('scripts')
     <script src="{{ asset('metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('metronic/assets/js/scripts.bundle.js') }}"></script>
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
-    {{-- <script src="{{ asset('resources/js/customer/order_history.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        // Show success toast message
+        const successMessage = window.localStorage.getItem('success_message');
+        if (successMessage) {
+            console.log(successMessage);
+            window.localStorage.removeItem('success_message');
+            toastr.success(successMessage);
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.cancel-btn').click((e) => {
+            const url = $(e.target).data('url');
+            const id = $(e.target).data('id');
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn huỷ đặt phòng?',
+                icon: 'warning',
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText: 'Hủy thao tác',
+                customClass: {
+                    confirmButton: "btn btn-danger",
+                    cancelButton: 'btn btn-light',
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url,
+                        success: function(data) {
+                            window.localStorage.setItem('success_message',
+                                'Huỷ đặt phòng thành công!');
+                            window.location.reload();
+                        },
+                    });
+                }
+            });
+        });
+    </script>
 @endpush

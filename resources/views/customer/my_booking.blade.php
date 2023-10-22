@@ -33,7 +33,8 @@
                                 <div class="heading">
                                     <div class="title pull-left">
                                         <h3>
-                                            <a href="rooms-details.html">{{ $booking->roomType->name }}</a>
+                                            <a
+                                                href="{{ route('my_bookings.show', ['booking' => $booking->id]) }}">{{ $booking->roomType->name }}</a>
                                         </h3>
                                     </div>
                                     <div class="price pull-right">
@@ -71,7 +72,6 @@
                                     <a href="{{ route('my_bookings.show', ['booking' => $booking->id]) }}"
                                         class="read-more-btn">Xem chi tiết...</a>
                                 </div>
-
                             </div>
                         </div>
                     @endforeach

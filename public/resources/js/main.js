@@ -1,6 +1,7 @@
 // Show success toast message
 const message = window.localStorage.getItem('success');
 if (message) {
+    console.log(message);
     window.localStorage.removeItem('success');
     toastr.success(message);
 }
