@@ -249,7 +249,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                             </span>
-                            <span class="menu-title">Boooking</span>
+                            <span class="menu-title">Đặt phòng</span>
                         </a>
                     </div>
                 @endcan

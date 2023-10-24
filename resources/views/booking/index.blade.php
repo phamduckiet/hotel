@@ -3,7 +3,7 @@
 @section('content')
     @include('components.admin.header', [
         'parent' => null,
-        'child' => __('messages.bookings'),
+        'child' => 'Đặt phòng',
     ])
 
     <!--begin::Content-->
