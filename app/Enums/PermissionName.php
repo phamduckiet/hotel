@@ -15,4 +15,6 @@ final class PermissionName
     public const MANAGE_USERS = 'manage users';
 
     public const MANAGE_PERMISSIONS = 'manage permissions';
+
+    public const MANAGE_REVIEWS = 'manage reviews';
 }

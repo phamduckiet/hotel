@@ -48,6 +48,10 @@ class PermissionSeeder extends Seeder
             'name' => PermissionName::MANAGE_PERMISSIONS,
             'display_name' => 'Quản lý phân quyền hệ thống',
         ]);
+        Permission::create([
+            'name' => PermissionName::MANAGE_REVIEWS,
+            'display_name' => 'Quản lý đánh giá, bình luận',
+        ]);
 
         // Tạo các role
         $role = Role::create(['name' => 'Quản trị viên hệ thống']);
@@ -63,6 +67,7 @@ class PermissionSeeder extends Seeder
             PermissionName::MANAGE_CUSTOMERS,
             PermissionName::MANAGE_USERS,
             PermissionName::MANAGE_PERMISSIONS,
+            PermissionName::MANAGE_REVIEWS,
         ]);
 
         User::find(1)->assignRole('Quản trị viên hệ thống');

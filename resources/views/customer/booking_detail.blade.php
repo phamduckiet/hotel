@@ -80,44 +80,47 @@
                     <!-- Events details -->
 
                     <!-- Contact 1 start -->
-                    <div class="contact-1 sidebar-widget">
-                        <div class="main-title-2">
-                            <h1> <span>Bình luận - Đánh giá</span></h1>
-                        </div>
-                        <div class="contact-form">
-                            @if ($booking->rating)
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <span
-                                        class="fa fa-star star-rating @if ($booking->rating->rating >= $i) checked @endif"></span>
-                                @endfor
-                                <div style="margin-top:15px;">{{ $booking->rating->comment }}</div>
-                            @elseif ($booking->canRate())
-                                <form method="POST" action="{{ route('bookings.rate', ['booking' => $booking->id]) }}">
-                                    @csrf
-                                    <select class="star-rating" name="rating">
-                                        <option value="">Select a rating</option>
-                                        <option value="5">Rất hài lòng</option>
-                                        <option value="4">Hài lòng</option>
-                                        <option value="3">Tạm được</option>
-                                        <option value="2">Không hài lòng</option>
-                                        <option value="1">Rất tệ</option>
-                                    </select>
-                                    <div class="row" style="margin-top: 20px;">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-                                            <div class="form-group message">
-                                                <textarea class="input-text" name="comment" placeholder="Nhập bình luận"></textarea>
+                    @if ($booking->canRate())
+                        <div class="contact-1 sidebar-widget">
+                            <div class="main-title-2">
+                                <h1> <span>Bình luận - Đánh giá</span></h1>
+                            </div>
+                            <div class="contact-form">
+                                @if ($booking->rating)
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <span
+                                            class="fa fa-star star-rating @if ($booking->rating->rating >= $i) checked @endif"></span>
+                                    @endfor
+                                    <div style="margin-top:15px;">{{ $booking->rating->comment }}</div>
+                                @elseif ($booking->canRate())
+                                    <form method="POST"
+                                        action="{{ route('bookings.rate', ['booking' => $booking->id]) }}">
+                                        @csrf
+                                        <select class="star-rating" name="rating">
+                                            <option value="">Select a rating</option>
+                                            <option value="5">Rất hài lòng</option>
+                                            <option value="4">Hài lòng</option>
+                                            <option value="3">Tạm được</option>
+                                            <option value="2">Không hài lòng</option>
+                                            <option value="1">Rất tệ</option>
+                                        </select>
+                                        <div class="row" style="margin-top: 20px;">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+                                                <div class="form-group message">
+                                                    <textarea class="input-text" name="comment" placeholder="Nhập bình luận"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="send-btn mb-0">
+                                                    <button type="submit" class="btn-md btn-theme">Gửi đánh giá</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                                            <div class="send-btn mb-0">
-                                                <button type="submit" class="btn-md btn-theme">Gửi đánh giá</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            @endif
+                                    </form>
+                                @endif
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!-- Contact-1 end -->
                 </div>
 
@@ -273,9 +276,11 @@
         // Show success toast message
         const successMessage = window.localStorage.getItem('success_message');
         if (successMessage) {
-            console.log(successMessage);
             window.localStorage.removeItem('success_message');
             toastr.success(successMessage);
+        }
+        if ($('#success-message').val()) {
+            toastr.success($('#success-message').val());
         }
         $.ajaxSetup({
             headers: {

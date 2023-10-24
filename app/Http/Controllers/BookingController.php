@@ -161,7 +161,18 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        // Đo trạng thái => Hủy => $booking->customer_id == $user->id
+        try {
+            DB::beginTransaction();
+            $res = $booking->update([
+                'status' => $request->status,
+            ]);
+            DB::commit();
+
+            return $res;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     /**

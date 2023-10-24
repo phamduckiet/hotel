@@ -101,7 +101,7 @@
                                     <th class="text-center min-w-100px">Booking ID</th>
                                     <th class="text-center min-w-150px">Khách hàng</th>
                                     <th class="text-center min-w-100px">Loại phòng</th>
-                                    <th class="text-center min-w-100px">Số lượng</th>
+                                    <th class="text-center min-w-100px">Trạng thái</th>
                                     <th class="text-center min-w-100px">Checkin</th>
                                     <th class="text-center min-w-100px">Checkout</th>
                                     <th class="text-center min-w-100px">Thành tiền</th>
@@ -141,9 +141,35 @@
                                         <td class="text-center">
                                             <span class="fw-bolder">{{ $booking->roomType->name }}</span>
                                         </td>
-                                        <td class="text-center">
-                                            <span class="fw-bolder">{{ $booking->room_total }}</span>
+                                        <!--begin::Status=-->
+                                        <td class="pe-0" data-order="Failed">
+                                            <select class="status-select form-select form-select-sm mb-2" name="status"
+                                                data-control="select2" data-hide-search="true"
+                                                data-placeholder="Select an option"
+                                                data-url="{{ route('bookings.update', ['booking' => $booking->id]) }}">
+                                                <option value="pending" @if ($booking->status === 'pending') selected @endif>
+                                                    {{ __('messages.pending') }}
+                                                </option>
+                                                <option value="confirmed" @if ($booking->status === 'confirmed') selected @endif>
+                                                    {{ __('messages.confirmed') }}
+                                                </option>
+                                                <option value="paid" @if ($booking->status === 'paid') selected @endif>
+                                                    {{ __('messages.paid') }}
+                                                </option>
+                                                <option value="canceled" @if ($booking->status === 'canceled') selected @endif>
+                                                    {{ __('messages.canceled') }}
+                                                </option>
+                                                <option value="checked_in"
+                                                    @if ($booking->status === 'checked_in') selected @endif>
+                                                    {{ __('messages.checked_in') }}
+                                                </option>
+                                                <option value="checked_out"
+                                                    @if ($booking->status === 'checked_out') selected @endif>
+                                                    {{ __('messages.checked_out') }}
+                                                </option>
+                                            </select>
                                         </td>
+                                        <!--end::Status=-->
                                         <!--end::Total=-->
                                         <!--begin::Date Added=-->
                                         <td class="text-center" data-order="2021-12-25">
@@ -154,22 +180,39 @@
                                         <td class="text-center" data-order="Failed">
                                             <span class="fw-bolder">{{ $booking->checkout->format('d/m/Y') }}</span>
                                         </td>
-
                                         <td class="text-center">
-                                            <span class="fw-bolder">{{ number_format($booking->roomType->price * $booking->room_total, 0, ',', '.') }} VNĐ</span>
-
+                                            <span class="fw-bolder">@money($booking->money_total, 'VND')</span>
                                         </td>
                                         <!--end::Status=-->
                                         <!--begin::Action=-->
                                         <td class="text-center">
-
-                                                <a href="" class="btn btn-primary">Chỉnh sữa</a>
-                                                {{-- <a href="../../demo8/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-danger">Xoá</a> --}}
-                                                <div class="btn btn-danger">
-                                                    <div class="menu-link px-3 delete-btn"
-                                                         data-id="{{ $booking->id }}">
-                                                        {{ __('messages.delete') }}</div>
+                                            {{-- <a href="{{ route('orders.show', ['order' => $order->id]) }}"
+                                                class="menu-link px-3"><i class="fas fa-eye"></i></a> --}}
+                                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                                                data-kt-menu-trigger="click"
+                                                data-kt-menu-placement="bottom-end">{{ __('messages.actions') }}
+                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                                <span class="svg-icon svg-icon-5 m-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none">
+                                                        <path
+                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                            fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </a>
+                                            <!--begin::Menu-->
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                                data-kt-menu="true">
+                                                {{-- <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="{{ route('orders.show', ['order' => $order->id]) }}"
+                                                        class="menu-link px-3">{{ __('messages.view_detail') }}</a>
                                                 </div>
+                                                <!--end::Menu item--> --}}
+                                            </div>
+                                            <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->
                                     </tr>
@@ -203,6 +246,27 @@
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('resources/js/order/index.js') }}"></script>
+    <script>
+        $('.status-select').on('input', function() {
+            const status = $(this).val();
+            const url = $(this).data('url');
+
+            if (status) {
+                $.ajax({
+                    type: 'PUT',
+                    url,
+                    data: {
+                        status,
+                    },
+                    success: function(res) {
+                        toastr.success('Cập nhật trạng thái thành công!');
+                        // window.localStorage.setItem('success',
+                        //     'Cập nhật trạng thái thành công!');
+                        // window.location.href = '/bookings';
+                    },
+                });
+            }
+        });
+    </script>
     <!--end::Page Custom Javascript-->
 @endpush
