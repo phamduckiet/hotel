@@ -21,6 +21,11 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function about(Request $request)
+    {
+        $users = User::isAdmin()->get();
+        return view('customer.about', compact('users'));
+    }
     public function index(Request $request)
     {
         if ($request->checkin && $request->checkout) { // Nếu người dùng query theo chekcin va checkout

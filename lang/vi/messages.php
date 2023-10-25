@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create_account' => 'Tạo tài khoản',
+    'create_account' => 'Đăng Ký',
     'add_room_type' => 'Thêm loại phòng',
     'add_room'  => 'Thêm phòng',
     'room_types' => 'Loại phòng',
@@ -37,7 +37,6 @@ return [
     'tb1image'  => 'Tải lên tối đa 10 tệp',
     'floor' => 'Tầng',
     'View_room' => 'Xem chi tiết phòng',
-    'create_account' => 'Tạo tài khoản',
     'login_title' => 'Đăng nhập vào K Hotel',
     'new_here' => 'Chưa có tài khoản?',
     'roles' => 'Vai trò',

@@ -12,35 +12,29 @@
                                 <img src="{{ asset('logo-no-background.svg') }}" width="140px" alt="white-logo">
                             </a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Maecenas in pulvinar neque. Nulla
-                            finibus lobortis pulvinar. Donec a conser nulla. Nulla posuere sapien vitae lectus
-                            suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis
-                            fringilla diam.</p>
+                        <p>Khách sạn K Hotel là một điểm đến lý tưởng cho du khách đến thành phố chúng tôi. Với dịch vụ chất lượng, tiện nghi hiện đại và vị trí thuận lợi, chúng tôi cam kết đáp ứng mọi nhu cầu của quý khách. Cùng với phong cách thiết kế sang trọng và không gian thoải mái, K Hotel sẽ là nơi bạn cảm thấy như tại nhà, hãy để chúng tôi phục vụ và tạo ra trải nghiệm đáng nhớ cho bạn.</p>
                     </div>
                 </div>
                 <!-- Contact Us -->
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-item">
                         <div class="main-title-2">
-                            <h1>Contact Us</h1>
+                            <h1>Liên hệ chúng tôi</h1>
                         </div>
                         <ul class="personal-info">
                             <li>
                                 <i class="fa fa-map-marker"></i>
-                                Address: 44 New Design Street,
+                                Địa chỉ: 06 Hồ Xuân Hương. TP Đà Nẵng,
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i>
-                                Email:<a href="mailto:sales@hotelempire.com">info@themevessel.com</a>
+                                Email:<a href="mailto:sales@hotelempire.com">k.hotel668@gmail.com</a>
                             </li>
                             <li>
                                 <i class="fa fa-phone"></i>
-                                Phone: <a href="tel:+55-417-634-7071">+0477 85X6 552</a>
+                                Phone: <a href="tel:+55-417-634-7071">+84 999 07777</a>
                             </li>
-                            <li>
-                                <i class="fa fa-fax"></i>
-                                Fax: +0477 85X6 552
-                            </li>
+
                         </ul>
                         <div class="clearfix"></div>
                         <ul class="social-list">
@@ -56,7 +50,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-item gallery">
                         <div class="main-title-2">
-                            <h1>Gallery</h1>
+                            <h1>Phòng trưng bày</h1>
                         </div>
                         <ul>
                             <li>
@@ -101,9 +95,6 @@
                 <!-- Newsletter -->
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-item newsletter">
-                        <div class="main-title-2">
-                            <h1>Newsletter</h1>
-                        </div>
                         <div class="newsletter-inner">
                             <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
                                 mollit anim id est laborum.</p>

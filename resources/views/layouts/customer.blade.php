@@ -67,6 +67,7 @@
 </head>
 
 <body>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="{{ asset('"https://www.googletagmanager.com/ns.html?id=GTM-TFC5925')}}" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>

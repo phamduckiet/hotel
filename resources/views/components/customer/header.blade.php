@@ -44,8 +44,8 @@
                                 @csrf
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="sign-in"> <i class="fa fa-user"></i> Log In /
-                                Register</a>
+                            {{-- <a href="{{ route('login') }}" class="sign-in"> <i class="fa fa-user"></i> Log In /
+                                Register</a> --}}
                         @endif
                     </li>
                 </ul>
