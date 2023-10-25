@@ -156,32 +156,28 @@
             </div>
             <div class="row">
                 @foreach ($roomTypes as $roomType)
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <a href="#">
-                            <div class="hotel-box-list-2 clearfix">
-                                <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-pad">
-                                    <img src="{{ $roomType->avatar_link }}" alt="img-9"
-                                        class="room-type-avatar-img img-responsive room-detail-btn"
-                                        data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}" style="height:193px;">
-                                </div>
-                                <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 detail">
-                                    <div class="heading">
-                                        <div class="title">
-                                            <h3>
-                                                <a class="room-detail-btn"
-                                                    data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <div class="room-description-container">
-                                        <p>{!! $roomType->summary !!}</p>
-                                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="3, 2, 4">
+                        <div class="hotel-box">
+                            <!--header -->
+                            <div class="header clearfix">
+                                <img src="{{ $roomType->avatar_link }}" alt="img-9"
+                                    class="room-type-avatar-img img-responsive room-detail-btn"
+                                    data-url="{{ route('room.detail', ['room_type' => $roomType->id]) }}"
+                                    style="height:193px;">
+                            </div>
+                            <!-- Detail -->
+                            <div class="detail clearfix">
+                                <h3>
+                                    <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
+                                </h3>
+                                <h5 class="location">
                                     @if (!$roomType->is_available)
                                         <div class="read-more-btn">(Hết phòng)</div>
                                     @endif
-                                </div>
+                                </h5>
+                                <p>{!! $roomType->summary !!}</p>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
