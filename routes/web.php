@@ -26,7 +26,7 @@ Route::middleware('localization')->group(function () {
     Route::get('/rooms/{room_type}/show', [HomeController::class, 'showRoomDetail'])->name('room.detail');
     Route::post('/rooms/{room_type}/booking', [BookingController::class, 'create'])->name('rooms.booking');
     Route::get('/booking', [BookingController::class, 'showBookingView'])->name('rooms.booking.view');
-    Route::get('/bookings/{booking}', [BookingController::class, 'store'])->name('bookings.store');
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 });
 
