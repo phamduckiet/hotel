@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     public function showRoomDetail(RoomType $roomType)
     {
-        $roomType->load('rooms');
+        $roomType->load('rooms', 'ratings');
 
         return view('customer.room_detail', compact('roomType'));
     }

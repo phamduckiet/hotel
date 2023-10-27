@@ -187,178 +187,48 @@
                     <div class="comments-section sidebar-widget">
                         <!-- Main Title 2 -->
                         <div class="main-title-2">
-                            <h1><span>Rooms </span> Reviews</h1>
+                            <h1><span>Đánh giá</span></h1>
                         </div>
-
                         <ul class="comments">
-                            <li>
-                                <div class="comment">
-                                    <div class="comment-author">
-                                        <a href="#">
-                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}" alt="avatar-5">
-                                        </a>
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="comment-meta">
-                                            <div class="comment-meta-author">
-                                                Jane Doe
-                                            </div>
-                                            <div class="comment-meta-reply">
-                                                <a href="#">Reply</a>
-                                            </div>
-                                            <div class="comment-meta-date">
-                                                <span class="hidden-xs">8:42 PM 3/3/2017</span>
-                                            </div>
+                            @foreach ($roomType->ratings as $rating)
+                                <li>
+                                    <div class="comment">
+                                        <div class="comment-author">
+                                            <a href="#">
+                                                <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}"
+                                                    alt="avatar-5">
+                                            </a>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="comment-body">
-                                            <div class="comment-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Donec luctus tincidunt
-                                                aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros.
-                                                Maecenas eros enim, tincidunt vel turpis vel, dapibus tempus nulla. Donec
-                                                vel nulla dui. Pellentesque sed ante sed ligula hendrerit condimentum.
-                                                Suspendisse rhoncus fringilla ipsum quis porta.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="comment">
-                                            <div class="comment-author">
-                                                <a href="#">
-                                                    <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}"
-                                                        alt="avatar-5">
-                                                </a>
-                                            </div>
-
-                                            <div class="comment-content">
-                                                <div class="comment-meta">
-                                                    <div class="comment-meta-author">
-                                                        Jane Doe
-                                                    </div>
-
-                                                    <div class="comment-meta-reply">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-
-                                                    <div class="comment-meta-date">
-                                                        <span class="hidden-xs">8:42 PM 3/3/2017</span>
-                                                    </div>
+                                        <div class="comment-content mb-0">
+                                            <div class="comment-meta">
+                                                <div class="comment-meta-author">
+                                                    {{ $rating->user->name }}
                                                 </div>
-                                                <div class="clearfix"></div>
-                                                <div class="comment-body">
-                                                    <div class="comment-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, conser adipiscing elit. Donec luctus
-                                                        tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum
-                                                        et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus
-                                                        tempus nulla. Donec vel nulla dui.</p>
+                                                <div class="comment-meta-date">
+                                                    <span
+                                                        class="hidden-xs">{{ $rating->created_at->format('H:i d/m/Y') }}</span>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="comment">
-                                    <div class="comment-author">
-                                        <a href="#">
-                                            <img src="{{ asset('hotel-alpha/img/avatar/avatar-5.png') }}" alt="avatar-5">
-                                        </a>
-                                    </div>
-                                    <div class="comment-content mb-0">
-                                        <div class="comment-meta">
-                                            <div class="comment-meta-author">
-                                                Jane Doe
+                                            <div class="clearfix"></div>
+                                            <div class="comment-body">
+                                                <div class="comment-rating">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($rating->rating >= $i)
+                                                            <i class="fa fa-star"></i>
+                                                        @else
+                                                            <i class="fa fa-star-o"></i>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                                <p>{{ $rating->comment }}</p>
                                             </div>
-                                            <div class="comment-meta-reply">
-                                                <a href="#">Reply</a>
-                                            </div>
-                                            <div class="comment-meta-date">
-                                                <span class="hidden-xs">8:42 PM 3/3/2017</span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="comment-body">
-                                            <div class="comment-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                Lorem Ipsum has been the industry's standard dummy text ever since the
-                                                1500s, when an unknown printer
-                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- Comments section end -->
-
-                    <!-- Contact 1 start -->
-                    <div class="contact-1 sidebar-widget">
-                        <div class="main-title-2">
-                            <h1> <span>Leave</span> a Comment</h1>
-                        </div>
-                        <div class="contact-form">
-                            <form id="contact_form"
-                                action="https://storage.googleapis.com/themevessel-items/hotel-alpha/index.html"
-                                method="GET" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group fullname">
-                                            <input type="text" name="full-name" class="input-text"
-                                                placeholder="Full Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group enter-email">
-                                            <input type="email" name="email" class="input-text"
-                                                placeholder="Enter email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group subject">
-                                            <input type="text" name="subject" class="input-text"
-                                                placeholder="Subject">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group number">
-                                            <input type="text" name="phone" class="input-text"
-                                                placeholder="Phone Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-                                        <div class="form-group message">
-                                            <textarea class="input-text" name="message" placeholder="Write message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                                        <div class="send-btn mb-0">
-                                            <button type="submit" class="btn-md btn-theme">Send Message</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Contact-1 end -->
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="sidebar">
@@ -423,10 +293,13 @@
                                             <br>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2" name="children">
+                                                    <select class="selectpicker search-fields form-control-2"
+                                                        name="children">
                                                         <option value="0">Số lượng trẻ em</option>
                                                         @for ($i = 1; $i <= $roomType->max_children; $i++)
-                                                            <option value="{{ $i }}" @if ($i === (int) request('children')) selected @endif>{{ $i }}
+                                                            <option value="{{ $i }}"
+                                                                @if ($i === (int) request('children')) selected @endif>
+                                                                {{ $i }}
                                                             </option>
                                                         @endfor
                                                     </select>
@@ -492,22 +365,6 @@
                         </div>
                         <!-- Recent News end -->
 
-                        <!-- Category posts start -->
-                        <div class="sidebar-widget category-posts">
-                            <div class="main-title-2">
-                                <h1>Category</h1>
-                            </div>
-                            <ul class="list-unstyled list-cat">
-                                <li><a href="#">Rooms <span>(45)</span></a></li>
-                                <li><a href="#">Promotion <span>(21)</span></a></li>
-                                <li><a href="#">Events <span>(23)</span></a></li>
-                                <li><a href="#">Creative <span>(19)</span></a></li>
-                                <li><a href="#">Design <span>(19)</span></a></li>
-                                <li><a href="#">Other <span>(22)</span></a></li>
-                            </ul>
-                        </div>
-                        <!-- Category posts end -->
-
                         <!-- Social media start -->
                         <div class="social-media sidebar-widget clearfix">
                             <!-- Main Title 2 -->
@@ -524,75 +381,6 @@
                             </ul>
                         </div>
                         <!-- Social media end -->
-
-                        <!-- tags box start -->
-                        <div class="sidebar-widget tags-box">
-                            <div class="main-title-2">
-                                <h1>Tags</h1>
-                            </div>
-                            <ul class="tags">
-                                <li><a href="#">Rooms</a></li>
-                                <li><a href="#">Promotion</a></li>
-                                <li><a href="#">Creative</a></li>
-                                <li><a href="#">Events</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Gallery</a></li>
-                                <li><a href="#">Travel</a></li>
-                                <li><a href="#">Video</a></li>
-                                <li><a href="#">Audio</a></li>
-                            </ul>
-                        </div>
-                        <!-- tags box end -->
-
-                        <!-- Location start  -->
-                        <div class="location sidebar-widget">
-                            <div class="map">
-                                <!-- Main Title 2 -->
-                                <div class="main-title-2">
-                                    <h1>Location</h1>
-                                </div>
-                                <div id="map" class="contact-map" style="height: 662px;"></div>
-                            </div>
-                        </div>
-                        <!-- Location end -->
-
-                        <!-- Recent comments start -->
-                        <div class="sidebar-widget recent-comments">
-                            <div class="main-title-2">
-                                <h1>Recent comments</h1>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object"
-                                            src="{{ asset('hotel-alpha/img/avatar/avatar-1.jpg ') }}" alt="avatar-1">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <p>Lorem ipsum dolor sit amet,
-                                        conser adipiscing elit.
-                                        Etiamrisus tortor, accumsan,
-                                    </p>
-                                    <span>By <b> John Doe</b></span>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object"
-                                            src="{{ asset('hotel-alpha/img/avatar/avatar-2.jpg ') }}" alt="avatar-1">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <p>Lorem ipsum dolor sit amet,
-                                        conser adipiscing elit.
-                                        Etiamrisus tortor,
-                                    </p>
-                                    <span>By <b>Karen Paran</b></span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Recent comments end-->
                     </div>
                 </div>
             </div>

@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('test', function() {
+    $booking = \App\Models\Booking::find(1);
+    return view('email.booking', compact('booking'));
+});
 Route::get('/about', [HomeController::class, 'about'])->name('about.view');
 Route::middleware('localization')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -28,12 +32,11 @@ Route::middleware('localization')->group(function () {
     Route::get('/booking', [BookingController::class, 'showBookingView'])->name('rooms.booking.view');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+    Route::get('/my-bookings/{booking}', [BookingController::class, 'getBookingDetail'])->name('my_bookings.show');
 });
 
 Route::middleware(['auth', 'localization'])->group(function () {
     Route::get('/my-bookings', [BookingController::class, 'getBookingHistory'])->name('my_bookings.index');
-    Route::get('/my-bookings/{booking}', [BookingController::class, 'getBookingDetail'])->name('my_bookings.show');
-
 
     Route::get('/update-language/{lang}', [
         UserController::class,
