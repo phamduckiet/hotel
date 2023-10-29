@@ -159,9 +159,11 @@
                                             style="padding:6.5px 10px;">Hủy đặt phòng</button>
                                     @endif
                                     @if ($booking->canPay())
-                                        <button type="submit" class="btn btn-theme"
-                                            style="margin-left:15px;padding:5px 11px;">Thanh toán qua
-                                            Paypal</button>
+                                        <a href="{{ route('my_bookings.pay', ['booking' => $booking->id]) }}">
+                                            <button type="submit" class="btn btn-theme"
+                                                style="margin-left:15px;padding:5px 11px;">Thanh toán qua
+                                                Paypal</button>
+                                        </a>
                                     @endif
                                 </div>
                             </ul>
@@ -187,44 +189,22 @@
                         <!-- Recent News start -->
                         <div class="sidebar-widget recent-news">
                             <div class="main-title-2">
-                                <h1>Recent News</h1>
+                                <h1>Xem thêm</h1>
                             </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="img/room/small-img.jpg" alt="small-img">
+                            @foreach ($otherRoomTypes as $roomType)
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{{ $roomType->avatar_link }}"
+                                            alt="small-img">
+                                    </div>
+                                    <div class="media-body">
+                                        <h3 class="media-heading">
+                                            <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
+                                        </h3>
+                                        <p>@money($roomType->price, 'VND')</p>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading">
-                                        <a href="rooms-details.html">A Standard Blog Post</a>
-                                    </h3>
-                                    <p>From 80 $ per night</p>
-                                    <h5><i class="fa fa-calendar"></i>18/10/2017</h5>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="img/room/small-img-2.jpg" alt="small-img-2">
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading">
-                                        <a href="rooms-details.html">Wedding David & karen</a>
-                                    </h3>
-                                    <p>From 80 $ per night</p>
-                                    <h5><i class="fa fa-calendar"></i>18/10/2017</h5>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="img/room/small-img-3.jpg" alt="small-img-3">
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading">
-                                        <a href="rooms-details.html">Pool Party in summer</a>
-                                    </h3>
-                                    <p>From 80 $ per night</p>
-                                    <h5><i class="fa fa-calendar"></i>18/10/2017</h5>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <!-- Recent News end -->
                     </div>

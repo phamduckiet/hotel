@@ -157,7 +157,7 @@
             <div class="row">
                 @foreach ($roomTypes as $roomType)
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="3, 2, 4">
-                        <div class="hotel-box">
+                        <div class="hotel-box" style="min-height:395px;">
                             <!--header -->
                             <div class="header clearfix">
                                 <img src="{{ $roomType->avatar_link }}" alt="img-9"

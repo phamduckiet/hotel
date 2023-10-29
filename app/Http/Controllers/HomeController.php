@@ -54,14 +54,24 @@ class HomeController extends Controller
         return view('customer.home', compact('roomTypes', 'users'));
     }
 
+    /**
+     * @param RoomType $roomType
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function showRoomDetail(RoomType $roomType)
     {
         $roomType->load('rooms', 'ratings');
+        $otherRoomTypes = RoomType::where('id', '<>', $roomType->id)->get();
 
-        return view('customer.room_detail', compact('roomType'));
+        return view('customer.room_detail', compact('roomType', 'otherRoomTypes'));
     }
 
-    private function getRoomTypesByCheckinAndCheckout($request) {
+    /**
+     * @param $request
+     * @return mixed
+     */
+    private function getRoomTypesByCheckinAndCheckout($request): mixed
+    {
         // Lay ra room type + rooms + bookings co tgian checkin / checkout vi pham
         $roomTypes = RoomType::latest()
             ->with('rooms.bookings', function ($query) use ($request) {

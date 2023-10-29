@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\BookingWasCreatedEvent;
+use App\Events\BookingWasPaidEvent;
 use App\Listeners\SendBookingConfirmationEmailListener;
+use App\Listeners\SendPaymentConfirmationEmailListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         BookingWasCreatedEvent::class => [
             SendBookingConfirmationEmailListener::class,
+        ],
+        BookingWasPaidEvent::class => [
+            SendPaymentConfirmationEmailListener::class,
         ],
     ];
 

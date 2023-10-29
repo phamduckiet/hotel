@@ -321,47 +321,22 @@
                         <!-- Recent News start -->
                         <div class="sidebar-widget recent-news">
                             <div class="main-title-2">
-                                <h1>Recent Posts</h1>
+                                <h1>Phòng tương tự</h1>
                             </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img.jpg') }}"
-                                        alt="small-img">
+                            @foreach ($otherRoomTypes as $roomType)
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{{ $roomType->avatar_link }}"
+                                            alt="small-img">
+                                    </div>
+                                    <div class="media-body">
+                                        <h3 class="media-heading">
+                                            <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
+                                        </h3>
+                                        <p>@money($roomType->price, 'VND')</p>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading">
-                                        <a href="rooms-details.html">Host a Family Party</a>
-                                    </h3>
-                                    <p>From 80 $ per night</p>
-                                    <h5><i class="fa fa-calendar"></i>18/10/2017</h5>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img-2.jpg') }}"
-                                        alt="small-img-2">
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading">
-                                        <a href="rooms-details.html">Room with View</a>
-                                    </h3>
-                                    <p>From 80 $ per night</p>
-                                    <h5><i class="fa fa-calendar"></i>18/10/2017</h5>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" src="{{ asset('hotel-alpha/img/room/small-img-3.jpg') }}"
-                                        alt="small-img-3">
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading">
-                                        <a href="rooms-details.html">Double Room</a>
-                                    </h3>
-                                    <p>From 80 $ per night</p>
-                                    <h5><i class="fa fa-calendar"></i>18/10/2017</h5>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <!-- Recent News end -->
 

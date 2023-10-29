@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\BookingStatus;
 use App\Events\BookingWasCreatedEvent;
+use App\Events\BookingWasPaidEvent;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Services\BookingService;
 use App\Http\Services\PaypalService;
@@ -21,6 +22,7 @@ class BookingController extends Controller
 {
     /**
      * @param BookingService $bookingService
+     * @param PaypalService $paypalService
      */
     public function __construct(
         private readonly BookingService $bookingService,
@@ -220,8 +222,9 @@ class BookingController extends Controller
     {
         $booking->load('customer');
         $booking->rating = $booking->ratings()->first();
+        $otherRoomTypes = RoomType::latest()->get();
 
-        return view('customer.booking_detail', compact('booking'));
+        return view('customer.booking_detail', compact('booking', 'otherRoomTypes'));
     }
 
     /**
@@ -256,6 +259,7 @@ class BookingController extends Controller
         if ($response && $response->isRedirect()) {
             $booking->payment_id = $response->getData()['id'];
             $booking->save();
+
             $response->redirect();
         }
 
@@ -278,6 +282,7 @@ class BookingController extends Controller
                 $booking->update([
                     'status' => BookingStatus::PAID,
                 ]);
+                BookingWasPaidEvent::dispatch($booking);
                 alert()->success('Thanh toán thành công!')
                     ->showConfirmButton('OK', '#FF7B54')->autoClose(5000);
 
@@ -292,7 +297,7 @@ class BookingController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function paypalError()
+    public function paymentError()
     {
         return redirect()->route('home');
     }
