@@ -71,8 +71,11 @@
                                         phòng</button>
                                 @endif
                                 @if ($booking->canPay())
-                                    <button type="submit" class="btn-md btn-theme" style="margin-left:15px;">Thanh toán qua
-                                        Paypal</button>
+                                    <a href="{{ route('my_bookings.pay', ['booking' => $booking->id]) }}">
+                                        <button type="button" class="btn-md btn-theme" style="margin-left:15px;">Thanh toán
+                                            qua
+                                            Paypal</button>
+                                    </a>
                                 @endif
                             </div>
                         </div>

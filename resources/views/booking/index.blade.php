@@ -246,6 +246,7 @@
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="{{ asset('resources/js/booking/index.js') }}"></script>
     <script>
         $('.status-select').on('input', function() {
             const status = $(this).val();

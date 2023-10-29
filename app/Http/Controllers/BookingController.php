@@ -6,6 +6,7 @@ use App\Enums\BookingStatus;
 use App\Events\BookingWasCreatedEvent;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Services\BookingService;
+use App\Http\Services\PaypalService;
 use App\Models\Booking;
 use App\Models\Customer;
 use App\Models\RoomType;
@@ -21,8 +22,10 @@ class BookingController extends Controller
     /**
      * @param BookingService $bookingService
      */
-    public function __construct(private readonly BookingService $bookingService)
-    {
+    public function __construct(
+        private readonly BookingService $bookingService,
+        private readonly PaypalService $paypalService,
+    ) {
     }
 
     /**
@@ -240,5 +243,57 @@ class BookingController extends Controller
             DB::rollback();
             throw $e;
         }
+    }
+
+    /**
+     * @param Booking $booking
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function payBooking(Booking $booking)
+    {
+        $response = $this->paypalService->requestPayment($booking);
+
+        if ($response && $response->isRedirect()) {
+            $booking->payment_id = $response->getData()['id'];
+            $booking->save();
+            $response->redirect();
+        }
+
+        toast('Có lỗi xảy ra. Vui lòng thử lại', 'error');
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function paymentSuccess(Request $request)
+    {
+        if ($request->input('paymentId') && $request->input('PayerID')) {
+            $response = $this->paypalService->completePayment($request->input('PayerID'), $request->input('paymentId'));
+
+            if ($response) {
+                $paymentId = $response->getData()['id'];
+                $booking = Booking::where('payment_id', $paymentId)->first();
+                $booking->update([
+                    'status' => BookingStatus::PAID,
+                ]);
+                alert()->success('Thanh toán thành công!')
+                    ->showConfirmButton('OK', '#FF7B54')->autoClose(5000);
+
+                return redirect()->route('my_bookings.show', ['booking' => $booking->id]);
+            }
+        }
+
+        toast('Có lỗi xảy ra. Vui lòng thử lại', 'error');
+        return redirect()->route('home');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function paypalError()
+    {
+        return redirect()->route('home');
     }
 }
