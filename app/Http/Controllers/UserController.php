@@ -32,7 +32,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-       $this->authorize('update', $user);
+        $this->authorize('update', $user);
 
         $user->update([
             'name' => $request->name,
@@ -63,5 +63,13 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
             ->with('success', __('messages.successfully'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
+    public function editProfile()
+    {
+        return view('customer.my_account');
     }
 }

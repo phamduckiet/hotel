@@ -36,6 +36,7 @@ Route::middleware('localization')->group(function () {
 Route::middleware(['auth', 'localization'])->group(function () {
     Route::get('/my-bookings', [BookingController::class, 'getBookingHistory'])->name('my_bookings.index');
     Route::get('/my-bookings/{booking}/pay', [BookingController::class, 'payBooking'])->name('my_bookings.pay');
+    Route::get('/my-account', [UserController::class, 'editProfile'])->name('my_account.show');
 
     Route::get('/update-language/{lang}', [
         UserController::class,

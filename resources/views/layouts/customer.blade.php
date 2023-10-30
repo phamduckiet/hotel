@@ -63,6 +63,11 @@
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .swal2-title {
+            font-size: 14px !important;
+        }
+    </style>
     @stack('styles')
 </head>
 

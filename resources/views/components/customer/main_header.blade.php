@@ -22,14 +22,19 @@
                             Trang chủ
                         </a>
                     </li>
+                    <li class="dropdown @if (Route::is('about.view')) active @endif">
+                        <a href="{{ route('about.view') }}">
+                            Giới Thiệu
+                        </a>
+                    </li>
                     <li class="dropdown @if (Route::is('my_bookings.*')) active @endif">
                         <a href="{{ route('my_bookings.index') }}">
                             Đặt phòng
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="{{ route('about.view') }}">
-                            Giới Thiệu
+                    <li class="dropdown @if (Route::is('my_account.show')) active @endif">
+                        <a href="{{ route('my_account.show') }}">
+                            Tài khoản
                         </a>
                     </li>
                 </ul>
