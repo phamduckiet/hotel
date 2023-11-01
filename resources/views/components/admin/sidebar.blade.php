@@ -212,7 +212,10 @@
                         @endcan
                         @can(\App\Enums\PermissionName::MANAGE_ROOMS)
                             <div class="menu-item">
-                                <a class="menu-link" href="/rooms">
+                                @php
+                                    $date = now()->format('Y-m-d')
+                                @endphp
+                                <a class="menu-link" href="/rooms?date={{ $date }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

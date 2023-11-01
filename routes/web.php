@@ -50,7 +50,7 @@ Route::middleware(['auth', 'localization'])->group(function () {
         Route::delete('/{room_type}/images/{imageId}', [RoomTypeController::class, 'deleteRoomImage']);
         Route::post('/{room_type}/images', [RoomTypeController::class, 'storeRoomImage']);
     });
-    Route::resource('bookings', BookingController::class)->only(['index', 'update']);
+    Route::resource('bookings', BookingController::class)->only(['index', 'update', 'show']);
     Route::post('/bookings/{booking}/rate', [BookingController::class, 'rateBooking'])->name('bookings.rate');
 
     Route::resources([

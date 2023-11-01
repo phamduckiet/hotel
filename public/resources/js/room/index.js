@@ -18,14 +18,28 @@ $('.delete-btn').click((e) => {
             $.ajax({
                 type: 'DELETE', // method
                 url: urlRequest,
-                success: function(data) {
+                success: function (data) {
                     $(`#room-type-item-${roomId}`).remove();
                     toastr.success('Xóa thành công!');
                     location.reload();
                 },
-                error: function() {}
+                error: function () { }
             });
         }
     });
 });
 
+const currentURL = window.location.href;
+const url = new URL(currentURL);
+const date = url.searchParams.get('date');
+
+const element = document.querySelector('#rooms_flatpickr');
+flatpickr = $(element).flatpickr({
+    altInput: true,
+    altFormat: "d/m/Y",
+    dateFormat: "Y-m-d",
+    defaultDate: date,
+    onChange: function(selectedDates, dateStr, instance) {
+        window.location.href = `/rooms?date=${dateStr}`;
+    },
+});

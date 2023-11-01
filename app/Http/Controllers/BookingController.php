@@ -150,7 +150,10 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        $booking->rating = $booking->ratings()->first();
+        $booking->load('customer', 'rooms');
+
+        return view('booking.show', compact('booking'));
     }
 
     /**

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use App\Models\BookingRoom;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\RoomType;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
@@ -14,12 +16,32 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Room::class);
 
         $floors = Floor::with('rooms', 'rooms.roomType')->get();
         $roomTypes = RoomType::latest()->get();
+
+        $busyRoomIds = collect();
+        if ($request->date) {
+            $busyRoomIds = Room::query()
+                ->whereHas('bookings', function ($query) use ($request) {
+                    return $query->whereDate('checkin', '<=', $request->date)
+                        ->whereDate('checkout', '>=', $request->date);
+                })->pluck('id');
+        }
+
+        foreach($floors as $floor) {
+            foreach ($floor->rooms as $room) {
+                if ($busyRoomIds->contains($room->id)) {
+                    $room->is_available = false;
+                } else {
+                    $room->is_available = true;
+                }
+            }
+        }
+
         return view('room.index', compact('floors', 'roomTypes'));
     }
 

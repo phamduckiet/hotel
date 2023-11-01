@@ -2,7 +2,7 @@
 @section('content')
     @include('components.admin.header', [
         'parent' => __('messages.room_types'),
-        'child' => __('messages.edit_room_type'),
+        'child' => 'Chỉnh sửa loại phòng',
     ])
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -23,7 +23,7 @@
                             <div class="card-body pt-0">
                                 <div class="card card-flush py-4">
                                     <!--begin::Card header-->
-                                    <div class="card-header">
+                                    <div class="card-header ps-0">
                                         <!--begin::Card title-->
                                         <div class="card-title">
                                             <h2>{{ __('messages.avatar') }}</h2>
@@ -137,14 +137,14 @@
 
                                 <div class="card card-flush py-4">
                                     <!--begin::Card header-->
-                                    <div class="card-header">
+                                    <div class="card-header ps-0">
                                         <div class="card-title">
                                             <h2>{{ __('messages.image') }}</h2>
                                         </div>
                                     </div>
                                     <!--end::Card header-->
                                     <!--begin::Card body-->
-                                    <div class="card-body pt-0">
+                                    <div class="card-body p-0 mb-4">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-2">
                                             <!--begin::Dropzone-->

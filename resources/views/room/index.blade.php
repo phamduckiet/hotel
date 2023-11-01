@@ -18,7 +18,12 @@
                         <!--begin::Card title-->
                         <div class="card-title">
                             <!--begin::Search-->
-
+                            <!--begin::Flatpickr-->
+                            <div class="input-group w-250px">
+                                <input class="form-control form-control-solid rounded rounded-end-0"
+                                    placeholder="Chọn ngày" id="rooms_flatpickr" />
+                            </div>
+                            <!--end::Flatpickr-->
                             <!--end::Search-->
                         </div>
                         <!--end::Card title-->
@@ -39,7 +44,7 @@
                                 <div class="card-body">
                                     <div class="d-flex gap-4">
                                         @foreach ($floor->rooms as $room)
-                                            <div class="room-item" data-bs-toggle="modal"
+                                            <div class="room-item @if (!$room->is_available) room-busy @endif" data-bs-toggle="modal"
                                                 data-bs-target="#modal_view_room_detail_{{ $room->id }}">
                                                 <div class="h-auto">{{ $room->name }}</div>
                                             </div>
@@ -88,14 +93,19 @@
                                                                     <div class="image-input-wrapper w-150px h-150px"></div>
                                                                 </div>
                                                                 <h3>{{ __('messages.room') }}: {{ $room->name }}</h3>
-                                                                    @foreach ($roomTypes as $roomType)
-                                                                                @if ($room->type_id === $roomType->id)
-                                                                                <h3>{{ __('messages.room_types') }}: {{ $roomType->name }}</h3>
-                                                                                <h3>{{ __('messages.price') }}: {{ number_format($roomType->price, 0, ',', '.') }} VNĐ/Ngày</h3>
-                                                                                <h3>{{ __('messages.max_adults') }}: {{ $roomType->max_adults }}</h3>
-                                                                                <h3>{{ __('messages.max_children') }}: {{ $roomType->max_children }}</h3>
-                                                                                 @endif
-                                                                    @endforeach
+                                                                @foreach ($roomTypes as $roomType)
+                                                                    @if ($room->type_id === $roomType->id)
+                                                                        <h3>{{ __('messages.room_types') }}:
+                                                                            {{ $roomType->name }}</h3>
+                                                                        <h3>{{ __('messages.price') }}:
+                                                                            {{ number_format($roomType->price, 0, ',', '.') }}
+                                                                            VNĐ/Ngày</h3>
+                                                                        <h3>{{ __('messages.max_adults') }}:
+                                                                            {{ $roomType->max_adults }}</h3>
+                                                                        <h3>{{ __('messages.max_children') }}:
+                                                                            {{ $roomType->max_children }}</h3>
+                                                                    @endif
+                                                                @endforeach
                                                                 {{ __('messages.View_room') }}
                                                                 {{-- <div class="image-slider">
                                                                     <div class="image-container">
@@ -259,6 +269,10 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+        }
+
+        .room-busy {
+            background: #f1416c !important;
         }
     </style>
 @endpush

@@ -54,7 +54,9 @@
                                 <!--begin::Table row-->
                                 <tr class="text-center text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                     <th style="color: black" class="min-w-100px">{{ __('messages.room_types') }}</th>
-                                    <th style="color: black" class="min-w-100px">Thông Tin</th>
+                                    <th style="color: black" class="min-w-100px">Giá</th>
+                                    <th style="color: black" class="min-w-100px">Số người lớn</th>
+                                    <th style="color: black" class="min-w-100px">Số trẻ em</th>
                                     <th style="color: black" class="text-center min-w-150px">{{ __('messages.actions') }}
                                     </th>
                                 </tr>
@@ -63,30 +65,49 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
-                                @foreach ($roomTypes as $room_types)
+                                @foreach ($roomTypes as $roomType)
                                     <!--begin::Table row-->
-                                    <tr style="color: black" id="{{ 'room-type-item-' . $room_types->id }}">
+                                    <tr style="color: black" id="{{ 'room-type-item-' . $roomType->id }}">
                                         <!--begin::Category=-->
                                         <td class="text-center">
-                                            <div>{{ $room_types->name }}</div>
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Thumbnail-->
+                                                <a href="#" class="symbol symbol-50px">
+                                                    <span class="symbol-label"
+                                                        style="{{ 'background-image:url(' . asset($roomType->avatar_link) . ');' }}"></span>
+                                                </a>
+                                                <!--end::Thumbnail-->
+                                                <div class="ms-5">
+                                                    <!--begin::Title-->
+                                                    <a href="#"
+                                                        class="text-gray-800 text-hover-primary fs-5 fw-bolder"
+                                                        data-kt-ecommerce-category-filter="category_name">{{ $roomType->name }}</a>
+                                                    <!--end::Title-->
+                                                </div>
+                                            </div>
                                         </td>
                                         <td class="text-center">
-                                            <a href="/rooms/{{ $room_types->id }}/show" class="btn btn-success">Xem chi
-                                                tiết</a>
-
+                                            <div>@money($roomType->price, 'VND')</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div>{{ $roomType->max_adults }}</div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div>{{ $roomType->max_children }}</div>
                                         </td>
                                         <!--begin::Actio{-->
                                         <td class="text-center pt-9">
-
-                                            <a href="{{ route('room-types.edit', [$room_types->id]) }}"
-                                                class="btn btn-primary">Chỉnh sửa</a>
-                                            {{-- <a href="../../demo8/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-danger">Xoá</a> --}}
-                                            <div class="btn btn-danger">
-                                                <div class="menu-link px-3 delete-btn"
-                                                    data-url="{{ route('room-types.destroy', ['room_type' => $room_types->id]) }}"
-                                                    data-id="{{ $room_types->id }}">
-                                                    {{ __('messages.delete') }}</div>
-                                            </div>
+                                            <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}"
+                                                class="btn btn-icon btn-secondary" target="_blank"><i
+                                                    class="fas fa-eye fs-4"></i></a>
+                                            <a href="{{ route('room-types.edit', [$roomType->id]) }}"
+                                                class="btn btn-icon btn-warning"><i class="fas fa-pen fs-4"></i></a>
+                                            <a href="#" class="btn btn-icon btn-danger delete-btn"
+                                                data-url="{{ route('room-types.destroy', ['room_type' => $roomType->id]) }}"
+                                                data-id="{{ $roomType->id }}"><i
+                                                    data-url="{{ route('room-types.destroy', ['room_type' => $roomType->id]) }}"
+                                                    data-id="{{ $roomType->id }}" class="fas fa-trash fs-4"></i>
+                                            </a>
                                             <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->
