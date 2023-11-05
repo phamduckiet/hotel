@@ -246,6 +246,15 @@
                         </a>
                     </div>
                 @endcan
+                <div class="menu-item">
+                    <a class="menu-link @if (Route::is('customers.*')) active @endif"
+                        href="{{ route('customers.index') }}">
+                        <span class="menu-icon">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <span class="menu-title">Khách hàng</span>
+                    </a>
+                </div>
                 @can(\App\Enums\PermissionName::MANAGE_REVIEWS)
                     <div class="menu-item">
                         <a class="menu-link @if (Route::is('ratings.*')) active @endif"

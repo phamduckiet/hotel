@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RatingController;
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'localization'])->group(function () {
         Route::post('/{room_type}/images', [RoomTypeController::class, 'storeRoomImage']);
     });
     Route::resource('bookings', BookingController::class)->only(['index', 'update', 'show']);
+    Route::resource('customers', CustomerController::class)->only(['index']);
     Route::post('/bookings/{booking}/rate', [BookingController::class, 'rateBooking'])->name('bookings.rate');
 
     Route::resources([
