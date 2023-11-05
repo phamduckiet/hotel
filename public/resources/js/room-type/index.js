@@ -42,7 +42,7 @@ var KTAppEcommerceCategories = function () {
             'order': [],
             'pageLength': 10, // chi hien thi 10 items trong 1 trang
             'columnDefs': [
-                { orderable: false, targets: 5 }, // Disable ordering on column 3 (actions)
+                { orderable: false, targets: 4 }, // Disable ordering on column 3 (actions)
             ]
         });
     }

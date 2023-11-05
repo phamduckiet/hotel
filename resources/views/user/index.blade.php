@@ -58,7 +58,7 @@
                                 <!--end::Svg Icon-->
                                 <input type="text" data-kt-user-table-filter="search"
                                     class="form-control form-control-solid w-250px ps-14"
-                                    placeholder="{{ __('messages.search_user') }}" />
+                                    placeholder="Nhập từ khóa tìm kiếm" />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -356,7 +356,7 @@
                                             <div class="badge badge-light fw-bolder">{{ $user->phone_number }}</div>
                                         </td>
                                         <td>{{ $user->address }}</td> --}}
-                                        <td>{{ $user->created_at }}</td>
+                                        <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                         <!--begin::Action=-->
                                         <td class="text-end">
                                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
@@ -380,12 +380,6 @@
                                                 <div class="menu-item px-3" data-bs-toggle="modal"
                                                     data-bs-target="#kt_modal_update_user_{{ $user->id }}">
                                                     <div class="menu-link px-3">{{ __('messages.edit') }}</div>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3"
-                                                        data-kt-users-table-filter="delete_row">{{ __('messages.delete') }}</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
@@ -564,19 +558,32 @@
     <!--end::Content-->
 @endsection
 
-@push('css')
+@push('styles')
     <!--begin::Page Vendor Stylesheets(used by this page)-->
     <link href="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <!--end::Page Vendor Stylesheets-->
 @endpush
 
-@push('js')
+@push('scripts')
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset('metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('metronic/assets/js/custom/apps/user-management/users/list/table.js') }}"></script>
-    <script src="{{ asset('metronic/assets/js/custom/apps/ecommerce/catalog/save-category.js') }} "></script>
+    <script>
+        const table = document.getElementById('kt_table_users');
+        const datatable = $(table).DataTable({
+            "info": false,
+            'order': [],
+            'pageLength': 10,
+            'columnDefs': [
+                { orderable: false, targets: 3 }, // Disable ordering on column 3 (actions)
+            ]
+        });
+        const filterSearch = document.querySelector('[data-kt-user-table-filter="search"]');
+        filterSearch.addEventListener('keyup', function (e) {
+            datatable.search(e.target.value).draw();
+        });
+    </script>
     <!--end::Page Custom Javascript-->
 @endpush

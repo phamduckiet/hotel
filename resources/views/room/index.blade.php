@@ -20,8 +20,8 @@
                             <!--begin::Search-->
                             <!--begin::Flatpickr-->
                             <div class="input-group w-250px">
-                                <input class="form-control form-control-solid rounded rounded-end-0"
-                                    placeholder="Chọn ngày" id="rooms_flatpickr" />
+                                <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Chọn ngày"
+                                    id="rooms_flatpickr" />
                             </div>
                             <!--end::Flatpickr-->
                             <!--end::Search-->
@@ -29,7 +29,17 @@
                         <!--end::Card title-->
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
-                            <a href="{{ route('rooms.create') }}" class="btn btn-primary">{{ __('messages.add_room') }}</a>
+                            <a href="{{ route('rooms.create') }}" class="btn btn-primary">
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
+                                            fill="black" />
+                                    </svg>
+                                </span>
+                                {{ __('messages.add_room') }}</a>
                         </div>
                         <!--end::Card toolbar-->
                     </div>
@@ -44,7 +54,8 @@
                                 <div class="card-body">
                                     <div class="d-flex gap-4">
                                         @foreach ($floor->rooms as $room)
-                                            <div class="room-item @if (!$room->is_available) room-busy @endif" data-bs-toggle="modal"
+                                            <div class="room-item @if (!$room->is_available) room-busy @endif"
+                                                data-bs-toggle="modal"
                                                 data-bs-target="#modal_view_room_detail_{{ $room->id }}">
                                                 <div class="h-auto">{{ $room->name }}</div>
                                             </div>
