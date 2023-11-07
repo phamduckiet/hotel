@@ -24,7 +24,7 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $this->authorize('update', $permission);
-        $permission->syncRoles($request->roles);
+        $permission->syncRoles($request->roles); // Update lai danh sach roles cho permission
 
         return redirect()->route('permissions.index')
             ->with('success', __('messages.successfully'));

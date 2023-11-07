@@ -4,15 +4,15 @@ namespace App\Enums;
 
 final class BookingStatus
 {
-    public const PENDING = 'pending';
+    public const PENDING = 'pending'; // Chờ xác nhaận
 
-    public const CONFIRMED = 'confirmed';
+    public const CONFIRMED = 'confirmed'; // Đã xác nhận
 
-    public const PAID = 'paid';
+    public const PAID = 'paid'; // Thanh toán thành công
 
-    public const CANCELED = 'canceled';
+    public const CANCELED = 'canceled'; // Bị huy
 
-    public const CHECKED_IN = 'checked_in';
+    public const CHECKED_IN = 'checked_in'; // Đã nhận phòng
 
-    public const CHECKED_OUT = 'checked_out';
+    public const CHECKED_OUT = 'checked_out'; // Đã trả phon
 }

@@ -17,7 +17,7 @@ class BookingConfirmationEmail extends Mailable implements ShouldQueue
     private Booking $booking;
 
     /**
-     * Create a new message instance.
+     * Create a new message instance. -> hàm khởi tạo
      */
     public function __construct(Booking $booking)
     {
@@ -30,19 +30,19 @@ class BookingConfirmationEmail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Khách sạn K Hotel xác nhận đặt phòng thành công',
+            subject: 'Khách sạn K Hotel xác nhận đặt phòng thành công', // Tiêu đề mail
         );
     }
 
     /**
-     * Get the message content definition.
+     * Get the message content definition. -> Nội dung mail
      */
     public function content(): Content
     {
         return new Content(
             view: 'email.booking',
             with: [
-                'booking' => $this->booking,
+                'booking' => $this->booking, // data truyền vào view
             ]
         );
     }

@@ -14,6 +14,7 @@ class BookingPolicy
      */
     public function viewAny(User $user): bool
     {
+        // Check quyen cho ham index (danh sach)
         return $user->can(PermissionName::MANAGE_BOOKINGS);
     }
 
@@ -22,6 +23,7 @@ class BookingPolicy
      */
     public function view(User $user, Booking $booking): bool
     {
+        // Check quyen cho ham show chi tiet
         return $user->can(PermissionName::MANAGE_BOOKINGS);
     }
 
@@ -30,6 +32,7 @@ class BookingPolicy
      */
     public function create(User $user): bool
     {
+        // Check quyen cho ham create/store
         return $user->can(PermissionName::MANAGE_BOOKINGS);
     }
 

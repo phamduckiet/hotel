@@ -13,7 +13,7 @@ use willvincent\Rateable\Rateable;
 
 class Booking extends Model
 {
-    use HasFactory, Rateable;
+    use HasFactory, Rateable; // Trait
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +31,7 @@ class Booking extends Model
         'children',
         'status',
         'money_total',
+        'note',
     ];
 
     /**
@@ -81,16 +82,26 @@ class Booking extends Model
         );
     }
 
-    public function canCancel()
+    /**
+     * Check booking có th được hủy hay không
+     * @return bool
+     */
+    public function canCancel(): bool
     {
         return $this->status === BookingStatus::PENDING;
     }
 
+    /**
+     * @return bool
+     */
     public function canPay()
     {
         return $this->status !== BookingStatus::CANCELED && $this->status !== BookingStatus::CHECKED_OUT;
     }
 
+    /**
+     * @return bool
+     */
     public function canRate()
     {
         return $this->status === BookingStatus::CHECKED_OUT;

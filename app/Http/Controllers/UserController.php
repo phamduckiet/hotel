@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\BookingStatus;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        // Danh sach
         $this->authorize('viewAny', User::class);
 
         $users = User::latest()->isAdmin()->get();
@@ -69,10 +68,13 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request, User $user)
     {
-        $this->authorize('create', $user);
+        // Tạo tài khoản user
+        $this->authorize('create', $user); // Phân quyền
 
         $avatarUrl = optional($request->file('avatar'))->store('images', ['disk' => 'public_storage']);
 
+        // Hash -> hàm một chiều (hàm băm)
+        // 123 -> kasefger...
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -81,10 +83,10 @@ class UserController extends Controller
             'is_admin' => (bool) $request->role,
         ]);
 
-        $user->syncRoles($request->role);
+        $user->syncRoles($request->role); // Gán role cho user
 
         return redirect()->route('users.index')
-            ->with('success', __('messages.successfully'));
+            ->with('success', __('messages.successfully')); // Trang danh
     }
 
     /**

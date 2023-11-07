@@ -305,6 +305,11 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <textarea id="w3review" name="note" rows="4" placeholder="Ghi chú"></textarea>
+                                                </div>
+                                            </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group mrg-btm-10">
                                                     <button type="submit" class="search-button btn-theme">Đặt
@@ -326,12 +331,12 @@
                             @foreach ($otherRoomTypes as $roomType)
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object" src="{{ $roomType->avatar_link }}"
-                                            alt="small-img">
+                                        <img class="media-object" src="{{ $roomType->avatar_link }}" alt="small-img">
                                     </div>
                                     <div class="media-body">
                                         <h3 class="media-heading">
-                                            <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
+                                            <a
+                                                href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
                                         </h3>
                                         <p>@money($roomType->price, 'VND')</p>
                                     </div>

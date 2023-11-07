@@ -15,11 +15,12 @@ class BookingService
      */
     public function getRoomsAvailable(int $roomTypeId, Carbon $checkin, Carbon $checkout)
     {
+        // Lấy danh sách các phòng còn trống
         $invalidRoomIds = Room::where('type_id', $roomTypeId)
             ->whereHas('bookings', function ($query) use ($checkin, $checkout) {
                 return $query->whereDate('checkout', '>', $checkin)
                     ->whereDate('checkin', '<', $checkout);
-            })->pluck('id')->toArray();
+            })->pluck('id')->toArray(); // Lấy ra mảng ca room_ids không hợp lệ
 
         return Room::where('type_id', $roomTypeId)
             ->whereNotIn('id', $invalidRoomIds)->get();
