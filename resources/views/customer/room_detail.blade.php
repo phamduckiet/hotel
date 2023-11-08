@@ -307,7 +307,7 @@
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <textarea id="w3review" name="note" rows="4" placeholder="Ghi chú"></textarea>
+                                                    <textarea class="form-control" name="note" placeholder="Ghi chú" rows="3" style="border-color:white;"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">

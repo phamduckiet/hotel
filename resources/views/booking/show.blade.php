@@ -214,6 +214,18 @@
                                                     @endforeach
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="text-muted">
+                                                    <div class="d-flex align-items-center">
+                                                        <!--begin::Svg Icon | path: icons/duotune/files/fil002.svg-->
+                                                        <i class="fas fa-book fs-5 me-5"></i>
+                                                        <!--end::Svg Icon-->Ghi chú
+                                                    </div>
+                                                </td>
+                                                <td class="fw-bolder text-end">
+                                                    {{ $booking->note }}
+                                                </td>
+                                            </tr>
                                         </tbody>
                                         <!--end::Table body-->
                                     </table>

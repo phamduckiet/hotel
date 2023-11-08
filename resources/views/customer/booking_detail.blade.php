@@ -60,6 +60,10 @@
                                             <i class="fa fa-bed" aria-hidden="true"></i>
                                             Số lượng phòng: <strong>{{ $booking->room_total }}</strong>
                                         </li>
+                                        <li>
+                                            <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                                            Ghi chú: {{ $booking->note }}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
