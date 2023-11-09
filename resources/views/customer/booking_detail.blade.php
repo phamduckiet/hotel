@@ -75,16 +75,48 @@
                                         phòng</button>
                                 @endif
                                 @if ($booking->canPay())
-                                    <a href="{{ route('my_bookings.pay', ['booking' => $booking->id]) }}">
-                                        <button type="button" class="btn-md btn-theme" style="margin-left:15px;">Thanh toán
-                                            qua
-                                            Paypal</button>
-                                    </a>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn-md btn-theme"
+                                            style="margin-left:15px;height:46px;" data-toggle="dropdown">Thanh toán
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li style="margin-right:0;"><a
+                                                    href="{{ route('my_bookings.pay', ['booking' => $booking->id]) }}">Thanh
+                                                    toán
+                                                    qua
+                                                    Paypal</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#qr-bank-modal">Chuyển
+                                                    khoản</a></li>
+                                        </ul>
+                                    </div>
                                 @endif
                             </div>
                         </div>
                     </div>
                     <!-- Events details -->
+
+                    <!-- The modal -->
+                    <div class="modal fade" id="qr-bank-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="modalLabel" style="font-weight:600;">Thông tin chuyển khoản
+                                    </h4>
+                                </div>
+                                <div class="modal-body" style="display:flex;justify-content:center;">
+                                    <img src="{{ asset('qr-bank.jpeg') }}" style="width:80%;">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Contact 1 start -->
                     @if ($booking->canRate())
@@ -162,13 +194,6 @@
                                             data-id="{{ $booking->id }}" class="cancel-btn btn btn-grey"
                                             style="padding:6.5px 10px;">Hủy đặt phòng</button>
                                     @endif
-                                    @if ($booking->canPay())
-                                        <a href="{{ route('my_bookings.pay', ['booking' => $booking->id]) }}">
-                                            <button type="submit" class="btn btn-theme"
-                                                style="margin-left:15px;padding:5px 11px;">Thanh toán qua
-                                                Paypal</button>
-                                        </a>
-                                    @endif
                                 </div>
                             </ul>
                         </div>
@@ -198,12 +223,12 @@
                             @foreach ($otherRoomTypes as $roomType)
                                 <div class="media">
                                     <div class="media-left">
-                                        <img class="media-object" src="{{ $roomType->avatar_link }}"
-                                            alt="small-img">
+                                        <img class="media-object" src="{{ $roomType->avatar_link }}" alt="small-img">
                                     </div>
                                     <div class="media-body">
                                         <h3 class="media-heading">
-                                            <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
+                                            <a
+                                                href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
                                         </h3>
                                         <p>@money($roomType->price, 'VND')</p>
                                     </div>
