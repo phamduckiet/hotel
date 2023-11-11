@@ -381,7 +381,13 @@
                                                     data-bs-target="#kt_modal_update_user_{{ $user->id }}">
                                                     <div class="menu-link px-3">{{ __('messages.edit') }}</div>
                                                 </div>
-                                                <!--end::Menu item-->
+                                                <div class="menu-item px-3 delete-btn"
+                                                    data-url="{{ route('users.destroy', ['user' => $user->id]) }}"
+                                                    data-id="{{ $user->id }}">
+                                                    <div class="menu-link px-3"
+                                                        data-url="{{ route('users.destroy', ['user' => $user->id]) }}"
+                                                        data-id="{{ $user->id }}">{{ __('messages.delete') }}</div>
+                                                </div>
                                             </div>
                                             <!--end::Menu-->
                                         </td>
@@ -576,13 +582,45 @@
             "info": false,
             'order': [],
             'pageLength': 10,
-            'columnDefs': [
-                { orderable: false, targets: 3 }, // Disable ordering on column 3 (actions)
+            'columnDefs': [{
+                    orderable: false,
+                    targets: 3
+                }, // Disable ordering on column 3 (actions)
             ]
         });
         const filterSearch = document.querySelector('[data-kt-user-table-filter="search"]');
-        filterSearch.addEventListener('keyup', function (e) {
+        filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
+        });
+
+        // Delete button clicked, JQuery
+        $('.delete-btn').click((e) => {
+            const urlRequest = $(e.target).data('url');
+            const id = $(e.target).data('id');
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn xóa?',
+                icon: 'warning',
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText: 'Hủy',
+                customClass: {
+                    confirmButton: "btn btn-danger",
+                    cancelButton: 'btn btn-light',
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE', // method
+                        url: urlRequest,
+                        success: function(data) {
+                            window.localStorage.setItem('success', 'Xóa thành công!');
+                            window.location.href = '/users';
+                        },
+                        error: function() {}
+                    });
+                }
+            });
         });
     </script>
     <!--end::Page Custom Javascript-->
