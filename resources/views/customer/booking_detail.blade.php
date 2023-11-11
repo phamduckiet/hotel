@@ -111,6 +111,9 @@
                                 <div class="modal-body" style="display:flex;justify-content:center;">
                                     <img src="{{ asset('qr-bank.jpeg') }}" style="width:80%;">
                                 </div>
+                                <div class="text-center" style="font-size:20px;font-weight:600;margin-bottom:20px;">
+                                    Nội dung chuyển khoản: {{ $booking->code }}
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                 </div>

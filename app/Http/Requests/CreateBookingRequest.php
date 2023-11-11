@@ -22,7 +22,7 @@ class CreateBookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'checkin' => 'required|date_format:d/m/Y',
+            'checkin' => 'required|date_format:d/m/Y|after_or_equal:today',
             'checkout' => 'required|date_format:d/m/Y|after:checkin',
             'room_total' => 'required||numeric|min:1',
             'room_type_id' => 'required',
@@ -42,6 +42,18 @@ class CreateBookingRequest extends FormRequest
             'checkout' => 'Ngày trả phòng',
             'room_total' => 'Số lượng phòng',
             'adults' => 'Số người lớn',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'checkin.after_or_equal' => 'Ngày nhận phòng phải bằng hoặc sau ngày hôm nay.',
         ];
     }
 }
