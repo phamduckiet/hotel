@@ -18,7 +18,9 @@ return [
     'required' => 'Trường :attribute là bắt buộc.',
     'min' => [
         'string' => ':attribute phải có ít nhất :min ký tự.',
+        'numeric' => ':attribute tối thiểu :min.',
     ],
     'integer' => ':attribute phải là một số.',
     'unique' => ':attribute đã tồn tại.',
+    'after' => ':attribute phải sau ngày :date.',
 ];

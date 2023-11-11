@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\BookingStatus;
 use App\Events\BookingWasCreatedEvent;
 use App\Events\BookingWasPaidEvent;
+use App\Http\Requests\CreateBookingRequest;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Services\BookingService;
 use App\Http\Services\PaypalService;
@@ -46,7 +47,7 @@ class BookingController extends Controller
      * Show the form for creating a new resource. => Ko check quyên => customer
      * Hiện thi trang booking
      */
-    public function create(Request $request, RoomType $roomType)
+    public function create(CreateBookingRequest $request, RoomType $roomType)
     {
         // Kiểm tra xem còn đủ phòng trống hay không
         $checkin = Carbon::createFromFormat('d/m/Y', $request->checkin);
@@ -83,10 +84,6 @@ class BookingController extends Controller
         return redirect()->route('rooms.booking.view'); // Retyurn view dat phòng
     }
 
-    /**
-     * Customer
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
-     */
     public function showBookingView()
     {
         $cart = optional(Cart::content())->first();

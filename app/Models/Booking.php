@@ -91,18 +91,12 @@ class Booking extends Model
         return $this->status === BookingStatus::PENDING;
     }
 
-    /**
-     * @return bool
-     */
-    public function canPay()
+    public function canPay(): bool
     {
-        return $this->status !== BookingStatus::CANCELED && $this->status !== BookingStatus::CHECKED_OUT;
+        return $this->status !== BookingStatus::CANCELED && $this->status !== BookingStatus::CHECKED_OUT && $this->status !== BookingStatus::PAID;
     }
 
-    /**
-     * @return bool
-     */
-    public function canRate()
+    public function canRate(): bool
     {
         return $this->status === BookingStatus::CHECKED_OUT;
     }

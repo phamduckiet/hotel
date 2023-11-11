@@ -253,6 +253,10 @@
                                                     <input type="text" class="btn-default datepicker"
                                                         placeholder="Nhận phòng" name="checkin"
                                                         value="{{ $checkin }}" data-date-format="dd/mm/yyyy">
+                                                    @error('checkin')
+                                                        <div class="text-danger error-text"><small>{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
@@ -260,6 +264,10 @@
                                                     <input type="text" class="btn-default datepicker"
                                                         placeholder="Trả phòng" name="checkout"
                                                         value="{{ $checkout }}" data-date-format="dd/mm/yyyy">
+                                                    @error('checkout')
+                                                        <div class="text-danger error-text"><small>{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
@@ -274,6 +282,10 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('room_total')
+                                                        <div class="text-danger error-text"><small>{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
@@ -288,6 +300,10 @@
                                                             </option>
                                                         @endfor
                                                     </select>
+                                                    @error('adults')
+                                                        <div class="text-danger error-text"><small>{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <br>
@@ -368,3 +384,12 @@
     </div>
     <!-- Rooms detail section end -->
 @endsection
+
+@push('styles')
+    <style>
+        .error-text {
+            margin-top: 6px;
+            margin-bottom: -15px;
+        }
+    </style>
+@endpush
