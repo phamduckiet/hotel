@@ -119,7 +119,7 @@ class BookingController extends Controller
         $checkout = Carbon::createFromFormat('d/m/Y', $cart->options->checkout);
 
         $rooms = $this->bookingService->getRoomsAvailable($cart->id, $checkin, $checkout);
-        if ($rooms->isEmpty()) {
+        if ($rooms->count() < $cart->qty) {
             alert()->error('Không còn phòng trống.')
                 ->showConfirmButton('OK', '#FF7B54')->autoClose(5000);
 
@@ -138,7 +138,7 @@ class BookingController extends Controller
             'note' => $cart->options->note,
         ]);
         // Luu rooms cho bookings
-        $booking->rooms()->attach($rooms->first()->id);
+        $booking->rooms()->attach($rooms->take($cart->qty)->pluck('id')->toArray());
 
         BookingWasCreatedEvent::dispatch($booking); // Phát đi sự kiện là booking được tạo ra
 
