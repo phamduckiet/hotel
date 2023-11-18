@@ -26,6 +26,7 @@ class HomeController extends Controller
         $users = User::isAdmin()->get();
         return view('customer.about', compact('users'));
     }
+
     public function index(Request $request)
     {
         if ($request->checkin && $request->checkout) { // Nếu người dùng query theo chekcin va checkout
@@ -72,6 +73,13 @@ class HomeController extends Controller
      */
     private function getRoomTypesByCheckinAndCheckout($request): mixed
     {
+        // Neu checkin > checkout
+        $checkin = new Carbon($request->checkin);
+        $checkout = new Carbon($request->checkout);
+        if ($checkin->greaterThan($checkout)) {
+            return collect();
+        }
+
         // Lay ra room type + rooms + bookings co tgian checkin / checkout vi pham
         $roomTypes = RoomType::latest()
             ->with('rooms.bookings', function ($query) use ($request) {

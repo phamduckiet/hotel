@@ -124,7 +124,7 @@
             'pageLength': 10,
         });
         const filterSearch = document.querySelector('[data-kt-user-table-filter="search"]');
-        filterSearch.addEventListener('keyup', function (e) {
+        filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
     </script>

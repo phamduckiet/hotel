@@ -22,6 +22,12 @@ var KTAppEcommerceSalesListing = function () {
         datatable.on('draw', function () {
             handleDeleteRows();
         });
+
+        // Handle search
+        const filterSearch = document.querySelector('[data-kt-ecommerce-order-filter="search"]');
+        filterSearch.addEventListener('keyup', function(e) { // Bắt sự kiện người dùng nhấc phím lên
+            datatable.search(e.target.value).draw();
+        });
     }
 
     // Init flatpickr --- more info :https://flatpickr.js.org/getting-started/

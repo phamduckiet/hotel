@@ -236,9 +236,6 @@
                     },
                     success: function(res) {
                         toastr.success('Cập nhật trạng thái thành công!');
-                        // window.localStorage.setItem('success',
-                        //     'Cập nhật trạng thái thành công!');
-                        // window.location.href = '/bookings';
                     },
                 });
             }

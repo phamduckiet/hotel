@@ -27,13 +27,9 @@ Route::get('/about', [HomeController::class, 'about'])->name('about.view');
 Route::middleware('localization')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/rooms/{room_type}/show', [HomeController::class, 'showRoomDetail'])->name('room.detail');
-    Route::post('/rooms/{room_type}/booking', [BookingController::class, 'create'])->name('rooms.booking');
-    Route::get('/booking', [BookingController::class, 'showBookingView'])->name('rooms.booking.view');
-    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
-    Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
-    Route::get('/my-bookings/{booking}', [BookingController::class, 'getBookingDetail'])->name('my_bookings.show');
 });
 
+// Cần phải login
 Route::middleware(['auth', 'localization'])->group(function () {
     Route::get('/my-bookings', [BookingController::class, 'getBookingHistory'])->name('my_bookings.index');
     Route::get('/my-bookings/{booking}/pay', [BookingController::class, 'payBooking'])->name('my_bookings.pay');
@@ -51,6 +47,13 @@ Route::middleware(['auth', 'localization'])->group(function () {
         Route::delete('/{room_type}/images/{imageId}', [RoomTypeController::class, 'deleteRoomImage']);
         Route::post('/{room_type}/images', [RoomTypeController::class, 'storeRoomImage']);
     });
+
+    Route::post('/rooms/{room_type}/booking', [BookingController::class, 'create'])->name('rooms.booking');
+    Route::get('/booking', [BookingController::class, 'showBookingView'])->name('rooms.booking.view');
+    Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+    Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+    Route::get('/my-bookings/{booking}', [BookingController::class, 'getBookingDetail'])->name('my_bookings.show');
+
     Route::resource('bookings', BookingController::class)->only(['index', 'update', 'show']);
     Route::resource('customers', CustomerController::class)->only(['index']);
     Route::post('/bookings/{booking}/rate', [BookingController::class, 'rateBooking'])->name('bookings.rate');

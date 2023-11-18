@@ -168,7 +168,8 @@
                             <!-- Detail -->
                             <div class="detail clearfix">
                                 <h3>
-                                    <a href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
+                                    <a
+                                        href="{{ route('room.detail', ['room_type' => $roomType->id]) }}">{{ $roomType->name }}</a>
                                 </h3>
                                 <h5 class="location">
                                     @if (!$roomType->is_available)
@@ -270,43 +271,13 @@
     </div>
     <!-- Our facilties section end -->
 
-    <!-- Counters strat -->
-    <div class="counters">
-        <h1>Thống kê khách sạn</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 bordered-right">
-                    <div class="counter-box">
-                        <h1 class="counter">967</h1>
-                        <h5>Khách đặt phòng</h5>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 bordered-right">
-                    <div class="counter-box">
-                        <h1 class="counter">577</h1>
-                        <h5>Phòng đặt</h5>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 bordered-right">
-                    <div class="counter-box">
-                        <h1 class="counter">1398</h1>
-                        <h5>Thành viên lưu trú</h5>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="counter-box counter-box-2">
-                        <h1 class="counter">376</h1>
-                        <h5>Bữa ăn được phục vụ</h5>
-                    </div>
-                </div>
-            </div>
+    <!-- Google map start -->
+    <div class="section">
+        <div class="map">
+            <div id="map" class="google-map"></div>
         </div>
     </div>
-    <!-- Counters end -->
-
-    <!-- Testimonial secion start -->
-
-    <!-- Testimonial secion end -->
+    <!-- Google map end -->
 @endsection
 
 @push('styles')
@@ -333,6 +304,9 @@
         .daterangepicker td.active:hover {
             background-color: #3ac4fa !important;
         }
+        .google-map {
+            height: 500px !important;
+        }
     </style>
 @endpush
 
@@ -341,4 +315,69 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="{{ asset('resources/js/customer/home.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA68iSTxodYVgy9wew27QtIisJ0vVafxJ0"></script>
+    <script>
+        function LoadMap(propertes) {
+            var defaultLat = 16.032764;
+            var defaultLng = 108.221992;
+            var mapOptions = {
+                center: new google.maps.LatLng(defaultLat, defaultLng),
+                zoom: 13,
+                scrollwheel: false,
+                styles: [{
+                        featureType: "administrative",
+                        elementType: "labels",
+                        stylers: [{
+                            visibility: "off"
+                        }]
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels",
+                        stylers: [{
+                            visibility: "off"
+                        }]
+                    },
+                    {
+                        featureType: 'poi.business',
+                        stylers: [{
+                            visibility: 'off'
+                        }]
+                    },
+                    {
+                        featureType: 'transit',
+                        elementType: 'labels.icon',
+                        stylers: [{
+                            visibility: 'off'
+                        }]
+                    },
+                ]
+            };
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            var infoWindow = new google.maps.InfoWindow();
+            var myLatlng = new google.maps.LatLng(defaultLat, defaultLng);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+            (function(marker) {
+                google.maps.event.addListener(marker, "click", function(e) {
+                    infoWindow.setContent("" +
+                        "<div class='map-edu contact-map-content'>" +
+                        "<div class='map-content'>" +
+                        "<p class='address'>Khách sạn K-Hotel, số 6 Vũ Mộng Nguyên, </p>" +
+                        "<ul class='map-edu-list'> " +
+                        "<li><i class='fa fa-phone'></i>  +8499907777</li> " +
+                        "<li><i class='fa fa-envelope'></i>  k.hotel668@gmail.com</li> " +
+                        "<li><a href='https://khotel.com'><i class='fa fa-globe'></i>  https://khotel.com</li></a> " +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>");
+                    infoWindow.open(map, marker);
+                });
+            })(marker);
+        }
+        LoadMap();
+    </script>
 @endpush
