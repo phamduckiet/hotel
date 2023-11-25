@@ -95,37 +95,56 @@
                                                         </div>
                                                         <!--end::Modal header-->
                                                         <!--begin::Modal body-->
-                                                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7"
+                                                        <div class="modal-body scroll-y my-7"
                                                             id="{{ 'room-type-item-' . $room->id }}">
-                                                            <div class="card-body text-center pt-0">
-                                                                <div class="image-input image-input-empty image-input-outline mb-3"
-                                                                    style="{{ 'background-image: url(' . asset($room->avatar_url) . ')' }}">
-                                                                    <!--begin::Preview existing avatar-->
-                                                                    <div class="image-input-wrapper w-150px h-150px"></div>
+                                                            <div class="card-body pt-0">
+                                                                <div class="text-center">
+                                                                    <div class="image-input image-input-empty image-input-outline mb-3"
+                                                                        style="{{ 'background-image: url(' . asset($room->avatar_url) . ')' }}">
+                                                                        <!--begin::Preview existing avatar-->
+                                                                        <div class="image-input-wrapper w-150px h-150px">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <h3>{{ __('messages.room') }}: {{ $room->name }}</h3>
-                                                                @foreach ($roomTypes as $roomType)
-                                                                    @if ($room->type_id === $roomType->id)
-                                                                        <h3>{{ __('messages.room_types') }}:
-                                                                            {{ $roomType->name }}</h3>
-                                                                        <h3>{{ __('messages.price') }}:
-                                                                            {{ number_format($roomType->price, 0, ',', '.') }}
-                                                                            VNĐ/Ngày</h3>
-                                                                        <h3>{{ __('messages.max_adults') }}:
-                                                                            {{ $roomType->max_adults }}</h3>
-                                                                        <h3>{{ __('messages.max_children') }}:
-                                                                            {{ $roomType->max_children }}</h3>
-                                                                    @endif
-                                                                @endforeach
-                                                                {{ __('messages.View_room') }}
-                                                                {{-- <div class="image-slider">
-                                                                    <div class="image-container">
-                                                                        @foreach ($room->images as $image)
-                                                                            <img src="{{ $image->link }}" alt="Image"
-                                                                                class="image" />
+                                                                <h3>Thông tin phòng</h3>
+                                                                <div
+                                                                    style="margin-left:20px;font-size:16px;margin-bottom:20px;">
+                                                                    <div>{{ __('messages.room') }}: {{ $room->name }}
+                                                                    </div>
+                                                                    @foreach ($roomTypes as $roomType)
+                                                                        @if ($room->type_id === $roomType->id)
+                                                                            <div>{{ __('messages.room_types') }}:
+                                                                                {{ $roomType->name }}</div>
+                                                                            <div>{{ __('messages.price') }}:
+                                                                                {{ number_format($roomType->price, 0, ',', '.') }}
+                                                                                VNĐ/Ngày</div>
+                                                                            <div>{{ __('messages.max_adults') }}:
+                                                                                {{ $roomType->max_adults }}</div>
+                                                                            <div>{{ __('messages.max_children') }}:
+                                                                                {{ $roomType->max_children }}</div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
+                                                                @if (count($room->bookings))
+                                                                    <h3>Thông tin đặt phòng ngày {{ $date }}</h3>
+                                                                    <div style="margin-left:20px;font-size:16px;">
+                                                                        @foreach ($room->bookings as $booking)
+                                                                            <div>Mã đặt phòng:
+                                                                                <strong><a
+                                                                                        href="{{ route('bookings.show', ['booking' => $booking->id]) }}">{{ $booking->code }}</a></strong>
+                                                                            </div>
+                                                                            <div>Tên khách hàng:
+                                                                                <strong>{{ $booking->customer->name }}</strong>
+                                                                            </div>
+                                                                            <div>Email:
+                                                                                <strong>{{ $booking->customer->email }}</strong>
+                                                                            </div>
+                                                                            <div>Số điện thoại:
+                                                                                <strong>{{ $booking->customer->phone }}</strong>
+                                                                            </div>
                                                                         @endforeach
                                                                     </div>
-                                                                </div> --}}
+                                                                @endif
                                                             </div>
                                                             <div class="text-center button-container">
                                                                 <button class="delete-button delete-btn"

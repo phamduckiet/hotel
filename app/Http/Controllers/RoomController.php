@@ -8,6 +8,7 @@ use App\Models\BookingRoom;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\RoomType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,14 @@ class RoomController extends Controller
     {
         $this->authorize('viewAny', Room::class);
 
-        $floors = Floor::with('rooms', 'rooms.roomType')->get();
+        $floors = Floor::with([
+            'rooms',
+            'rooms.roomType',
+            'rooms.bookings' => function ($query) use ($request) {
+                return $query->whereDate('checkin', '<=', $request->date)
+                    ->whereDate('checkout', '>=', $request->date);
+            },
+        ])->get();
         $roomTypes = RoomType::latest()->get();
 
         $busyRoomIds = collect();
@@ -42,7 +50,9 @@ class RoomController extends Controller
             }
         }
 
-        return view('room.index', compact('floors', 'roomTypes'));
+        $date = Carbon::createFromFormat('Y-m-d', $request->date)->format('d/m/Y');
+
+        return view('room.index', compact('floors', 'roomTypes', 'date'));
     }
 
     /**
