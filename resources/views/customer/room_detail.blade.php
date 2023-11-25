@@ -405,6 +405,7 @@
     <script>
         $('.children-count-input').on('change', function(e) {
             var value = $(this).val();
+            $('.children-ages-container').empty();
             for (let i = 0; i < value; i++) {
                 var itemHTML = `
                     <div class="col-md-12 col-sm-6 col-xs-12">
