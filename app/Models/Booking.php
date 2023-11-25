@@ -32,6 +32,7 @@ class Booking extends Model
         'status',
         'money_total',
         'note',
+        'children_ages',
     ];
 
     /**
@@ -42,6 +43,7 @@ class Booking extends Model
     protected $casts = [
         'checkin' => 'datetime',
         'checkout' => 'datetime',
+        'children_ages' => 'array',
     ];
 
     /**

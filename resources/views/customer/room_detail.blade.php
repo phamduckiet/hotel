@@ -250,6 +250,7 @@
                                         <div class="search-your-details">
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
+                                                    <label>Nhận phòng</label>
                                                     <input type="text" class="btn-default datepicker"
                                                         placeholder="Nhận phòng" name="checkin"
                                                         value="{{ $checkin }}" data-date-format="dd/mm/yyyy">
@@ -261,6 +262,7 @@
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
+                                                    <label>Trả phòng</label>
                                                     <input type="text" class="btn-default datepicker"
                                                         placeholder="Trả phòng" name="checkout"
                                                         value="{{ $checkout }}" data-date-format="dd/mm/yyyy">
@@ -272,9 +274,9 @@
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
+                                                    <label>Số lượng phòng</label>
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="room_total">
-                                                        <option value="0">Số lượng phòng</option>
                                                         @foreach ($roomType->rooms as $key => $room)
                                                             <option value="{{ $key + 1 }}"
                                                                 @if ($key === (int) request('room_total') - 1) selected @endif>
@@ -290,9 +292,9 @@
                                             </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
+                                                    <label>Số lượng người lớn</label>
                                                     <select class="selectpicker search-fields form-control-2"
                                                         name="adults">
-                                                        <option value="0">Số lượng người lớn</option>
                                                         @for ($i = 1; $i <= $roomType->max_adults; $i++)
                                                             <option value="{{ $i }}"
                                                                 @if ($i === (int) request('adults')) selected @endif>
@@ -309,7 +311,9 @@
                                             <br>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
+                                                    <label>Số lượng trẻ em</label>
+                                                    <select
+                                                        class="children-count-input selectpicker search-fields form-control-2"
                                                         name="children">
                                                         <option value="0">Số lượng trẻ em</option>
                                                         @for ($i = 1; $i <= $roomType->max_children; $i++)
@@ -321,8 +325,11 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="children-ages-container">
+                                            </div>
                                             <div class="col-md-12 col-sm-6 col-xs-12">
                                                 <div class="form-group">
+                                                    <label>Ghi chú</label>
                                                     <textarea class="form-control" name="note" placeholder="Ghi chú" rows="3" style="border-color:white;"></textarea>
                                                 </div>
                                             </div>
@@ -392,4 +399,26 @@
             margin-bottom: -15px;
         }
     </style>
+@endpush
+
+@push('scripts')
+    <script>
+        $('.children-count-input').on('change', function(e) {
+            var value = $(this).val();
+            for (let i = 0; i < value; i++) {
+                var itemHTML = `
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>Độ tuổi trẻ em</label>
+                            <input type="number" min="1" max="15" class="btn-default" placeholder="Độ tuổi trẻ em" name="children_ages[]" required>
+                            @error('childen_ages')
+                                <div class="text-danger error-text"><small>{{ $message }}</small></div>
+                            @enderror
+                        </div>
+                    </div>`;
+
+                $('.children-ages-container').append(itemHTML);
+            }
+        });
+    </script>
 @endpush

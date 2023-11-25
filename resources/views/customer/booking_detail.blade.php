@@ -55,6 +55,14 @@
                                         <li>
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                             Số trẻ em: <strong>{{ $booking->children }}</strong>
+                                            @if (count($booking->children_ages) > 0)
+                                                (@foreach ($booking->children_ages as $index => $age)
+                                                    {{ $age }} tuổi
+                                                    @if ($index < count($booking->children_ages) - 1)
+                                                        ,
+                                                    @endif
+                                                @endforeach)
+                                            @endif
                                         </li>
                                         <li>
                                             <i class="fa fa-bed" aria-hidden="true"></i>

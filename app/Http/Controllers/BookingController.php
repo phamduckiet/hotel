@@ -75,6 +75,7 @@ class BookingController extends Controller
                 'checkout' => $request->checkout,
                 'adults' => $request->adults,
                 'children' => $request->children,
+                'children_ages' => $request->children_ages,
                 'images' => $roomType->images,
                 'day_total' => $checkin->diffInDays($checkout), // Số ngày ở
                 'note' => $request->note,
@@ -134,6 +135,7 @@ class BookingController extends Controller
             'room_total' => $cart->qty,
             'adults' => $cart->options->adults,
             'children' => $cart->options->children,
+            'children_ages' => array_map('intval', $cart->options->children_ages ?? []),
             'money_total' => Cart::total() * $cart->options->day_total,
             'note' => $cart->options->note,
         ]);

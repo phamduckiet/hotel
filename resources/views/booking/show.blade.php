@@ -198,6 +198,14 @@
                                                 </td>
                                                 <td class="fw-bolder text-end">
                                                     {{ $booking->children }}
+                                                    @if (count($booking->children_ages) > 0)
+                                                        (@foreach ($booking->children_ages as $index => $age)
+                                                            {{ $age }} tuổi
+                                                            @if ($index < count($booking->children_ages) - 1)
+                                                                ,
+                                                            @endif
+                                                        @endforeach)
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <tr>
