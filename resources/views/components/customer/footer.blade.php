@@ -96,13 +96,12 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-item newsletter">
                         <div class="newsletter-inner">
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.</p>
+                            <p>Liên hệ hỗ trợ.</p>
                             <form action="#" method="GET">
                                 <p><input type="text" class="form-contact" name="email"
-                                        placeholder="Enter your email"></p>
+                                        placeholder="Nhập email"></p>
                                 <p><button type="submit" name="submitNewsletter" class="btn btn-small">
-                                        Signup
+                                        Gửi
                                     </button></p>
                             </form>
                         </div>
@@ -113,12 +112,3 @@
     </div>
 </footer>
 <!-- Footer end -->
-
-<!-- Copy right start -->
-<div class="copy-right">
-    <div class="container">
-        &copy; 2017 <a href="http://themevessel.com/" target="_blank">Theme Vessel</a>. Trademarks and brands are
-        the property of their respective owners.
-    </div>
-</div>
-<!-- Copy end right-->

@@ -11,12 +11,6 @@
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div class="banner-content text-center">
                             <h1 data-animation="animated fadeInDown delay-05s"><span>Chào mừng đến với</span> K Hotel</h1>
-                            <p data-animation="animated fadeInUp delay-1s">Khách sạn K Hotel là một điểm đến lý tưởng cho
-                                những ai tìm kiếm sự hoàn hảo và tiện nghi tại thành phố này. Với vị trí thuận lợi, K Hotel
-                                đặt tại trung tâm thị trấn, gần các điểm tham quan nổi tiếng, cửa hàng mua sắm, và nhà hàng
-                                tuyệt vời. Khách sạn chú trọng đến sự thoải mái của khách hàng, với phòng ốc thoải mái, dịch
-                                vụ chu đáo, và tiện nghi hiện đại. K Hotel cung cấp một trải nghiệm lưu trú đáng nhớ và là
-                                điểm dừng chân hoàn hảo cho du khách khám phá khu vực này.</p>
                             {{-- <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
                                 Started Now</a>
                             <a href="#" class="btn btn-md border-btn-theme"
@@ -29,12 +23,7 @@
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div class="banner-content text-center">
                             <h1 data-animation="animated fadeInDown delay-05s"><span>Chào mừng đến với</span> K Hotel</h1>
-                            <p data-animation="animated fadeInUp delay-1s">Khách sạn K Hotel là một điểm đến lý tưởng cho
-                                những ai tìm kiếm sự hoàn hảo và tiện nghi tại thành phố này. Với vị trí thuận lợi, K Hotel
-                                đặt tại trung tâm thị trấn, gần các điểm tham quan nổi tiếng, cửa hàng mua sắm, và nhà hàng
-                                tuyệt vời. Khách sạn chú trọng đến sự thoải mái của khách hàng, với phòng ốc thoải mái, dịch
-                                vụ chu đáo, và tiện nghi hiện đại. K Hotel cung cấp một trải nghiệm lưu trú đáng nhớ và là
-                                điểm dừng chân hoàn hảo cho du khách khám phá khu vực này.</p>
+
                             {{-- <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
                                 Started Now</a>
                             <a href="#" class="btn btn-md border-btn-theme"
@@ -47,12 +36,7 @@
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div class="banner-content text-center">
                             <h1 data-animation="animated fadeInDown delay-05s"><span>Chào mừng đến với</span> K Hotel</h1>
-                            <p data-animation="animated fadeInUp delay-1s">Khách sạn K Hotel là một điểm đến lý tưởng cho
-                                những ai tìm kiếm sự hoàn hảo và tiện nghi tại thành phố này. Với vị trí thuận lợi, K Hotel
-                                đặt tại trung tâm thị trấn, gần các điểm tham quan nổi tiếng, cửa hàng mua sắm, và nhà hàng
-                                tuyệt vời. Khách sạn chú trọng đến sự thoải mái của khách hàng, với phòng ốc thoải mái, dịch
-                                vụ chu đáo, và tiện nghi hiện đại. K Hotel cung cấp một trải nghiệm lưu trú đáng nhớ và là
-                                điểm dừng chân hoàn hảo cho du khách khám phá khu vực này.</p>
+
                             {{-- <a href="#" class="btn btn-md btn-theme" data-animation="animated fadeInUp delay-15s">Get
                                 Started Now</a>
                             <a href="#" class="btn btn-md border-btn-theme"
@@ -366,7 +350,7 @@
                     infoWindow.setContent("" +
                         "<div class='map-edu contact-map-content'>" +
                         "<div class='map-content'>" +
-                        "<p class='address'>Khách sạn K-Hotel, số 6 Vũ Mộng Nguyên, </p>" +
+                        "<p class='address'>Khách sạn K-Hotel </p>" +
                         "<ul class='map-edu-list'> " +
                         "<li><i class='fa fa-phone'></i>  +8499907777</li> " +
                         "<li><i class='fa fa-envelope'></i>  k.hotel668@gmail.com</li> " +

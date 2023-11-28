@@ -302,7 +302,7 @@
         }
 
         .room-busy {
-            background: #f1416c !important;
+            background: #8b8788 !important;
         }
     </style>
 @endpush

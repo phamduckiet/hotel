@@ -76,7 +76,7 @@
                         </div>
                         <!-- Rooms detail slider end -->
 
-                        <!-- Search area box 2 start -->
+                        {{-- <!-- Search area box 2 start -->
                         <div class="sidebar-widget search-area-box-2 hidden-lg hidden-md clearfix">
                             <div class="text-center">
                                 <h3>Search Your Rooms</h3>
@@ -158,7 +158,7 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- Search area box 2 end -->
+                        <!-- Search area box 2 end --> --}}
 
                         <!-- Rooms description start -->
                         <div class="panel-box course-panel-box course-description">
@@ -368,7 +368,7 @@
                         </div>
                         <!-- Recent News end -->
 
-                        <!-- Social media start -->
+                        {{-- <!-- Social media start -->
                         <div class="social-media sidebar-widget clearfix">
                             <!-- Main Title 2 -->
                             <div class="main-title-2">
@@ -383,7 +383,7 @@
                                 <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
                             </ul>
                         </div>
-                        <!-- Social media end -->
+                        <!-- Social media end --> --}}
                     </div>
                 </div>
             </div>
@@ -411,7 +411,7 @@
                     <div class="col-md-12 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Độ tuổi trẻ em</label>
-                            <input type="number" min="1" max="15" class="btn-default" placeholder="Độ tuổi trẻ em" name="children_ages[]" required>
+                            <input type="number" min="1" max="12" class="btn-default" placeholder="Độ tuổi trẻ em" name="children_ages[]" required>
                             @error('childen_ages')
                                 <div class="text-danger error-text"><small>{{ $message }}</small></div>
                             @enderror

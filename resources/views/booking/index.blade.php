@@ -98,7 +98,7 @@
                             <thead>
                                 <!--begin::Table row-->
                                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                    <th class="text-center min-w-100px">Booking ID</th>
+                                    <th class="text-center min-w-100px">Mã Đặt Phòng</th>
                                     <th class="text-center min-w-150px">Khách hàng</th>
                                     <th class="text-center min-w-100px">Loại phòng</th>
                                     <th class="text-center min-w-100px">Trạng thái</th>
@@ -117,7 +117,7 @@
                                     <tr>
                                         <td class="text-center" data-kt-ecommerce-order-filter="order_id">
                                             <a href=""
-                                                class="text-gray-800 text-hover-primary fw-bolder">{{ $booking->id }}</a>
+                                                class="text-gray-800 text-hover-primary fw-bolder">{{ $booking->code }}</a>
                                         </td>
                                         <!--end::Order ID=-->
                                         <!--begin::Customer=-->
