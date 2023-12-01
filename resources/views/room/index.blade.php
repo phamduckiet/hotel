@@ -49,9 +49,9 @@
                         @foreach ($floors as $floor)
                             <div class="card floor-card mt-8">
                                 <div class="card-header floor-card-header">
-                                    <span class="mt-6">{{ $floor->name }}</span>
+                                    <span class="mt-4">{{ $floor->name }}</span>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" style="padding: 20px !important;">
                                     <div class="d-flex gap-4">
                                         @foreach ($floor->rooms as $room)
                                             <div class="room-item @if (!$room->is_available) room-busy @endif"
@@ -280,6 +280,7 @@
             color: #272727;
             display: flex;
             align-items: center;
+            min-height: 50px !important;
         }
 
         .floor-card {
@@ -288,9 +289,9 @@
 
         .room-item {
             background: #02B14F;
-            height: 88px;
+            height: 50px;
             text-align: center;
-            min-width: 83px;
+            min-width: 60px;
             border-radius: 6px;
             color: white;
             font-weight: 500;

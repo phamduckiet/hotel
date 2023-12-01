@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\BookingStatus;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
-use App\Models\BookingRoom;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\RoomType;
@@ -21,6 +21,11 @@ class RoomController extends Controller
     {
         $this->authorize('viewAny', Room::class);
 
+        if (!$request->date) {
+            $date = now()->format('Y-m-d');
+            return redirect("/rooms/?date=$date");
+        }
+
         $floors = Floor::with([
             'rooms',
             'rooms.roomType',
@@ -36,7 +41,8 @@ class RoomController extends Controller
             $busyRoomIds = Room::query()
                 ->whereHas('bookings', function ($query) use ($request) {
                     return $query->whereDate('checkin', '<=', $request->date)
-                        ->whereDate('checkout', '>=', $request->date);
+                        ->whereDate('checkout', '>=', $request->date)
+                        ->where('status', '<>', BookingStatus::CHECKED_OUT);
                 })->pluck('id');
         }
 
