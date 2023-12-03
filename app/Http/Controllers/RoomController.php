@@ -31,7 +31,8 @@ class RoomController extends Controller
             'rooms.roomType',
             'rooms.bookings' => function ($query) use ($request) {
                 return $query->whereDate('checkin', '<=', $request->date)
-                    ->whereDate('checkout', '>=', $request->date);
+                    ->whereDate('checkout', '>=', $request->date)
+                    ->where('status', '<>', BookingStatus::CHECKED_OUT);
             },
         ])->get();
         $roomTypes = RoomType::latest()->get();
