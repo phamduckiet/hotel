@@ -5,10 +5,10 @@
     <div class="sub-banner overview-bgi">
         <div class="container">
             <div class="breadcrumb-area">
-                <h1>Booking System</h1>
+                <h1>Thông tin đặt phòng</h1>
                 <ul class="breadcrumbs">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">Booking System</li>
+                    <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="active">Thông tin đặt phòng</li>
                 </ul>
             </div>
         </div>
@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-xs-12 col-md-push-4">
                                         <div class="contact-form sidebar-widget">
-                                            <h3 class="booking-heading-2 black-color">Personal Info</h3>
+                                            <h3 class="booking-heading-2 black-color">Thông tin cá nhân</h3>
                                             <div class="row mb-30">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group firstname">
@@ -152,233 +152,9 @@
                                 <div class="clearfix"></div>
 
                                 <ul class="list-inline pull-right">
-                                    <li><button type="button" class="btn btn-grey prev-step">Trước</button></li>
                                     <li><button type="button" class="btn search-button btn-theme next-step">Tiếp tục</button></li>
                                 </ul>
                             </div>
-
-                            <!-- Thanh toán (để sau) -->
-                            {{-- <div class="tab-pane" role="tabpanel" id="step3">
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-xs-12">
-                                        <div class="contact-form sidebar-widget">
-                                            <h3 class="booking-heading-2 black-color">Billing Address</h3>
-                                            <div class="row mb-30">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="full-name" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>Last Name</label>
-                                                        <input type="text" name="last-name" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>Address Line 1</label>
-                                                        <input type="text" name="address-line-1" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>Address Line 2</label>
-                                                        <input type="text" name="address-line-2" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>City</label>
-                                                        <input type="text" name="city" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>Zip/Post Code</label>
-                                                        <input type="text" name="Zip" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group fullname">
-                                                        <label>State/Region</label>
-                                                        <input type="text" name="state" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group Country">
-                                                        <label>Country</label>
-                                                        <select class="selectpicker country search-fields" name="Country">
-                                                            <option>Select your county</option>
-                                                            <option>United Kingdom</option>
-                                                            <option>Canada</option>
-                                                            <option>Australia</option>
-                                                            <option>France</option>
-                                                            <option>Spain</option>
-                                                            <option>Brazil</option>
-                                                            <option>Bhutan</option>
-                                                            <option>Bangladesh</option>
-                                                            <option>India</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <h3 class="booking-heading-2">Card Info</h3>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group phone">
-                                                        <label>Card Number</label>
-                                                        <input type="text" name="card-number" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group email">
-                                                        <label>CVV</label>
-                                                        <input type="text" name="cvv" class="input-text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group Country">
-                                                        <label>Expire</label>
-                                                        <select class="selectpicker country search-fields" name="Country">
-                                                            <option>Month</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="form-group Country">
-                                                        <label>Year</label>
-                                                        <select class="selectpicker country search-fields" name="Country">
-                                                            <option>2017</option>
-                                                            <option>2016</option>
-                                                            <option>2015</option>
-                                                            <option>2014</option>
-                                                            <option>2013</option>
-                                                            <option>2012</option>
-                                                            <option>2011</option>
-                                                            <option>2010</option>
-                                                            <option>2009</option>
-                                                            <option>2008</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
-                                        <div class="booling-details-box">
-                                            <h3 class="booking-heading-2">Booking Details</h3>
-
-                                            <!--  Rooms detail slider start -->
-                                            <div class="rooms-detail-slider simple-slider ">
-                                                <div id="carousel-custom-2" class="carousel slide" data-ride="carousel">
-                                                    <div class="carousel-outer">
-                                                        <!-- Wrapper for slides -->
-                                                        <div class="carousel-inner">
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-2.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-1.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-5.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-6.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-3.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item">
-                                                                <img src="hotel-alpha/img/room/img-7.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                            <div class="item active">
-                                                                <img src="hotel-alpha/img/room/img-4.jpg"
-                                                                    class="thumb-preview" alt="Chevrolet Impala">
-                                                            </div>
-                                                        </div>
-                                                        <!-- Controls -->
-                                                        <a class="left carousel-control" href="#carousel-custom-2"
-                                                            role="button" data-slide="prev">
-                                                            <span class="slider-mover-left no-bg" aria-hidden="true">
-                                                                <i class="fa fa-angle-left"></i>
-                                                            </span>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                        <a class="right carousel-control" href="#carousel-custom-2"
-                                                            role="button" data-slide="next">
-                                                            <span class="slider-mover-right no-bg" aria-hidden="true">
-                                                                <i class="fa fa-angle-right"></i>
-                                                            </span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Rooms detail slider end -->
-
-                                            <h4>Luxury Room</h4>
-
-                                            <ul>
-                                                <li>
-                                                    <span>Check In:</span> october 27, 2017
-                                                </li>
-                                                <li>
-                                                    <span>Check Out:</span> october 29, 2017
-                                                </li>
-                                                <li>
-                                                    <span>Rooms:</span> 3
-                                                </li>
-                                                <li>
-                                                    <span>Adults:</span> 2
-                                                </li>
-                                                <li>
-                                                    <span>Child:</span> 1
-                                                </li>
-                                            </ul>
-
-                                            <div class="your-address">
-                                                <strong>Your Address:</strong>
-                                                <address>
-                                                    <strong>John maikel</strong>
-                                                    <br><br>
-                                                    Level 13, 2 Elizabeth St, Melbourne
-                                                    Victoria 3000
-                                                </address>
-                                            </div>
-
-                                            <div class="price">
-                                                Total:$317.99
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <ul class="list-inline pull-right">
-                                    <li><button type="button" class="btn btn-grey prev-step">Previous</button></li>
-                                    <li><button type="button" class="btn btn-grey  next-step">Skip</button></li>
-                                    <li><button type="button" class="btn search-button btn-theme next-step">Save and
-                                            continue</button></li>
-                                </ul>
-                            </div> --}}
 
                             <!-- Review -->
                             <div class="tab-pane" role="tabpanel" id="complete">

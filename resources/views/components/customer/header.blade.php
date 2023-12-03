@@ -11,35 +11,9 @@
             <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">
                 <ul class="social-list clearfix pull-right">
                     <li>
-                        <a href="#" class="facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="linkedin">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="google">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="rss">
-                            <i class="fa fa-rss"></i>
-                        </a>
-                    </li>
-                    <li>
                         @if (auth()->user())
                             <a id="logout-btn" href="#" class="sign-in"><i class="fa fa-sign-out"
-                                    aria-hidden="true"></i>
-                                {{ __('messages.sign_out') }}</a>
+                                    aria-hidden="true"></i>Đăng xuất</a>
                             <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                 @csrf
                             </form>

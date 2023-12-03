@@ -65,29 +65,6 @@
                                         Hãy đặt phòng ngay hôm nay để trải nghiệm dịch vụ và không gian tuyệt vời tại Khách Sạn
                                         Luminous. Chúng tôi sẽ biến kỳ nghỉ của bạn thành một kỷ niệm đáng nhớ!<br>
                                     </p>
-                                    <!-- ul -->
-                                    {{-- <ul class="clearfix">
-                                        <li>
-                                            <i class="fa fa-check-square-o"></i> Lorem ipsum dolor sit amet
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-check-square-o"></i> Lorem ipsum dolor sit amet
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-check-square-o"></i> Lorem ipsum dolor sit amet
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-check-square-o"></i> Lorem ipsum dolor sit amet
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-check-square-o"></i> Lorem ipsum dolor sit amet
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-check-square-o"></i> Lorem ipsum dolor sit amet
-                                        </li>
-                                    </ul>
-                                    <!-- btn -->
-                                    <a href="about.html" class="btn btn-sm btn-theme">Read More</a> --}}
 
                                 </div>
                             </div>

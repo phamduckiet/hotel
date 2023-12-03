@@ -5,16 +5,15 @@
     <div class="sub-banner overview-bgi">
         <div class="container">
             <div class="breadcrumb-area">
-                <h1>Room Detail</h1>
+                <h1>Chi Tiết Phòng</h1>
                 <ul class="breadcrumbs">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active">Room Detail</li>
+                    <li><a href="{{ route('home') }}">Trang Chủ</a></li>
+                    <li class="active">Chi Tiết Phòng</li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- Sub Banner end -->
-
     <!-- Rooms detail section start -->
     <div class="content-area rooms-detail-section">
         <div class="container">
@@ -74,93 +73,6 @@
                                 </ol>
                             </div>
                         </div>
-                        <!-- Rooms detail slider end -->
-
-                        {{-- <!-- Search area box 2 start -->
-                        <div class="sidebar-widget search-area-box-2 hidden-lg hidden-md clearfix">
-                            <div class="text-center">
-                                <h3>Search Your Rooms</h3>
-                                <h1>$260/Night</h1>
-                            </div>
-                            <div class="search-contents">
-                                <form method="GET">
-                                    <div class="row">
-                                        <div class="search-your-details">
-                                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <input type="text" class="btn-default datepicker"
-                                                        placeholder="Check In">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <input type="text" class="btn-default datepicker"
-                                                        placeholder="Check Out">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="room">
-                                                        <option>Room</option>
-                                                        <option>Single Room</option>
-                                                        <option>Double Room</option>
-                                                        <option>Deluxe Room</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="beds">
-                                                        <option>Beds</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="adults">
-                                                        <option>Adult</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <select class="selectpicker search-fields form-control-2"
-                                                        name="children">
-                                                        <option>Child</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                    <button class="search-button btn-theme">Book Now</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Search area box 2 end --> --}}
-
-                        <!-- Rooms description start -->
                         <div class="panel-box course-panel-box course-description">
                             <div class="panel with-nav-tabs panel-default">
                                 <div class="panel-body">
@@ -349,7 +261,7 @@
                         <!-- Recent News start -->
                         <div class="sidebar-widget recent-news">
                             <div class="main-title-2">
-                                <h1>Phòng tương tự</h1>
+                                <h1>Phòng khác</h1>
                             </div>
                             @foreach ($otherRoomTypes as $roomType)
                                 <div class="media">
@@ -366,24 +278,6 @@
                                 </div>
                             @endforeach
                         </div>
-                        <!-- Recent News end -->
-
-                        {{-- <!-- Social media start -->
-                        <div class="social-media sidebar-widget clearfix">
-                            <!-- Main Title 2 -->
-                            <div class="main-title-2">
-                                <h1>Social Media</h1>
-                            </div>
-                            <!-- Social list -->
-                            <ul class="social-list">
-                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- Social media end --> --}}
                     </div>
                 </div>
             </div>
